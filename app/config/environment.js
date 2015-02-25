@@ -8,6 +8,7 @@
 module.exports = {
 	development: 
 	{
+		db: 'mongodb://localhost/thunder',
 		port: 3000,
 		spaces: 4,
 		errorHandlerOptions: {
@@ -17,6 +18,7 @@ module.exports = {
 	},
 	production: 
 	{
+		db: 'mongodb://localhost/thunder',
 		port: 3000,
 		spaces: 0,
 		errorHandlerOptions: {
