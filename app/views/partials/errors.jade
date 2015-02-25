@@ -1,0 +1,7 @@
+if errors.length
+	.alert.alert-danger
+		button(type="button" class="close" data-dismiss="alert")
+			span &times;
+		ul
+		for error in errors
+			li #{error.msg}

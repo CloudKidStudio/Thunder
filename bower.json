@@ -1,0 +1,17 @@
+{
+	"name": "Thunder",
+	"version": "1.0.0",
+	"dependencies": {
+		"jquery": "*",
+		"bootstrap": "*",
+		"normalize-less": "*"
+	},
+	"ignore": [
+		".gitignore",
+		".gitattributes",
+		"src",
+		"build.json",
+		"Gruntfile.js",
+		"package.js"
+	]
+}
