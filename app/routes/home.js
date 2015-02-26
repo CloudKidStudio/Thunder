@@ -25,7 +25,7 @@ router.get('/', function(req, res)
                 {
                     res.render('index',
                     {
-                        soundFindResults:soundFindResults,
+                        soundFindResults: soundFindResults,
                         categoryFindResults: categoryFindResults
                     });
                 });

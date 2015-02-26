@@ -38,7 +38,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(errorHandler(config.errorHandlerOptions));
 
 // Start the server
-console.log(('Thunder running on ').green + ('http://localhost:'+config.port).blue);
+console.log(('Thunder running on ').green + ('http://localhost:' + config.port).blue);
 
 // Connect to database
 mongoose.connect(config.db);
