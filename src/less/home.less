@@ -1,0 +1,372 @@
+.sideBar {
+  width: 180px;
+  right: 0;
+  float: right;
+
+}
+.sideBar ul {
+  padding-left: 30px;
+  margin: 0 0 20px;
+
+}
+.indexList {
+  margin-right: 200px;
+
+}
+.favorites .admin.buttons {
+  text-align: center;
+  margin-bottom: 20px;
+
+}
+.categories .total {
+  font-size: 80%;
+  padding-left: 5px;
+
+}
+.sound {
+  width: 33.3%;
+  float: left;
+  padding: 5px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+}
+.soundContent {
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 10px 10px 64px;
+  border-radius: 4px;
+  font-size: 12px;
+  transition: background-color 0.2s;
+  -webkit-transition: background-color 0.2s;
+  overflow: hidden;
+
+}
+.no-touch .sound:hover .soundContent,
+.touch .sound:active .soundContent {
+  background-color: #eee;
+  border-color: #bbb;
+
+}
+.single .buttons {
+  text-align: center;
+
+}
+.sound .buttons {
+  position: absolute;
+  background-color: #c4cc02;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.sound .buttons .label {
+  display: none;
+}
+.sound .buttons .icon {
+  font-size: 22px;
+}
+.single .buttons .play,
+.sound .buttons .download,
+.sound .buttons .play,
+.sound .buttons .favorite {
+  float: left;
+  width: 50%;
+  display: block;
+  border: 0;
+  background: transparent;
+  border-bottom: 3px solid #a9ad32;
+  background-color: #c4cc02;
+  color: #fff;
+  padding: 10px;
+  height: 50px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  transition: background-color 0.2s, border-color 0.2s;
+  -webkit-transition: background-color 0.2s, border-color 0.2s;
+  outline: 0;
+  text-align: center;
+  white-space: nowrap;
+
+}
+.sound .buttons .download,
+.sound .buttons .play {
+  width: 40%;
+}
+.sound .buttons .favorite {
+  width: 20%;
+
+}
+.sound .buttons .favorite .icon-favorite {
+  display: none;
+}
+.sound .buttons .favorite.checked .icon-unfavorite {
+  display: none;
+}
+.sound .buttons .favorite.checked .icon-favorite {
+  display: block;
+}
+.sound .buttons .favorite.checked {
+  border-bottom: 0;
+  border-top: 3px solid #902141;
+  background-color: #ce3e67;
+
+}
+.sound .buttons .download,
+.sound .buttons .favorite {
+  border-left: 1px solid #a9ad32;
+
+}
+.buttons .play.playing {
+  border-top: 3px solid #6f7223;
+  border-bottom: 0;
+  background-color: #a1a713;
+}
+.single .download {
+  font-size: 110%;
+}
+.single .download .label,
+.single .download .icon {
+  margin-right: 10px;
+
+}
+.single .buttons .play .icon {
+  font-size: 30px;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+}
+.single .buttons .play {
+  width: 100%;
+  margin-bottom: 20px;
+  position: relative !important;
+  text-align: left !important;
+  position: absolute;
+}
+.single .buttons .play .timeline {
+  background: #999;
+  height: 3px;
+  display: block;
+  position: absolute;
+  left: 60px;
+  right: 20px;
+}
+.play.playing .timeline {
+  display: block;
+  width: auto;
+  background: #666;
+  height: 3px;
+  position: relative;
+}
+.play.playing .timeline .bar {
+  display: block;
+  background: #fff;
+  height: 3px;
+  width: 100%;
+}
+.single .edit {
+  font-size: 50%;
+
+}
+.no-touch .sound .buttons a:hover,
+.no-touch .sound .buttons button:hover,
+.touch .sound .buttons a:active,
+.touch .sound .buttons button:active {
+  background-color: #ce3e67;
+  color: #fff;
+  border-color: #902141;
+
+}
+.sound .buttons button:active,
+.sound .buttons a:active {
+  border-bottom: 0;
+  border-top: 3px solid #902141;
+  background-color: #ce3e67;
+
+}
+.sound .name {
+  text-align: center;
+  margin: 10px 0 5px;
+  white-space: nowrap;
+
+}
+.sound .edit {
+  color: #999;
+
+}
+.sound .edit .icon {
+  margin-right: 5px;
+
+}
+.no-touch .sound .edit:hover,
+.touch .sound .edit:active {
+  color: #ce3e67;
+
+}
+.sound .type {
+  font-size: 80%;
+  position: absolute;
+  top: 0;
+  background-color: #fff;
+  border-bottom: 1px solid #fff;
+  color: #ccc;
+  padding: 2px 6px;
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+
+}
+.tags {
+  text-align: center;
+}
+.tags a {
+  color: #999;
+  padding: 0 4px;
+
+}
+.sound .tags {
+  height: 30px;
+
+}
+.no-touch .tags a:hover,
+.touch .tags a:active {
+  color: #ce3e67;
+
+}
+.sound .type {
+  text-transform: uppercase;
+  right: 5px;
+
+}
+.no-touch .sound:hover .type,
+.touch .sound:active .type {
+  color: #fff;
+  background-color: #ccc;
+
+}
+.sound .info {
+  display: none;
+
+}
+.loadMore {
+  background: url("../images/loader-large.gif") no-repeat center top;
+  margin-top: 20px;
+  text-align: center;
+  height: 32px;
+  visibility: hidden;
+}
+.loadMore.loading {
+  visibility: visible;
+
+}
+.single {
+  width: 100%;
+  float: none;
+
+}
+.single .name {
+  font-size: 160%;
+  margin: 10px 0;
+
+}
+.single .tags {
+  height: auto;
+  font-size: 14px;
+}
+.single .buttons .label {
+  display: block;
+  font-size: 13px;
+  text-transform: uppercase;
+  padding-top: 5px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+}
+.single .info {
+  text-align: center;
+  margin-top: 10px;
+  white-space: nowrap;
+  color: #ccc;
+  display: block;
+  font-size: 90%;
+
+}
+.single .name {
+  text-align: center;
+  font-size: 200%;
+
+}
+.single .soundContent {
+  padding-bottom: 78px;
+
+}
+.searchForm {
+  margin-bottom: 20px;
+  position: relative;
+}
+.searchForm .text {
+  width: 100%;
+  display: block;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  color: #666;
+  font-size: 100%;
+  padding: 7px;
+  border: 1px solid #ccc;
+  background-color: #eee;
+  border-radius: 5px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+}
+.searchList {
+  border: 1px solid #ccc;
+  border-top: 0;
+  border-bottom-right-radius: 6px;
+  border-bottom-left-radius: 6px;
+  padding: 10px;
+  margin-top: -3px;
+  display: none;
+  position: absolute;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: #fff;
+}
+.searchList a {
+  display: block;
+  padding: 2px 0;
+  font-size: 14px;
+
+}
+@media all and (max-width : 799px) {
+  .sound {
+    width: 50%;
+  }
+
+}
+/** For 0px - 599px */
+@media all and (max-width : 599px) {
+  .sideBar {
+    float: none;
+    width: auto;
+  }
+  .indexList {
+    margin-right: 0;
+  }
+  .sideBar ul li {
+    float: left;
+    width: 50%;
+  }
+  .sound {
+    float: none;
+    width: auto;
+  }
+}

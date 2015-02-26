@@ -1,0 +1,21 @@
+div.sound
+	div.soundContent
+		span.type #{sound.type} - #{bytesToSize(sound.size)}
+		a(href="sound/#{sound.uri}")
+			h3.name #{sound.name}
+		ul.tags 
+			each tag in sound.tags
+				li
+					a(href="/tag/#{tag.uri}") ##{tag.name}
+		div.buttons
+			button.play
+				span.icon.icon-play
+				span.timeline
+					span.bar
+			a.download(href="sound/#{sound.uri}")
+				span.icon.icon-download
+				span.label Download
+			button.favorite
+				span.icon.icon-unfavorite
+				span.icon.icon-favorite
+				span.label Favorite

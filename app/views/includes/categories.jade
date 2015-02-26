@@ -1,0 +1,10 @@
+h2 
+	span.icon-admin-categories Categories
+ul.categories
+	for cat in categoryFindResults
+		li
+			ul 
+				li 
+					a(href="tag/#{cat.uri}") #{cat.name} 
+				li #{cat.total}
+		

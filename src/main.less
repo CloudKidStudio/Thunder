@@ -1,3 +1,167 @@
+@import "less/admin-custom";
+@import "less/editor";
+@import "less/fonts";
+@import "less/home";
+@import "less/responsive";
+
 body {
-	padding-top: 70px;
+	background-color:#fff;
+	font-weight:300;
+	font-family: 'Open Sans', sans-serif;
+	color:#868f93;
+}
+
+a, a:active, a:focus {
+	color:#CE3E67;
+	text-decoration:none;
+	outline:0;
+	transition: color 0.2s;
+	-webkit-transition: color 0.2s;
+}
+.no-touch a:hover,
+.touch a:active {
+	color:#C4CC00;
+}
+article a.selected {
+	color:#C4CC00;
+}
+
+.contentContainer {
+	max-width:960px;
+	margin:0 auto;
+	padding:0 20px;
+}
+header.main {
+	background-color:#CE3E67;
+	position: fixed;
+	width: 100%;
+	z-index: 100;
+}
+#loggerLink {
+	z-index:101 !important;
+}
+#content {
+	padding-top:40px;
+}
+footer {
+	text-align:center;
+	font-size:80%;
+	color:#ccc;
+	clear:left;
+	margin-bottom:15px;
+}
+
+article {
+	background-color:#fff;
+	padding:20px 0 30px;
+	margin:0;
+}
+
+#pageLoader {
+	width:18px;
+	height:18px;
+	margin:0 0 0 -330px;
+	position:absolute;
+	top:15px;
+	left:50%;
+	background:url(../images/loader.gif) #CE3E67 no-repeat center center;
+	display:none;
+}
+
+article.loading #pageLoader{
+	display:block;
+}
+
+h1 span, h2 span, h3 span {
+	margin-right:10px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin:0 0 20px;
+	font-weight:300;
+	font-family: 'Open Sans', sans-serif;
+	color:#445c61;
+	line-height:1.4;
+}
+h1 { color:#999; }
+h2 { margin-bottom: 15px;}
+h3, h4, h5, h6 { font-weight:400; }
+
+nav.main {
+	padding:0 !important;
+}
+nav.main a.home {
+	float:left;
+	text-align: center;
+	font-size:26px;
+	margin:0;
+	padding:4px 10px 0;
+}
+nav.main button {
+	display:none;
+}
+nav.main a {
+	color:#fff;
+	font-size:22px;
+	padding:8px;
+	display:block;
+	position:relative;
+}
+nav.main .label {
+	display:none;
+}
+
+nav.main a:hover .label {
+	display:block;
+	position:absolute;
+	font-size:14px;
+	background:#fff;
+	width: 80px;
+	left:0;
+	margin-left: -20px;
+	margin-top:5px;
+	top:42px;
+	text-align:center;
+	padding:5px 0;
+}
+nav.main a:hover .label.wide {
+	width:120px;
+	margin-left:-40px;
+}
+
+nav.main ul {
+	list-style:none;
+	margin:0;
+	padding:0;
+	float:right;
+}
+
+nav.main li {
+	display:inline-block;
+}
+#main {
+	margin-right:200px;
+}
+
+#contentWrapper {
+	float:left;
+	width:100%;
+}
+.copyright a span {
+	font-size:150%;
+	margin:0 2px 0 0;
+	vertical-align:middle;
+}
+
+a.editLink {
+	float:right;
+	margin-top:5px;
+	font-size:90%;
+}
+
+.updated {
+	text-align:left;
+	font-size:80%;
+	margin-top:20px;
+	color:#ccc;
 }

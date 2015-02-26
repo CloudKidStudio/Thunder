@@ -1,3 +1,4 @@
-(function(){
-	// Do stuff
+(function()
+{
+    // Do stuff
 }());

@@ -1,4 +1,5 @@
-(function(){
-	// Do stuff
+(function()
+{
+    // Do stuff
 }());
 //# sourceMappingURL=main.js.map

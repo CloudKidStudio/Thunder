@@ -2,11 +2,11 @@
 
 // Include libraries
 var express = require('express'),
-	colors = require('colors'),
-	errorHandler = require('errorhandler'),
-	mongoose = require('mongoose'),
-	bodyParser = require('body-parser'),
-	routes = require('./routes');
+    colors = require('colors'),
+    errorHandler = require('errorhandler'),
+    mongoose = require('mongoose'),
+    bodyParser = require('body-parser'),
+    routes = require('./routes');
 
 // Create sever
 var app = express();
@@ -20,7 +20,10 @@ process.chdir(__dirname);
 // Setup the app
 app.listen(config.port);
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded(
+{
+    extended: false
+}));
 app.use(bodyParser.json());
 app.set('json spaces', config.spaces);
 
@@ -35,12 +38,21 @@ app.use(express.static(__dirname + '/public'));
 app.use(errorHandler(config.errorHandlerOptions));
 
 // Start the server
-console.log(('Thunder running on http://localhost:' + config.port).green);
+console.log(('Thunder running on ').green + ('http://localhost:'+config.port).blue);
 
 // Connect to database
 mongoose.connect(config.db);
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'.red));
+
+// Include models once.
+// ~szk: essentially we are init'ing the namespaces within, and for, mongoose.
+//      ex: module.exports = mongoose.model('Tag', tagSchema);
+// Now, because Tag is exported, the Sound schema can recognize tagSchema
+// and populate a tag database-item within a Sound item, etc. 
+require('./models/category');
+require('./models/tag');
+require('./models/sound');
 
 // Route-accessible globals
 global.config = config;

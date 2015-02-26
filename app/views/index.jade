@@ -1,5 +1,10 @@
 extend partials/header
 
 append content
-	h2 Home
-	p Sounds go here.
+	div.sideBar 
+		include includes/search
+		if categoryFindResults
+			include includes/categories
+	if soundFindResults
+		for sound in soundFindResults 
+			include includes/sound
