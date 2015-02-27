@@ -15,6 +15,7 @@ module.exports = function(app)
     //as is '/' for index
     app.use('/', require('./home'));
 
+    app.use('/download', require('./download'));
     app.use('/login', require('./login'));
     app.use('/logout', require('./logout'));
     app.use('/register', require('./register'));
