@@ -1,0 +1,32 @@
+// @import "less/admin-custom";
+// @import "less/editor";
+// @import "less/fonts";
+// @import "less/home";
+// @import "less/responsive";
+// @import "less/orig-main";
+
+body {
+   padding-top: 70px;
+}
+li {
+   list-style: none;
+}
+.sound {
+   min-height: 300px;
+}
+.toggle {
+   .on {
+      display: none;
+   }
+   .off {
+      display: inline-block;
+   }
+   &.active {
+      .on {
+         display: inline-block;
+      }
+      .off {
+         display: none;
+      }
+   }
+}

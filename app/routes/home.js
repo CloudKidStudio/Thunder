@@ -7,7 +7,9 @@ router.get('/', function(req, res)
 {
     // add references to functions necessary for each
     // .jade file by attaching them to res.locals
-    res.locals.bytesToSize = require('../helpers/filesize');
+    // ~szk: this was moved to index.js to give a global
+    // use for bytesToSize
+    //res.locals.bytesToSize = require('../helpers/filesize');
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     //    Sounds!

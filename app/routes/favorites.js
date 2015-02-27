@@ -2,7 +2,6 @@ var router = require('express').Router();
 
 router.get('/', function(req, res)
 {
-    res.locals.bytesToSize = require('../helpers/filesize');
     res.render('index',
     {
         sounds: [

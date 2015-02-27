@@ -3,6 +3,7 @@ module.exports = function(app)
     // Add the user to whatever template
     app.use(function(req, res, next)
     {
+        res.locals.bytesToSize = require('../helpers/filesize');
         res.locals.user = req.user;
         next();
     });
