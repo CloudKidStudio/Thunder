@@ -31,12 +31,23 @@ html
 				div.collapse.navbar-collapse
 					ul(class="nav navbar-nav navbar-right")
 						if (user)
-							li: a(href="/favorites" ).glyphicon.glyphicon-heart
-							li: a(href="/add").glyphicon.glyphicon-plus 
-							li: a(href="/admin" ).glyphicon.glyphicon-user
-							li: a(href="/logout").glyphicon.glyphicon-log-out
+							li
+								a(href="/favorites")
+									span.glyphicon.glyphicon-heart
+									span.hidden-lg.hidden-md.hidden-sm.visible-inline-xs Favorites
+							li
+								a(href="/admin")
+									span.glyphicon.glyphicon-user
+									span.hidden-lg.hidden-md.hidden-sm.visible-inline-xs Settings
+							li
+								a(href="/logout")
+									span.glyphicon.glyphicon-log-out
+									span.hidden-lg.hidden-md.hidden-sm.visible-inline-xs Logout
 						else 
-							li: a(href="/login").glyphicon.glyphicon-user
+							li
+								a(href="/login")
+									span.glyphicon.glyphicon-user
+									span.hidden-lg.hidden-md.hidden-sm.visible-inline-xs Login
 		main.container
 			.col-sm-9
 				block content
