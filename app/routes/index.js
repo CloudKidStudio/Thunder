@@ -1,8 +1,11 @@
 module.exports = function(app)
 {
+
     // Add the user to whatever template
     app.use(function(req, res, next)
     {
+        res.locals.fullYear = new Date().getFullYear();
+        console.log('fullYear ' +     res.locals.fullYear );
         res.locals.bytesToSize = require('../helpers/filesize');
         res.locals.user = req.user;
         next();

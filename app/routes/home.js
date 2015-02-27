@@ -21,26 +21,29 @@ router.get('/', function(req, res)
     {
         // pagination vars 
         var pageStart = 0;
-        var totalItems = 0;
+        var totalItems = null;
         var itemsPerPage = 20;
 
         // Find all items for the Sound schema
         var query = Sound.find();
 
-        // Get the count of the items so we can store for 
-        // lazy loading or pagination purposes.
-        query.find().count(function(err, count)
+        if (totalItems === null)
         {
-            if (err)
+            // Get the count of the items so we can store for 
+            // lazy loading or pagination purposes.
+            query.find().count(function(err, count)
             {
-                console.log(err);
-            }
-            else
-            {
-                totalItems = count;
-                console.log('totalItems ' + totalItems);
-            }
-        });
+                if (err)
+                {
+                    console.log((err).red);
+                }
+                else
+                {
+                    totalItems = count;
+                    console.log(('totalItems ' + totalItems).green);
+                }
+            });
+        }
 
         // The query that will actually display.
         query.find()
@@ -49,7 +52,6 @@ router.get('/', function(req, res)
             .populate('category tags')
             .exec(function(err, sounds)
             {
-                console.log(categories);
                 res.render('index',
                 {
                     totalItems: totalItems,
