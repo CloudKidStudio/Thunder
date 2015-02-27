@@ -4,8 +4,6 @@ html
 		title Thunder
 		link(href="/css/libraries.css", rel="stylesheet")
 		link(href="/css/main.css", rel="stylesheet")
-		script(src="/js/libraries.js")
-		script(src="/js/main.js")
 	body
 		nav.navbar.navbar-inverse.navbar-fixed-top
 			.container
@@ -16,7 +14,14 @@ html
 						span.icon-bar
 						span.icon-bar
 					a.navbar-brand(href='/') Thunder
+		if (user)
+			.container 
+				p Welcome 
+					b=user.name 
+					a.pull-right(href='/logout') Logout
 		.container
 			block content
 		.container.text-center
 			footer &copy; 2015
+		script(src="/js/libraries.js")
+		script(src="/js/main.js")

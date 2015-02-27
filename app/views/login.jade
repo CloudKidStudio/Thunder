@@ -1,0 +1,17 @@
+extend partials/header
+
+append content
+	h2 Login
+	div.row
+		div.col-md-4.col-md-offset-4.col-sm-6.col-sm-offset-3
+			#message
+			if message.length
+				.alert.alert-danger #{message}
+			form.form-login(action='/login', method='post')
+				.form-group
+					input.form-control(type='text', name='username',  placeholder='Username',required, autofocus)
+				.form-group
+					input.form-control(type='password', name='password', placeholder='Password', required)
+				button.btn.btn-lg.btn-primary.btn-block(type='submit') Sign In
+			div.text-center
+				a(href='/register') Create an account

@@ -602,11 +602,12 @@ body {
   font-weight: 300;
   font-family: 'Open Sans', sans-serif;
   color: #868f93;
+  padding-top: 70px;
 }
 a,
 a:active,
 a:focus {
-  color: #CE3E67;
+  color: #ce3e67;
   text-decoration: none;
   outline: 0;
   transition: color 0.2s;
@@ -614,10 +615,10 @@ a:focus {
 }
 .no-touch a:hover,
 .touch a:active {
-  color: #C4CC00;
+  color: #c4cc00;
 }
 article a.selected {
-  color: #C4CC00;
+  color: #c4cc00;
 }
 .contentContainer {
   max-width: 960px;
@@ -625,7 +626,7 @@ article a.selected {
   padding: 0 20px;
 }
 header.main {
-  background-color: #CE3E67;
+  background-color: #ce3e67;
   position: fixed;
   width: 100%;
   z-index: 100;
@@ -655,7 +656,7 @@ article {
   position: absolute;
   top: 15px;
   left: 50%;
-  background: url(../images/loader.gif) #ce3e67 no-repeat center center;
+  background: url("../images/loader.gif") #ce3e67 no-repeat center center;
   display: none;
 }
 article.loading #pageLoader {
