@@ -23,8 +23,8 @@ router.get('/', function(req, res)
                 {
                     res.render('index',
                     {
-                        soundFindResults: sounds,
-                        categoryFindResults: categories,
+                        sounds: sounds,
+                        categorysounds: categories,
                         message: req.flash('message')
                     });
                 });

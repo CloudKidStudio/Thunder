@@ -1,10 +1,6 @@
 extend partials/header
 
 append content
-	div.sideBar 
-		include includes/search
-		if categoryFindResults
-			include includes/categories
-	if soundFindResults
-		for sound in soundFindResults 
+	if sounds
+		for sound in sounds 
 			include includes/sound

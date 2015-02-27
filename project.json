@@ -3,11 +3,13 @@
     "version": "1.0.0",
     "main": [
         "src/main.js",
+        "src/js/ui/*.js",
         "src/main.less"
     ],
     "libraries": [
         "components/normalize-less/normalize.less",
         "components/jquery/dist/jquery.min.js",
+        "components/require/build/require.min.js",
         "components/bootstrap/dist/js/bootstrap.min.js",
         "components/bootstrap/dist/css/bootstrap.min.css",
         "components/bootstrap/dist/css/bootstrap-theme.min.css"
@@ -15,6 +17,7 @@
     "librariesDebug": [
         "components/normalize-less/normalize.less",
         "components/jquery/dist/jquery.js",
+        "components/require/build/require.js",
         "components/bootstrap/dist/js/bootstrap.js",
         "components/bootstrap/dist/css/bootstrap.css",
         "components/bootstrap/dist/css/bootstrap-theme.css"

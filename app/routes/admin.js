@@ -2,8 +2,7 @@ var router = require('express').Router();
 
 router.get('/', function(req, res)
 {
-    req.logout();
-    res.redirect('/');
+    res.render('admin');
 });
 
 module.exports = router;

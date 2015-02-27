@@ -1,4 +1,4 @@
-div.sound
+div.sound.col-md-4.col-sm-6
 	div.soundContent
 		span.type #{sound.type} - #{bytesToSize(sound.size)}
 		a(href="sound/#{sound.uri}")
@@ -7,15 +7,17 @@ div.sound
 			each tag in sound.tags
 				li
 					a(href="/tag/#{tag.uri}") ##{tag.name}
-		div.buttons
-			button.play
-				span.icon.icon-play
+		div.btn-group
+			button.btn.btn-default.toggle
+				span.off.glyphicon.glyphicon-play
+				span.on.glyphicon.glyphicon-stop
 				span.timeline
 					span.bar
-			a.download(href="sound/#{sound.uri}")
-				span.icon.icon-download
-				span.label Download
-			button.favorite
-				span.icon.icon-unfavorite
-				span.icon.icon-favorite
-				span.label Favorite
+			a.download(href="sound/#{sound.uri}").btn.btn-default
+				span.glyphicon.glyphicon-download-alt
+			button.btn.btn-default.toggle
+				span.off.glyphicon.glyphicon-star-empty
+				span.on.glyphicon.glyphicon-star
+			button.btn.btn-default.toggle
+				span.off.glyphicon.glyphicon-heart-empty
+				span.on.glyphicon.glyphicon-heart

@@ -2,8 +2,17 @@ doctype html
 html
 	head
 		title Thunder
+		
+		meta(name="author" content="CloudKid")
+		meta(name="description" content="{{description}}")
+		meta(name="keywords" content="{{keywords}}")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+
 		link(href="/css/libraries.css", rel="stylesheet")
 		link(href="/css/main.css", rel="stylesheet")
+
+		link(rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400")
+
 	body
 		nav.navbar.navbar-inverse.navbar-fixed-top
 			.container
@@ -14,14 +23,30 @@ html
 						span.icon-bar
 						span.icon-bar
 					a.navbar-brand(href='/') Thunder
+				div.collapse.navbar-collapse
+					ul(class="nav navbar-nav navbar-right")
+						li
+							a(href="/login").glyphicon.glyphicon-log-in
+						li
+							a(href="/logout").glyphicon.glyphicon-log-out
+						li
+							a(href="/admin" ).glyphicon.glyphicon-plus
+						li
+							a(href="/favorites" ).glyphicon.glyphicon-heart
 		if (user)
 			.container 
 				p Welcome 
 					b=user.name 
-					a.pull-right(href='/logout') Logout
-		.container
-			block content
+					a.pull-right(href='/logout') Logout				
+		main.container
+			.col-sm-8
+				block content
+			nav.col-sm-4
+				include ../includes/search
+				if categorysounds
+					include ../includes/categories
 		.container.text-center
 			footer &copy; 2015
+
 		script(src="/js/libraries.js")
 		script(src="/js/main.js")

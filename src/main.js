@@ -1,4 +1,4 @@
 (function()
 {
-    // Do stuff
+    //entry point
 }());

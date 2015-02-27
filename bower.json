@@ -5,6 +5,7 @@
     {
         "jquery": "*",
         "bootstrap": "*",
+        "require": "*",
         "normalize-less": "*"
     },
     "ignore": [
