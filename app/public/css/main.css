@@ -4,7 +4,8 @@ body {
 ul {
   list-style: none;
 }
-h2 .icon {
+h2 .icon,
+button .icon {
   margin-right: 0.5em;
   font-size: 75%;
 }
