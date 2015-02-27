@@ -2,7 +2,7 @@ h2
 	span.icon.glyphicon.glyphicon-folder-open 
 	| Categories
 ul.categories
-	for cat in categorysounds
+	for cat in categories
 		li
 			a(href="tag/#{cat.uri}") #{cat.name} 
 			span.total #{cat.total}

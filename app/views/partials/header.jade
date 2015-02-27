@@ -12,7 +12,6 @@ html
 		link(href="/css/main.css", rel="stylesheet")
 
 		link(rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400")
-
 	body
 		nav.navbar.navbar-inverse.navbar-fixed-top
 			.container
@@ -24,7 +23,7 @@ html
 						span.icon-bar
 					span.navbar-brand
 						if (user)
-							a(href="/admin")= user.name 
+							a(href="/admin")= user.name
 							|  is bringing the 
 							a(href='/') Thunder
 						else
@@ -32,23 +31,18 @@ html
 				div.collapse.navbar-collapse
 					ul(class="nav navbar-nav navbar-right")
 						if (user)
-							li
-								a(href="/favorites").glyphicon.glyphicon-heart
-							li
-								a(href="/add").glyphicon.glyphicon-plus 
-							li
-								a(href="/admin").glyphicon.glyphicon-user
-							li
-								a(href="/logout").glyphicon.glyphicon-log-out
+							li: a(href="/favorites" ).glyphicon.glyphicon-heart
+							li: a(href="/add").glyphicon.glyphicon-plus 
+							li: a(href="/admin" ).glyphicon.glyphicon-user
+							li: a(href="/logout").glyphicon.glyphicon-log-out
 						else 
-							li
-								a(href="/login").glyphicon.glyphicon-user
+							li: a(href="/login").glyphicon.glyphicon-user
 		main.container
 			.col-sm-9
 				block content
 			nav.col-sm-3
 				include ../includes/search
-				if categorysounds
+				if categories
 					include ../includes/categories
 		.container.text-center
 			footer &copy; 2015

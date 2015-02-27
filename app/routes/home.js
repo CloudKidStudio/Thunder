@@ -5,32 +5,60 @@ var Category = require('../models/category');
 // '/' is the index page
 router.get('/', function(req, res)
 {
-    // add references to functions necessary for each
-    // .jade file by attaching them to res.locals
-    // ~szk: this was moved to index.js to give a global
-    // use for bytesToSize
-    //res.locals.bytesToSize = require('../helpers/filesize');
-
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    //    Sounds!
-    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Sound.find()
-        .populate('category tags')
-        .skip(0)
-        .limit(20)
-        .exec(function(err, sounds)
+    /**
+     * Will populate one Category schema is finished
+     * @param {Array} categories
+     */
+    var categories = null;
+    Category.find()
+        .exec(function(err, foundCategories)
         {
-            Category.find()
-                .exec(function(err, categories)
-                {
-                    res.render('index',
-                    {
-                        sounds: sounds,
-                        categorysounds: categories,
-                        message: req.flash('message')
-                    });
-                });
+            categories = foundCategories;
+            findSounds();
         });
+
+    function findSounds()
+    {
+        // pagination vars 
+        var pageStart = 0;
+        var totalItems = 0;
+        var itemsPerPage = 20;
+
+        // Find all items for the Sound schema
+        var query = Sound.find();
+
+        // Get the count of the items so we can store for 
+        // lazy loading or pagination purposes.
+        query.find().count(function(err, count)
+        {
+            if (err)
+            {
+                console.log(err);
+            }
+            else
+            {
+                totalItems = count;
+                console.log('totalItems ' + totalItems);
+            }
+        });
+
+        // The query that will actually display.
+        query.find()
+            .skip(pageStart)
+            .limit(itemsPerPage)
+            .populate('category tags')
+            .exec(function(err, sounds)
+            {
+                console.log(categories);
+                res.render('index',
+                {
+                    totalItems: totalItems,
+                    sounds: sounds,
+                    categories: categories,
+                    message: req.flash('message')
+                });
+            });
+    }
 });
 
 module.exports = router;
