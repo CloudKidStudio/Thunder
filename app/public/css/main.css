@@ -1,11 +1,58 @@
 body {
   padding-top: 70px;
 }
-li {
+ul {
   list-style: none;
 }
+h2 .icon {
+  margin-right: 0.5em;
+  font-size: 75%;
+}
 .sound {
-  min-height: 300px;
+  padding: 0 5px;
+}
+.sound .soundContent {
+  text-align: center;
+  min-height: 140px;
+  margin-bottom: 10px;
+  position: relative;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 10px;
+  background: #F9F9F9;
+}
+.sound .type {
+  font-size: 75%;
+  padding: 2px 4px;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  text-transform: uppercase;
+}
+.sound .name {
+  font-size: 140%;
+  padding: 0;
+  margin: 10px 0;
+}
+.sound .tags {
+  padding: 0;
+  font-size: 80%;
+  height: 3em;
+  overflow: hidden;
+}
+.sound .tags li {
+  display: inline-block;
+  padding: 0 2px;
+}
+.sound .controls {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+}
+.sound .controls .btn {
+  width: 33.33333333%;
 }
 .toggle .on {
   display: none;
@@ -18,5 +65,11 @@ li {
 }
 .toggle.active .off {
   display: none;
+}
+.categories {
+  padding: 0 0 0 20px;
+}
+.categories .total {
+  margin-left: 0.5em;
 }
 /*# sourceMappingURL=main.css.map */

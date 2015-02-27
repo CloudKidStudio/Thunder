@@ -1,10 +1,9 @@
 h2 
-	span.icon-admin-categories Categories
+	span.icon.glyphicon.glyphicon-folder-open 
+	| Categories
 ul.categories
 	for cat in categorysounds
 		li
-			ul 
-				li 
-					a(href="tag/#{cat.uri}") #{cat.name} 
-				li #{cat.total}
+			a(href="tag/#{cat.uri}") #{cat.name} 
+			span.total #{cat.total}
 		

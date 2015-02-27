@@ -1,4 +1,7 @@
 (function()
 {
-    //entry point
+    $('[data-toggle="tooltip"]').tooltip({
+    	container: 'body'
+    });
+
 }());
