@@ -22,22 +22,27 @@ html
 						span.icon-bar
 						span.icon-bar
 						span.icon-bar
-					a.navbar-brand(href='/') Thunder
+					span.navbar-brand
+						if (user)
+							a(href="/admin")= user.name 
+							|  is bringing the 
+							a(href='/') Thunder
+						else
+							a(href='/') Thunder
 				div.collapse.navbar-collapse
 					ul(class="nav navbar-nav navbar-right")
-						li
-							a(href="/login").glyphicon.glyphicon-log-in
-						li
-							a(href="/logout").glyphicon.glyphicon-log-out
-						li
-							a(href="/admin" ).glyphicon.glyphicon-plus
-						li
-							a(href="/favorites" ).glyphicon.glyphicon-heart
-		if (user)
-			.container 
-				p Welcome 
-					b=user.name 
-					a.pull-right(href='/logout') Logout				
+						if (user)
+							li 
+								a(href="/favorites" ).glyphicon.glyphicon-heart
+							li 
+								a(href="/add").glyphicon.glyphicon-plus 
+							li
+								a(href="/admin" ).glyphicon.glyphicon-user
+							li
+								a(href="/logout").glyphicon.glyphicon-log-out
+						else 
+							li 
+								a(href="/login").glyphicon.glyphicon-user
 		main.container
 			.col-sm-8
 				block content
