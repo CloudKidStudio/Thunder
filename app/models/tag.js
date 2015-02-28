@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var tagSchema = new Schema(
+var TagSchema = new Schema(
 {
     name: String,
     uri:
@@ -11,4 +11,9 @@ var tagSchema = new Schema(
     }
 });
 
-module.exports = mongoose.model('Tag', tagSchema);
+TagSchema.statics.getByUri = function(uri, callback)
+{
+	return this.findOne({uri: uri}, callback);
+};
+
+module.exports = mongoose.model('Tag', TagSchema);

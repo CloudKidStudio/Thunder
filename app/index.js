@@ -45,6 +45,7 @@ console.log(('Thunder running on ').green + ('http://localhost:' + config.port).
 // Connect to database
 mongoose.connect(config.db);
 mongooseTypes.loadTypes(mongoose);
+require('express-mongoose');
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'.red));
 

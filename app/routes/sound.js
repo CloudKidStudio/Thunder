@@ -1,31 +1,14 @@
 var router = require('express').Router();
 var Sound = require('../models/sound');
+var Category = require('../models/category');
 
 router.get('/:uri([a-z\-0-9]+)', function(req, res)
 {
-    Sound.findOne(
-        {
-            // The name of the sound file to display in
-            // this singular sound page view
-            uri: req.params.uri
-        })
-        .populate('tags category')
-        .exec(function(err, sound)
-        {
-            res.locals.download = function(path, fileName)
-            {
-                res.download(path, fileName, function(err)
-                {
-                    if (err)
-                        console.log("Asset " + path + " does not exist".red);
-                });
-            };
-            res.locals.assetId = sound.assetId;
-            res.render('sound',
-            {
-                sound: sound
-            });
-        });
+	res.render('sound',
+	{
+		sound: Sound.getByUri(req.params.uri),
+		categories: Category.getAll()
+	});
 });
 
 module.exports = router;

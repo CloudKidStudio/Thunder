@@ -1,24 +1,14 @@
 var router = require('express').Router();
+var Sound = require('../models/sound');
+var Category = require('../models/category');
 
-router.get('/', function(req, res)
+router.get('/', require('../helpers/protected'), function(req, res)
 {
-    res.render('index',
+    res.render('sounds',
     {
-        sounds: [
-        {
-            name: "favorite 1",
-            bytes: 30202,
-            type: 'mp3',
-            uri: 'adfa',
-            tags: []
-        },
-        {
-            name: "favorite 2",
-            bytes: 30202,
-            type: 'mp3',
-            uri: 'adfa',
-            tags: []
-        }]
+        sounds: req.user.getFavorites(),
+        categories: Category.getAll(),
+        title: 'Favorites'
     });
 });
 

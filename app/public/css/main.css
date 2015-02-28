@@ -1,13 +1,30 @@
 body {
   padding-top: 70px;
+  font-family: 'Open Sans', sans;
+  font-weight: 300;
 }
-ul {
-  list-style: none;
+h2 {
+  font-size: 180%;
+  margin: 0 0 0.5em;
+}
+h2 .icon {
+  font-size: 70%;
 }
 h2 .icon,
-button .icon {
+.btn .icon,
+.nav a .icon {
   margin-right: 0.5em;
-  font-size: 75%;
+}
+.navbar-brand .details {
+  color: #999 !important;
+  margin-left: 0.3em;
+}
+.navbar-brand a {
+  color: #ccc;
+  text-decoration: none;
+}
+.navbar-brand a:hover {
+  color: #ffffff;
 }
 .sound {
   padding: 0 5px;
@@ -18,12 +35,13 @@ button .icon {
   margin-bottom: 10px;
   position: relative;
   border: 1px solid #eee;
+  border-top-width: 2px;
   border-radius: 4px;
   box-sizing: border-box;
   padding: 10px;
   background: #F9F9F9;
 }
-.sound .type {
+.sound .soundContent .type {
   font-size: 75%;
   padding: 2px 4px;
   position: absolute;
@@ -31,29 +49,45 @@ button .icon {
   top: 0;
   text-transform: uppercase;
 }
-.sound .name {
+.sound .soundContent .name {
   font-size: 140%;
   padding: 0;
   margin: 10px 0;
 }
-.sound .tags {
+.sound .soundContent .tags {
   padding: 0;
   font-size: 80%;
   height: 3em;
   overflow: hidden;
 }
-.sound .tags li {
+.sound .soundContent .tags li {
   display: inline-block;
   padding: 0 2px;
 }
-.sound .controls {
+.sound .soundContent .tags li a {
+  color: #999;
+}
+.sound .soundContent .controls {
   position: absolute;
   bottom: 10px;
   left: 10px;
   right: 10px;
 }
-.sound .controls .btn {
+.sound .soundContent .controls .btn {
+  outline: none;
   width: 33.33333333%;
+}
+.sound .soundContent.large {
+  min-height: auto;
+}
+.sound .soundContent.large .controls {
+  position: static;
+}
+.sound .soundContent.large .controls .btn {
+  width: auto;
+}
+.sound .soundContent.large .tags {
+  font-size: 100%;
 }
 .toggle .on {
   display: none;
@@ -67,10 +101,21 @@ button .icon {
 .toggle.active .off {
   display: none;
 }
+.searchForm {
+  margin-bottom: 2em;
+}
 .categories {
   padding: 0 0 0 20px;
 }
 .categories .total {
   margin-left: 0.5em;
+  color: #999;
+}
+.full-width {
+  width: 100%;
+}
+footer {
+  margin: 1em 0;
+  color: #999;
 }
 /*# sourceMappingURL=main.css.map */

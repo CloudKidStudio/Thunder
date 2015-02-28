@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var categorySchema = new Schema(
+var CategorySchema = new Schema(
 {
     name: String,
     uri:
@@ -14,4 +14,14 @@ var categorySchema = new Schema(
     updated: Date
 });
 
-module.exports = mongoose.model('Category', categorySchema);
+CategorySchema.statics.getAll = function(callback)
+{
+	return this.find().exec(callback);
+};
+
+CategorySchema.statics.getByUri = function(uri, callback)
+{
+	return this.findOne({uri: uri}, callback);
+};
+
+module.exports = mongoose.model('Category', CategorySchema);

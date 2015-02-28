@@ -1,0 +1,33 @@
+extend templates/base
+
+append content
+	.col-sm-9
+		if (title)
+			h2=title
+		else 
+			h2 Sounds
+		.row
+			if sounds
+				for sound in sounds 
+					div.sound.col-md-4.col-sm-6
+						div.soundContent
+							a(href="/sound/#{sound.uri}")
+								h3.name #{sound.name}
+							include partials/tags
+							div.btn-group.controls
+								button.btn.btn-default.toggle
+									span.off.glyphicon.glyphicon-play
+									span.on.glyphicon.glyphicon-stop
+									span.timeline
+										span.bar
+								a.download.btn.btn-default(href="/download/#{sound.uri}/original" title="#{sound.type} - #{bytesToSize(sound.size)}" data-toggle="tooltip")
+									span.glyphicon.glyphicon-download-alt
+								if (user)
+									button.btn.btn-default.toggle
+										span.off.glyphicon.glyphicon-heart-empty
+										span.on.glyphicon.glyphicon-heart
+								else
+									button.btn.btn-default.toggle.disabled
+										span.off.glyphicon.glyphicon-heart-empty
+										span.on.glyphicon.glyphicon-heart
+	include partials/sidebar

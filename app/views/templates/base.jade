@@ -23,8 +23,8 @@ html
 						span.icon-bar
 					span.navbar-brand
 						if (user)
-							a(href="/admin")= user.name
-							|  is bringing the 
+							a(href="/admin")= user.name 
+							span.details is bringing the 
 							a(href='/') Thunder
 						else
 							a(href='/') Thunder
@@ -32,31 +32,27 @@ html
 					ul(class="nav navbar-nav navbar-right")
 						if (user)
 							li
-								a(href="/favorites")
-									span.glyphicon.glyphicon-heart
+								a(href="/favorites" title="Favorites" data-placement="bottom" data-toggle="tooltip")
+									span.icon.glyphicon.glyphicon-heart
 									span.hidden-lg.hidden-md.hidden-sm.visible-inline-xs Favorites
 							li
-								a(href="/admin")
-									span.glyphicon.glyphicon-user
+								a(href="/admin" title="Settings" data-placement="bottom" data-toggle="tooltip")
+									span.icon.glyphicon.glyphicon-user
 									span.hidden-lg.hidden-md.hidden-sm.visible-inline-xs Settings
 							li
-								a(href="/logout")
-									span.glyphicon.glyphicon-log-out
+								a(href="/logout" title="Logout" data-placement="bottom" data-toggle="tooltip")
+									span.icon.glyphicon.glyphicon-log-out
 									span.hidden-lg.hidden-md.hidden-sm.visible-inline-xs Logout
 						else 
 							li
-								a(href="/login")
-									span.glyphicon.glyphicon-user
+								a(href="/login" title="Login" data-placement="bottom" data-toggle="tooltip")
+									span.icon.glyphicon.glyphicon-user
 									span.hidden-lg.hidden-md.hidden-sm.visible-inline-xs Login
 		main.container
-			.col-sm-9
+			.row
 				block content
-			nav.col-sm-3
-				include ../includes/search
-				if categories
-					include ../includes/categories
 		.container.text-center
-			footer &copy; #{fullYear}
+			footer &copy; #{fullYear} CloudKid
 
 		script(src="/js/libraries.js")
 		script(src="/js/main.js")

@@ -1,13 +1,12 @@
 var router = require('express').Router();
-var Tag = require('../models/tag');
 var Sound = require('../models/sound');
 var Category = require('../models/category');
 
 router.get('/:uri([a-z\-0-9]+)', function(req, res)
 {
-    Tag.getByUri(req.params.uri, function(err, tag)
+    Category.getByUri(req.params.uri, function(err, category)
     {
-        if (!tag)
+        if (!category || !category.total)
         {
             res.redirect('/');
         }
@@ -15,9 +14,9 @@ router.get('/:uri([a-z\-0-9]+)', function(req, res)
         {
             res.render('sounds',
             {
-                sounds: Sound.getByTag(tag._id),
+                sounds: Sound.getByCategory(category._id),
                 categories: Category.getAll(),
-                title: 'Sounds » #' + tag.name
+                title: 'Sounds » ' + category.name
             });
         }
     });

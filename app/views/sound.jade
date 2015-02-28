@@ -1,4 +1,31 @@
-extend partials/header
+extend templates/base
 
 append content
-	include includes/sound
+	div.col-sm-9.sound
+		div.soundContent.large
+			h3.name #{sound.name}
+			include partials/tags
+			div.btn-group.controls
+				button.btn.btn-default.toggle
+					span.off.glyphicon.glyphicon-play
+					span.on.glyphicon.glyphicon-stop
+					span.timeline
+						span.bar
+				a.download.btn.btn-default(href="/download/#{sound.uri}/original" title="#{sound.type} - #{bytesToSize(sound.size)}" data-toggle="tooltip")
+					span.icon.glyphicon.glyphicon-download-alt
+					| Original
+				a.download.btn.btn-default(href="/download/#{sound.uri}/mp3" title="#{sound.type} - #{bytesToSize(sound.size)}" data-toggle="tooltip")
+					span.icon.glyphicon.glyphicon-download-alt
+					| MP3
+				a.download.btn.btn-default(href="/download/#{sound.uri}/ogg" title="#{sound.type} - #{bytesToSize(sound.size)}" data-toggle="tooltip")
+					span.icon.glyphicon.glyphicon-download-alt
+					| OGG
+				if (user)
+					button.btn.btn-default.toggle
+						span.off.glyphicon.glyphicon-heart-empty
+						span.on.glyphicon.glyphicon-heart
+				else
+					button.btn.btn-default.toggle.disabled
+						span.off.glyphicon.glyphicon-heart-empty
+						span.on.glyphicon.glyphicon-heart
+	include partials/sidebar
