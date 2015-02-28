@@ -4,9 +4,7 @@
     "dependencies":
     {
         "jquery": "*",
-        "bootstrap": "*",
-        "require": "*",
-        "normalize-less": "*"
+        "bootstrap": "*"
     },
     "ignore": [
         ".gitignore",
