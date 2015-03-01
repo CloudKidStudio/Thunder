@@ -4,3 +4,32 @@ append form
 	h2 
 		span.icon.glyphicon.glyphicon-user
 		| Profile
+	form.form-horizontal(method="post" action="/admin/profile")
+		if feedback
+			.alert.alert-danger=feedback
+		.form-group
+			label.control-label.col-sm-3(for="name", required) Name
+			.col-sm-9
+				input.form-control(type="text" name="name" id="name" value=user.name)
+		.form-group
+			label.control-label.col-sm-3(for="email", required) Email
+			.col-sm-9
+				input.form-control(type="text" name="email" id="email" value=user.email)
+		.form-group
+			label.control-label.col-sm-3(for="oldPassword", required) Current Pass
+			.col-sm-9
+				input.form-control(type="password" name="oldPassword" id="oldPassword")
+		.form-group.optional
+			label.control-label.col-sm-3(for="newPassword") New Pass
+			.col-sm-9
+				input.form-control(type="password" name="newPassword" id="newPassword")
+		.form-group.optional
+			label.control-label.col-sm-3(for="repeatPassword") Repeat Pass
+			.col-sm-9
+				input.form-control(type="password" name="repeatPassword" id="repeatPassword")
+		.form-group.text-center
+			.col-sm-9.col-sm-offset-3
+				input(type="hidden" name="id" value=user._id)
+				button.btn.btn-lg.btn-block.btn-primary(type="submit") 
+					span.icon.glyphicon.glyphicon-pencil
+					| Update
