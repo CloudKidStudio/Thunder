@@ -1,0 +1,33 @@
+extend ../templates/admin
+
+append form
+	h2 
+		span.icon.glyphicon.glyphicon-headphones
+		| Sounds
+	form.form-horizontal
+		.form-group
+			label.control-label.col-sm-3(for="name") Name
+			.col-sm-9
+				input.form-control(type="text" name="name" id="name")
+		.form-group
+			label.control-label.col-sm-3(for="uri") URI
+			.col-sm-9
+				input.form-control(type="text" name="uri" id="uri")
+		.form-group
+			label.control-label.col-sm-3(for="file") Upload File
+			.col-sm-9
+				input.form-control(type="file" name="file" id="file")
+		.form-group
+			label.control-label.col-sm-3(for="tags") Tags
+			.col-sm-9
+				input.form-control(type="text" name="tags" id="tags")
+		.form-group
+			label.control-label.col-sm-3(for="category") Category
+			.col-sm-9
+				select.form-control(name="category" id="category")
+					option(value="") Select Category...
+		.form-group.text-center
+			.col-sm-9.col-sm-offset-3
+				button.btn.btn-lg.btn-primary(type="submit") 
+					span.icon.glyphicon.glyphicon-plus
+					| Add

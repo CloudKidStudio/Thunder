@@ -6,6 +6,11 @@ module.exports = function(app)
         res.locals.fullYear = new Date().getFullYear();
         res.locals.bytesToSize = require('../helpers/filesize');
         res.locals.user = req.user;
+        res.locals.privilege = {
+            subscriber: 0,
+            editor: 1,
+            admin: 2  
+        };
         next();
     });
 

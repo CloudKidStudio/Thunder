@@ -20,10 +20,10 @@ module.exports = {
 			return next();
 		res.redirect('/');
 	},
-	// Access function if user logged in is manager
-	isManager: function(req, res, next)
+	// Access function if user logged in is Editor
+	isEditor: function(req, res, next)
 	{
-		if (req.isAuthenticated() && req.user.privilege > 1)
+		if (req.isAuthenticated() && req.user.privilege >= 1)
 			return next();
 		res.redirect('/');
 	}

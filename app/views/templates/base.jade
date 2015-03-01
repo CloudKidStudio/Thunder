@@ -23,7 +23,7 @@ html
 						span.icon-bar
 					span.navbar-brand
 						if (user)
-							a(href="/admin")= user.name 
+							a(href="/admin/profile")= user.name 
 							span.details is bringing the 
 							a(href='/') Thunder
 						else
@@ -41,22 +41,24 @@ html
 									span.hidden-lg.hidden-md.hidden-sm.visible-inline-xs Settings
 									span.caret
 								ul.dropdown-menu
-									li
-										a(href="/admin/sounds")
-											span.icon.glyphicon.glyphicon-headphones
-											| Sounds
-									li
-										a(href="/admin/users")
-											span.icon.glyphicon.glyphicon-th-list
-											| Users
-									li
-										a(href="/admin/categories")
-											span.icon.glyphicon.glyphicon-folder-open
-											| Categories
-									li
-										a(href="/admin/tags")
-											span.icon.glyphicon.glyphicon-tags
-											| Tags
+									if (user.privilege >= privilege.editor)
+										li
+											a(href="/admin/sounds")
+												span.icon.glyphicon.glyphicon-headphones
+												| Sounds
+										li
+											a(href="/admin/categories")
+												span.icon.glyphicon.glyphicon-folder-open
+												| Categories
+										li
+											a(href="/admin/tags")
+												span.icon.glyphicon.glyphicon-tags
+												| Tags
+									if (user.privilege == privilege.admin)
+										li
+											a(href="/admin/users")
+												span.icon.glyphicon.glyphicon-th-list
+												| Users
 									li
 										a(href="/admin/profile")
 											span.icon.glyphicon.glyphicon-user
