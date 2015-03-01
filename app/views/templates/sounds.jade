@@ -1,0 +1,24 @@
+extend base
+
+append content
+	.col-sm-9
+		block title
+		.row
+			if sounds
+				for sound in sounds 
+					.sound.col-md-4.col-sm-6
+						.soundContent
+							a(href="/sound/#{sound.uri}")
+								h3.name #{sound.name}
+							include ../partials/tags
+							.btn-group.controls
+								button.btn.btn-default.toggle
+									span.off.glyphicon.glyphicon-play
+									span.on.glyphicon.glyphicon-stop
+									span.timeline
+										span.bar
+								a.download.btn.btn-default(href="/download/#{sound.uri}/original" title="#{sound.type.toUpperCase()} - #{bytesToSize(sound.size)}" data-toggle="tooltip")
+									span.glyphicon.glyphicon-download-alt
+								include ../partials/favorite
+	.col-sm-3
+		include ../partials/sidebar

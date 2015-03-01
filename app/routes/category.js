@@ -12,11 +12,11 @@ router.get('/:uri([a-z\-0-9]+)', function(req, res)
         }
         else
         {
-            res.render('sounds',
+            res.render('category',
             {
                 sounds: Sound.getByCategory(category._id),
                 categories: Category.getAll(),
-                title: 'Sounds » ' + category.name
+                category: category
             });
         }
     });

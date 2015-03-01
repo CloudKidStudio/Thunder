@@ -1,7 +1,8 @@
 var router = require('express').Router(),
-    passport = require('passport');
+    passport = require('passport'),
+    isAnonymous = require('../helpers/access').isAnonymous;
 
-router.get('/', function(req, res)
+router.get('/', isAnonymous, function(req, res)
 {
     res.render('register',
     {
@@ -9,7 +10,7 @@ router.get('/', function(req, res)
     });
 });
 
-router.post('/', passport.authenticate('register',
+router.post('/', isAnonymous, passport.authenticate('register',
 {
     successRedirect: '/',
     failureRedirect: '/register',

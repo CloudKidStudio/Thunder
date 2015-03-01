@@ -10,4 +10,16 @@
 	    });
 	}
 
+	// Add favorite
+	$('.favorite').click(function(){
+		$.post(
+			'/favorites', 
+			{ id: $(this).data('id') }, 
+			function(data)
+			{
+				if (DEBUG) console.log(data);
+			}
+		);
+	});
+
 }());

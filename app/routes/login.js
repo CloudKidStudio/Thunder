@@ -1,14 +1,15 @@
 var router = require('express').Router(),
-    passport = require('passport');
+    passport = require('passport'),
+    isAnonymous = require('../helpers/access').isAnonymous;
 
-router.post('/', passport.authenticate('login',
+router.post('/', isAnonymous, passport.authenticate('login',
 {
     successRedirect: '/',
     failureRedirect: '/login',
     failureFlash: true
 }));
 
-router.get('/', function(req, res)
+router.get('/', isAnonymous, function(req, res)
 {
     res.render('login',
     {

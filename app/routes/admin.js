@@ -1,6 +1,7 @@
 var router = require('express').Router();
+var access = require('../helpers/access');
 
-router.get('/', require('../helpers/protected'), function(req, res)
+router.get('/', access.isAuthenticated, function(req, res)
 {
     res.render('admin');
 });

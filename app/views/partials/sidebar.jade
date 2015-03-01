@@ -1,17 +1,16 @@
-nav.col-sm-3
-	h2
-		span.icon.glyphicon.glyphicon-tags
-		| Tags
-	div.searchForm
-		input.form-control(type="text" class="text" name="search" id="search" placeholder="Search")
-		div(id="searchList" class="searchList" style="display: none;")
-	if categories
-		h2 
-			span.icon.glyphicon.glyphicon-folder-open 
-			| Categories
-		ul.categories
-			for cat in categories
-				if (cat.total > 0)
-					li
-						a(href="/category/#{cat.uri}") #{cat.name} 
-						span.total #{cat.total}
+h2
+	span.icon.glyphicon.glyphicon-tags
+	| Tags
+div.searchForm
+	input.form-control(type="text" class="text" name="search" id="search" placeholder="Search")
+	div(id="searchList" class="searchList" style="display: none;")
+if categories
+	h2 
+		span.icon.glyphicon.glyphicon-folder-open 
+		| Categories
+	ul.categories
+		for cat in categories
+			if (cat.total > 0)
+				li
+					a(href="/category/#{cat.uri}") #{cat.name} 
+					span.total #{cat.total}

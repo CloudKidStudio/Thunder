@@ -27,4 +27,24 @@ UserSchema.methods.getFavorites = function(callback)
 		.exec(callback);
 };
 
+UserSchema.methods.toggleFavorite = function(soundId, callback)
+{
+	if (this.favorites.indexOf(soundId) > -1)
+	{
+		// remove the sound id
+		return this.update(
+			{$pull: { favorites : soundId }}, 
+			callback
+		);
+	}
+	else
+	{
+		// add the sound id
+		return this.update(
+			{$push: { favorites : soundId }}, 
+			callback
+		);
+	}
+};
+
 module.exports = mongoose.model('User', UserSchema);

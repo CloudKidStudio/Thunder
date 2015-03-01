@@ -13,11 +13,11 @@ router.get('/:uri([a-z\-0-9]+)', function(req, res)
         }
         else
         {
-            res.render('sounds',
+            res.render('tag',
             {
                 sounds: Sound.getByTag(tag._id),
                 categories: Category.getAll(),
-                title: 'Sounds » #' + tag.name
+                tag: tag
             });
         }
     });

@@ -11,7 +11,7 @@ router.get('/', function(req, res)
 
     Sound.getTotal(function(err, count)
     {
-        res.render('sounds', 
+        res.render('home', 
         {
             totalItems: count,
             sounds: Sound.getAll(pageStart, itemsPerPage),

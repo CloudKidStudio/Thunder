@@ -28,7 +28,7 @@ html
 							a(href='/') Thunder
 						else
 							a(href='/') Thunder
-				div.collapse.navbar-collapse
+				.collapse.navbar-collapse
 					ul(class="nav navbar-nav navbar-right")
 						if (user)
 							li
@@ -36,17 +36,39 @@ html
 									span.icon.glyphicon.glyphicon-heart
 									span.hidden-lg.hidden-md.hidden-sm.visible-inline-xs Favorites
 							li
-								a(href="/admin" title="Settings" data-placement="bottom" data-toggle="tooltip")
-									span.icon.glyphicon.glyphicon-user
+								a(href="#" title="Settings" data-placement="bottom" data-toggle="dropdown")
+									span.icon.glyphicon.glyphicon-cog
 									span.hidden-lg.hidden-md.hidden-sm.visible-inline-xs Settings
-							li
-								a(href="/logout" title="Logout" data-placement="bottom" data-toggle="tooltip")
-									span.icon.glyphicon.glyphicon-log-out
-									span.hidden-lg.hidden-md.hidden-sm.visible-inline-xs Logout
+									span.caret
+								ul.dropdown-menu
+									li
+										a(href="/admin/sounds")
+											span.icon.glyphicon.glyphicon-headphones
+											| Sounds
+									li
+										a(href="/admin/users")
+											span.icon.glyphicon.glyphicon-th-list
+											| Users
+									li
+										a(href="/admin/categories")
+											span.icon.glyphicon.glyphicon-folder-open
+											| Categories
+									li
+										a(href="/admin/tags")
+											span.icon.glyphicon.glyphicon-tags
+											| Tags
+									li
+										a(href="/admin/profile")
+											span.icon.glyphicon.glyphicon-user
+											| Profile
+									li
+										a(href="/logout")
+											span.icon.glyphicon.glyphicon-log-out
+											| Logout
 						else 
 							li
 								a(href="/login" title="Login" data-placement="bottom" data-toggle="tooltip")
-									span.icon.glyphicon.glyphicon-user
+									span.icon.glyphicon.glyphicon-log-in
 									span.hidden-lg.hidden-md.hidden-sm.visible-inline-xs Login
 		main.container
 			.row
