@@ -22,4 +22,12 @@
 		);
 	});
 
+	$('[data-toggle="confirm"]').click(function(e){
+		var message = $(this).data('confirm') || "Are you sure you want to continue?";
+		if (!confirm(message))
+		{
+			e.preventDefault();
+		}
+	});
+
 }());

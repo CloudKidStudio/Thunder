@@ -31,7 +31,7 @@ html
 				.collapse.navbar-collapse
 					ul(class="nav navbar-nav navbar-right")
 						if (user)
-							li
+							li(class=isActive('/favorites'))
 								a(href="/favorites" title="Favorites" data-placement="bottom" data-toggle="tooltip")
 									span.icon.glyphicon.glyphicon-heart
 									span.hidden-lg.hidden-md.hidden-sm.visible-inline-xs Favorites
@@ -42,29 +42,33 @@ html
 									span.caret
 								ul.dropdown-menu
 									if (user.privilege >= privilege.editor)
-										li
+										li(class=isActive('/admin/sounds'))
 											a(href="/admin/sounds")
 												span.icon.glyphicon.glyphicon-headphones
 												| Sounds
-										li
+										li(class=isActive('/admin/categories'))
 											a(href="/admin/categories")
 												span.icon.glyphicon.glyphicon-folder-open
 												| Categories
-										li
+										li(class=isActive('/admin/tags'))
 											a(href="/admin/tags")
 												span.icon.glyphicon.glyphicon-tags
 												| Tags
 									if (user.privilege == privilege.admin)
-										li
+										li(class=isActive('/admin/users'))
 											a(href="/admin/users")
 												span.icon.glyphicon.glyphicon-th-list
 												| Users
-									li
+									li(class=isActive('/admin/profile'))
 										a(href="/admin/profile")
 											span.icon.glyphicon.glyphicon-user
 											| Profile
+									li(class=isActive('/admin/password'))
+										a(href="/admin/password")
+											span.icon.glyphicon.glyphicon-asterisk
+											| Password
 									li
-										a(href="/logout")
+										a(href="/logout" data-toggle="confirm")
 											span.icon.glyphicon.glyphicon-log-out
 											| Logout
 						else 

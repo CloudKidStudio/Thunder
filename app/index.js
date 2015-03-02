@@ -10,7 +10,8 @@ var express = require('express'),
     flash = require('connect-flash'),
     passport = require('passport'),
     mongooseTypes = require('mongoose-types'),
-    session = require('express-session');
+    session = require('express-session'),
+    validator = require('express-validator');
 
 // Create sever
 var app = express();
@@ -32,6 +33,15 @@ app.set('json spaces', config.spaces);
 // Rendering engine for mark-up
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
+
+// Custom validators
+app.use(validator({
+    customValidators:{
+        isURI: function(value){
+            return /^[a-z0-9\-]{3,}$/.test(value);
+        }
+    }
+}));
 
 // Expose the "public" folder
 app.use(express.static(__dirname + '/public'));
