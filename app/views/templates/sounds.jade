@@ -22,22 +22,22 @@ append content
 								include ../partials/favorite
 		nav
 			ul.pagination
+				//first page button
+				li: a(href="/page/1") start
 				// the [<<] button if available
-				if (pagination.current > 1)
-					li: a(href="/page/#{pagination.current-1}" aria-label="Previous") 
-						span(aria-hidden="true") &laquo;
-				//the current page
-				li.active: a(href="#")= pagination.current
-				//the next five (if available) pages
-				- var n = pagination.current + 1
-				- var max = pagination.current + 5;
-				- max = max < pagination.total ? max: pagination.total;
-				while n <= max
-					li: a(href="/page/#{n}")= n
-					- n++
+				li: a(href="/page/#{pagination.current-1}" aria-label="Previous") 
+					span(aria-hidden="true") &laquo;
+				// iterate the array of numbers and create links for
+				// each button/page				
+				for n in pagination.pages
+					if (n == pagination.current)
+						li.active: a(href="/page/#{n}")= n
+					else
+						li: a(href="/page/#{n}")= n
 				// the [>>] button if available
-				if (pagination.current < pagination.total )
-					li: a(href="/page/#{pagination.current+1}" aria-label="Next")
-						span(aria-hidden="true") &raquo;
+				li: a(href="/page/#{pagination.current+1}" aria-label="Next")
+					span(aria-hidden="true") &raquo;
+				// last page button
+				li: a(href="/page/#{pagination.total}") end
 	.col-sm-3
 		include ../partials/sidebar

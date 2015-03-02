@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var Sound = require('../models/sound');
 var Category = require('../models/category');
+var pagination = require('../helpers/pagination');
 
 // Notice the "|":
 // routes for page/# and THEN just the '/' (the index)
@@ -16,20 +17,17 @@ router.get('/:local(page)?/:number([0-9]+)?', function(req, res)
         var total = Math.ceil(count / itemsPerPage);
         var current = parseInt(req.params.number) || 1;
         if (current > total)
+        {
             current = total;
+        }
         var start = (current - 1) * itemsPerPage;
-        
         res.render('home',
         {
             totalItems: count,
             sounds: Sound.getAll(start, itemsPerPage),
             categories: Category.getAll(),
             message: req.flash('message'),
-            pagination:
-            {
-                current: current,
-                total: total
-            }
+            pagination: pagination(total, current)
         });
     });
 });
