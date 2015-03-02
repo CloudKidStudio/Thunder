@@ -17,9 +17,24 @@ append content
 									span.on.glyphicon.glyphicon-stop
 									span.timeline
 										span.bar
-								a.download.btn.btn-default(href="/download/#{sound.uri}/original" title="#{sound.type.toUpperCase()} - #{bytesToSize(sound.size)}" data-toggle="tooltip")
-									span.glyphicon.glyphicon-download-alt
+								div.dropdown(style='display:inline')
+									button.btn.btn-default.dropdown-toggle(type="button" id="menu1" data-toggle="dropdown") 
+										span.glyphicon.glyphicon-download-alt
+									ul(class="dropdown-menu" role="menu" aria-labelledby="menu1")
+										li
+											a.download(href="/download/#{sound.uri}/original") #{sound.type.toUpperCase()} - #{bytesToSize(sound.size)}
+										li
+											a.download(href="/download/#{sound.uri}/mp3" data-toggle="tooltip") MP3
+										li
+											a.download(href="/download/#{sound.uri}/ogg" data-toggle="tooltip") OGG
+										li.divider
+										li
+											a(role="menuitem" href="/download/#{sound.uri}/original") ZIP
+										
+									
+									
 								include ../partials/favorite
+
 		nav
 			ul.pagination
 				//first page button
