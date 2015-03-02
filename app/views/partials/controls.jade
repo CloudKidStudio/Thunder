@@ -1,0 +1,27 @@
+.btn-group.controls
+	button.btn.btn-default.toggle
+		span.off.glyphicon.glyphicon-play
+		span.on.glyphicon.glyphicon-stop
+		span.timeline
+			span.bar
+	.btn-group.downloads
+		button.btn.btn-default.dropdown-toggle(type="button" id="menu1" data-toggle="dropdown") 
+			span.glyphicon.glyphicon-download-alt
+		ul(class="dropdown-menu")
+			li
+				a.download(href="/download/#{sound.uri}/original") #{sound.type.toUpperCase()} - #{bytesToSize(sound.size)}
+			li
+				a.download(href="/download/#{sound.uri}/mp3") MP3
+			li
+				a.download(href="/download/#{sound.uri}/ogg") OGG
+			li.divider
+			li
+				a(href="/download/#{sound.uri}/original") ZIP
+	if (user)
+		button.btn.btn-default.toggle.favorite(data-id="#{sound._id}", class=(user.favorites.indexOf(sound._id) > -1 ? 'active' : ''), title="Favorite" data-toggle="tooltip")
+			span.off.glyphicon.glyphicon-heart-empty
+			span.on.glyphicon.glyphicon-heart
+	else
+		button.btn.btn-default.toggle.disabled
+			span.off.glyphicon.glyphicon-heart-empty
+			span.on.glyphicon.glyphicon-heart

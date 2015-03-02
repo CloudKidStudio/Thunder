@@ -5,21 +5,6 @@ append content
 		.soundContent.large
 			h3.name #{sound.name}
 			include partials/tags
-			.btn-group.controls
-				button.btn.btn-default.toggle
-					span.off.glyphicon.glyphicon-play
-					span.on.glyphicon.glyphicon-stop
-					span.timeline
-						span.bar
-				a.download.btn.btn-default(href="/download/#{sound.uri}/original" title="#{sound.type.toUpperCase()} - #{bytesToSize(sound.size)}" data-toggle="tooltip")
-					span.icon.glyphicon.glyphicon-download-alt
-					| #{sound.type.toUpperCase()}
-				a.download.btn.btn-default(href="/download/#{sound.uri}/mp3" data-toggle="tooltip")
-					span.icon.glyphicon.glyphicon-download-alt
-					| MP3
-				a.download.btn.btn-default(href="/download/#{sound.uri}/ogg" data-toggle="tooltip")
-					span.icon.glyphicon.glyphicon-download-alt
-					| OGG
-				include partials/favorite
+			include partials/controls
 	.col-sm-3
 		include partials/sidebar

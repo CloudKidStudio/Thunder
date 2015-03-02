@@ -18,6 +18,12 @@ h2 .icon,
 .btn .icon {
   font-size: 80%;
 }
+.downloads {
+  width: 33.33333333%;
+}
+.downloads .btn {
+  width: 100% !important;
+}
 .navbar-brand .details {
   color: #999 !important;
   margin-left: 0.3em;
@@ -85,9 +91,10 @@ h2 .icon,
 }
 .sound .soundContent.large .controls {
   position: static;
+  width: 18em;
 }
 .sound .soundContent.large .controls .btn {
-  width: auto;
+  width: 6em;
 }
 .sound .soundContent.large .tags {
   font-size: 100%;
