@@ -14,19 +14,24 @@ router.get('/', isAuthenticated, function(req, res)
 
 router.post('/', isAuthenticated, function(req, res)
 {
-	req.user.toggleFavorite(req.body.id, function(err, user){
-		if (err)
-		{
-			res.send({
-				success: false,
-				error: err
-			});
-		}
-		else
-		{
-			res.send({ success: true });
-		}
-	});
+    req.user.toggleFavorite(req.body.id, function(err, user)
+    {
+        if (err)
+        {
+            res.send(
+            {
+                success: false,
+                error: err
+            });
+        }
+        else
+        {
+            res.send(
+            {
+                success: true
+            });
+        }
+    });
 });
 
 module.exports = router;

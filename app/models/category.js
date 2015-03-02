@@ -16,12 +16,15 @@ var CategorySchema = new Schema(
 
 CategorySchema.statics.getAll = function(callback)
 {
-	return this.find().exec(callback);
+    return this.find().exec(callback);
 };
 
 CategorySchema.statics.getByUri = function(uri, callback)
 {
-	return this.findOne({uri: uri}, callback);
+    return this.findOne(
+    {
+        uri: uri
+    }, callback);
 };
 
 module.exports = mongoose.model('Category', CategorySchema);

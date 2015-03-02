@@ -20,5 +20,24 @@ append content
 								a.download.btn.btn-default(href="/download/#{sound.uri}/original" title="#{sound.type.toUpperCase()} - #{bytesToSize(sound.size)}" data-toggle="tooltip")
 									span.glyphicon.glyphicon-download-alt
 								include ../partials/favorite
+		nav
+			ul.pagination
+				// the [<<] button if available
+				if (pagination.current > 1)
+					li: a(href="/page/#{pagination.current-1}" aria-label="Previous") 
+						span(aria-hidden="true") &laquo;
+				//the current page
+				li.active: a(href="#")= pagination.current
+				//the next five (if available) pages
+				- var n = pagination.current + 1
+				- var max = pagination.current + 5;
+				- max = max < pagination.total ? max: pagination.total;
+				while n <= max
+					li: a(href="/page/#{n}")= n
+					- n++
+				// the [>>] button if available
+				if (pagination.current < pagination.total )
+					li: a(href="/page/#{pagination.current+1}" aria-label="Next")
+						span(aria-hidden="true") &raquo;
 	.col-sm-3
 		include ../partials/sidebar
