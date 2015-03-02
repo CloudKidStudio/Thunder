@@ -1,16 +1,23 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Email = mongoose.SchemaTypes.Email;
+var unique = require('mongoose-unique-validator');
 
 var UserSchema = new Schema({
-	username: String,
+	username: {
+		type: String,
+		unique: true
+	},
 	password: String,
 	privilege: 
 	{
 		type: Number,
 		default: 0
 	},
-	email: Email,
+	email: {
+		type: Email,
+		unique: true
+	},
 	favorites: 
 	[{
 		type: Schema.Types.ObjectId,
@@ -18,6 +25,8 @@ var UserSchema = new Schema({
 	}],
 	name: String
 });
+
+UserSchema.plugin(require('mongoose-unique-validator'));
 
 UserSchema.methods.getFavorites = function(skip, limit, callback)
 {

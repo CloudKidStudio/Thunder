@@ -2,7 +2,7 @@ var router = require('express').Router();
 
 router.get('/', function(req, res)
 {
-	render(res);
+	render(res, null, req.flash('success'));
 });
 
 router.post('/', function(req, res)
@@ -17,19 +17,38 @@ router.post('/', function(req, res)
 		render(res, errors);
 		return;
 	}
-	
-	req.user.update({
-		name: req.body.name,
-		username: req.body.username,
-		email: req.body.email
-	}, function(err, user)
+
+	var values = {};
+	var update = false;
+	for(var key in req.body)
 	{
-		render(res, null, 'Profile saved!');
+		// Changes only
+		if (req.user[key] != req.body[key])
+		{
+			values[key] = req.body[key];
+			update = true;
+		}
+	}
+	
+	if (!update)
+	{
+		render(res, "No changes to update.");
+		return;
+	}
+
+	req.user.update(values, function(err, user)
+	{
+		req.flash('success', 'Profile saved!');
+		res.redirect(req.originalUrl);
 	});
 });
 
 function render(res, errors, success)
 {
+	if (typeof errors == "string")
+	{
+		errors = [{ msg:errors }];
+	}
 	res.render('admin/profile', {
 		errors: errors || [], 
 		success: success || null

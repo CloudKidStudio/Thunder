@@ -7,12 +7,15 @@ var CategorySchema = new Schema(
     uri:
     {
         type: String,
-        match: /^[a-z\-0-9]+$/
+        match: /^[a-z\-0-9]+$/,
+        unique: true
     },
     total: Number,
     created: Date,
     updated: Date
 });
+
+CategorySchema.plugin(require('mongoose-unique-validator'));
 
 CategorySchema.statics.getAll = function(callback)
 {

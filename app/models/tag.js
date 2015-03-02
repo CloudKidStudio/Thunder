@@ -7,9 +7,12 @@ var TagSchema = new Schema(
     uri:
     {
         type: String,
-        match: /^[a-z\-0-9]+$/
+        match: /^[a-z\-0-9]+$/,
+        unique: true
     }
 });
+
+TagSchema.plugin(require('mongoose-unique-validator'));
 
 TagSchema.statics.getByUri = function(uri, callback)
 {

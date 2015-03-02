@@ -5,7 +5,7 @@ if errors && errors.length
 		ul
 		for error in errors
 			li #{error.msg}
-if success
+if success && success.length
 	.alert.alert-success
 		button(type="button" class="close" data-dismiss="alert")
 			span &times;

@@ -1,8 +1,9 @@
 var router = require('express').Router();
+var hash = require('../../helpers/hash');
 
 router.get('/', function(req, res)
 {
-	render(res);
+	render(res, null, req.flash('success'));
 });
 
 router.post('/', function(req, res)
@@ -12,18 +13,35 @@ router.post('/', function(req, res)
 	req.checkBody('repeatPassword', 'Repeat Password must be equal to New Password.')
 		.equals(req.body.newPassword);
 
-	var errors = req.validationErrors();
+	var errors = req.validationErrors() || [];
 	
-	if (errors)
+	if (!hash.compare(req.user, req.body.oldPassword))
+	{
+		errors.push({msg:'Current password is invalid.'});
+	}
+
+	if (errors.length)
 	{
 		render(res, errors);
 		return;
 	}
-	render(res, null, 'Password updated!');
+
+	req.user.update(
+		{password: hash.create(req.body.newPassword)}, 
+		function(err, user)
+		{
+			req.flash('success', 'Password updated!');
+			res.redirect(req.originalUrl);
+		}
+	);	
 });
 
 function render(res, errors, success)
 {
+	if (typeof errors == "string")
+	{
+		errors = [{ msg:errors }];
+	}
 	res.render('admin/password', {
 		errors: errors || [],
 		success: success || null

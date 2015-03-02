@@ -9,13 +9,15 @@ var SoundSchema = new Schema(
 	{
 		type: String,
 		trim: true,
-		match: /^[a-z\-0-9]+$/
+		match: /^[a-z\-0-9]+$/,
+		unique: true
 	},
 	assetId:
 	{
 		type: String,
 		trim: true,
-		match: /^[a-z\-0-9]+$/
+		match: /^[a-z\-0-9]+$/,
+		unique: true
 	},
 	type:
 	{
@@ -37,6 +39,8 @@ var SoundSchema = new Schema(
 	created: Date,
 	update: Date
 });
+
+SoundSchema.plugin(require('mongoose-unique-validator'));
 
 SoundSchema.statics.getTotal = function(callback)
 {
