@@ -73,9 +73,12 @@ module.exports = function(base, numItems, currentPage, buttonCount, itemsPerPage
      * @property {String} result.baseUrl
      */
     this.result = {
+        next: Math.min(total, current + 1),
+        previous: Math.max(1, current - 1),
         current: current,
         total: total, 
         pages: pages,
-        base: base
+        base: base,
+        size: buttonCount
     };
 };

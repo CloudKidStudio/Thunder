@@ -34,16 +34,16 @@ append content
 		if (pagination.total > 1)
 			nav.text-center
 				ul.pagination
-					li: a(href="#{pagination.base}/page/1") start
-					li: a(href="#{pagination.base}/page/#{pagination.current-1}" aria-label="Previous") 
-						span &laquo;			
+					if (pagination.total > pagination.size)
+						li: a(href="#{pagination.base}/page/1") start
+					li: a(href="#{pagination.base}/page/#{pagination.previous}") &laquo;			
 					for n in pagination.pages
 						if (n == pagination.current)
 							li.active: a.hidden-xs(href="#{pagination.base}/page/#{n}")= n
 						else
 							li: a.hidden-xs(href="#{pagination.base}/page/#{n}")= n
-					li: a(href="#{pagination.base}/page/#{pagination.current+1}" aria-label="Next")
-						span &raquo;
-					li: a(href="#{pagination.base}/page/#{pagination.total}") end
+					li: a(href="#{pagination.base}/page/#{pagination.next}") &raquo;
+					if (pagination.total > pagination.size)
+						li: a(href="#{pagination.base}/page/#{pagination.total}") end
 	.col-sm-3
 		include ../partials/sidebar
