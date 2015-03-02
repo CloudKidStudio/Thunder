@@ -4,7 +4,7 @@ var Category = require('../models/category');
 
 // Notice the "|":
 // routes for page/# and THEN just the '/' (the index)
-router.get('/page/:number([0-9]+)|/', function(req, res)
+router.get('/:local(page)?/:number([0-9]+)?', function(req, res)
 {
     //console.log('req.params.number '.green + req.params.number);
     // pagination vars as object to send 

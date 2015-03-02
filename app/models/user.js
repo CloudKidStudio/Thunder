@@ -19,12 +19,21 @@ var UserSchema = new Schema({
 	name: String
 });
 
-UserSchema.methods.getFavorites = function(callback)
+UserSchema.methods.getFavorites = function(skip, limit, callback)
 {
 	return this.model('Sound')
 		.find({_id: {"$in": this.favorites }})
+		.skip(skip)
+		.limit(limit)
 		.populate('category tags')
 		.exec(callback);
+};
+
+UserSchema.methods.getTotalFavorites = function(callback)
+{
+	return this.model('Sound')
+		.find({_id: {"$in": this.favorites }})
+		.count(callback);
 };
 
 UserSchema.methods.toggleFavorite = function(soundId, callback)
