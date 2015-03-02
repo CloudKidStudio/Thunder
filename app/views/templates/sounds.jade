@@ -20,24 +20,19 @@ append content
 								a.download.btn.btn-default(href="/download/#{sound.uri}/original" title="#{sound.type.toUpperCase()} - #{bytesToSize(sound.size)}" data-toggle="tooltip")
 									span.glyphicon.glyphicon-download-alt
 								include ../partials/favorite
-		nav
-			ul.pagination
-				//first page button
-				li: a(href="/page/1") start
-				// the [<<] button if available
-				li: a(href="/page/#{pagination.current-1}" aria-label="Previous") 
-					span(aria-hidden="true") &laquo;
-				// iterate the array of numbers and create links for
-				// each button/page				
-				for n in pagination.pages
-					if (n == pagination.current)
-						li.active: a(href="/page/#{n}")= n
-					else
-						li: a(href="/page/#{n}")= n
-				// the [>>] button if available
-				li: a(href="/page/#{pagination.current+1}" aria-label="Next")
-					span(aria-hidden="true") &raquo;
-				// last page button
-				li: a(href="/page/#{pagination.total}") end
+		if (pagination.pages.length)
+			nav.text-center
+				ul.pagination
+					li: a(href="#{pagination.base}/page/1") start
+					li: a(href="#{pagination.base}/page/#{pagination.current-1}" aria-label="Previous") 
+						span &laquo;			
+					for n in pagination.pages
+						if (n == pagination.current)
+							li.active: a.hidden-xs(href="#{pagination.base}/page/#{n}")= n
+						else
+							li: a.hidden-xs(href="#{pagination.base}/page/#{n}")= n
+					li: a(href="#{pagination.base}/page/#{pagination.current+1}" aria-label="Next")
+						span &raquo;
+					li: a(href="#{pagination.base}/page/#{pagination.total}") end
 	.col-sm-3
 		include ../partials/sidebar

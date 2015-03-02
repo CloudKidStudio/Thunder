@@ -1,35 +1,23 @@
 var router = require('express').Router();
 var Sound = require('../models/sound');
 var Category = require('../models/category');
-var pagination = require('../helpers/pagination');
+var Pagination = require('../helpers/pagination');
 
-// Notice the "|":
-// routes for page/# and THEN just the '/' (the index)
 router.get('/:local(page)?/:number([0-9]+)?', function(req, res)
 {
-    //console.log('req.params.number '.green + req.params.number);
-    // pagination vars as object to send 
-    // through to the pagination html 
-    var itemsPerPage = 20;
+	Sound.getTotal(function(err, count)
+	{
+		var nav = new Pagination('', count, req.params.number);
 
-    Sound.getTotal(function(err, count)
-    {
-        var total = Math.ceil(count / itemsPerPage);
-        var current = parseInt(req.params.number) || 1;
-        if (current > total)
-        {
-            current = total;
-        }
-        var start = (current - 1) * itemsPerPage;
-        res.render('home',
-        {
-            totalItems: count,
-            sounds: Sound.getAll(start, itemsPerPage),
-            categories: Category.getAll(),
-            message: req.flash('message'),
-            pagination: pagination(total, current)
-        });
-    });
+		res.render('home',
+		{
+			totalItems: count,
+			sounds: Sound.getAll(nav.start, nav.itemsPerPage),
+			categories: Category.getAll(),
+			message: req.flash('message'),
+			pagination: nav.result
+		});
+	});
 });
 
 module.exports = router;

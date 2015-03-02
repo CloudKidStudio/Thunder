@@ -1,13 +1,26 @@
 /**
- * @param {int} total Number of pages
- * @param {int} current The page currently being shown
- * @param {int=} [buttonCount=7]
+ * Pagination object
+ * @class Pagination
+ * @constructor
+ * @param {string} base The base url
+ * @param {int} numItems Number of items
+ * @param {int} currentPage The page currently being shown
+ * @param {int} [buttonCount=7]
  *   How many page button to display from left-to-right.
  *   Odd numbers wil produce nicer looking, even sided, UI.
- * @return {Object}
+ * @param {int} [itemsPerPage=20] Number of items per page
  */
-module.exports = function(total, current, buttonCount)
+module.exports = function(base, numItems, currentPage, buttonCount, itemsPerPage)
 {
+    itemsPerPage = itemsPerPage || 20;
+
+    var total = Math.ceil(numItems / itemsPerPage);
+    var current = parseInt(currentPage) || 1;
+    if (current > total)
+    {
+        current = total;
+    }
+
     buttonCount = buttonCount || 7; //default to seven
 
     // if the button count is MORE than the actual pages avaiable,
@@ -38,11 +51,31 @@ module.exports = function(total, current, buttonCount)
         pages.push(min);
         min++;
     }
-    
-    return {
-        //template will need current to set .active CSS, etc.
+
+    /**
+     * The starting index of item
+     * @property {int} start
+     */
+    this.start = (current - 1) * itemsPerPage;
+
+    /**
+     * The number of items per page
+     * @property {int} itemsPerPage
+     */
+    this.itemsPerPage = itemsPerPage;
+
+    /**
+     * The pagination result
+     * @property {object} result
+     * @property {int} result.current The current page number
+     * @property {int} result.total The total number of pages
+     * @property {array} result.pages The collection of current showing pages
+     * @property {String} result.baseUrl
+     */
+    this.result = {
         current: current,
-        total: total,
-        pages: pages
+        total: total, 
+        pages: pages,
+        base: base
     };
 };

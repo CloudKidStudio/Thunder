@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var Sound = require('../models/sound');
 var Category = require('../models/category');
+var Pagination = require('../helpers/pagination');
 
 router.get('/:uri([a-z\-0-9]+)/:page(page)?/:number([0-9]+)?', function(req, res)
 {
@@ -12,13 +13,18 @@ router.get('/:uri([a-z\-0-9]+)/:page(page)?/:number([0-9]+)?', function(req, res
         }
         else
         {
+            var nav = new Pagination(
+                '/category/' + category.uri, 
+                category.total, 
+                req.params.number
+            );
+
             res.render('category',
             {
-                sounds: Sound.getByCategory(category._id, 0, 20),
+                sounds: Sound.getByCategory(category._id, nav.start, nav.itemsPerPage),
                 categories: Category.getAll(),
-                category: category, 
-                count: category.total,
-                pagination: {}
+                category: category,
+                pagination: nav.result
             });
         }
     });
