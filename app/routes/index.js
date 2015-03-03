@@ -32,6 +32,7 @@ module.exports = function(app)
 	app.use('/tag', require('./tag'));
 	app.use('/favorites', access.isAuthenticated, require('./favorites'));
 	app.use('/category', require('./category'));
+	app.use('/search', require('./search'));
 	app.use('/admin/profile', access.isAuthenticated, require('./admin/profile'));
 	app.use('/admin/password', access.isAuthenticated, require('./admin/password'));
 	app.use('/admin/sounds', access.isEditor, require('./admin/sounds'));

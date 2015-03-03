@@ -2,17 +2,17 @@
 
 // Include libraries
 var express = require('express'),
-	colors = require('colors'),
-	errorHandler = require('errorhandler'),
-	mongoose = require('mongoose'),
-	bodyParser = require('body-parser'),
-	routes = require('./routes'),
-	flash = require('connect-flash'),
-	passport = require('passport'),
-	mongooseTypes = require('mongoose-types'),
-	session = require('express-session'),
-	zip = require('express-zip'),
-	validator = require('express-validator');
+    colors = require('colors'),
+    errorHandler = require('errorhandler'),
+    mongoose = require('mongoose'),
+    bodyParser = require('body-parser'),
+    routes = require('./routes'),
+    flash = require('connect-flash'),
+    passport = require('passport'),
+    mongooseTypes = require('mongoose-types'),
+    session = require('express-session'),
+    zip = require('express-zip'),
+    validator = require('express-validator');
 
 // Create sever
 var app = express();
@@ -26,7 +26,10 @@ process.chdir(__dirname);
 // Setup the app
 app.listen(config.port);
 
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded(
+{
+    extended: false
+}));
 app.use(bodyParser.json());
 app.use(flash());
 app.set('json spaces', config.spaces);
@@ -36,12 +39,15 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 
 // Custom validators
-app.use(validator({
-	customValidators:{
-		isURI: function(value){
-			return /^[a-z0-9\-]{3,}$/.test(value);
-		}
-	}
+app.use(validator(
+{
+    customValidators:
+    {
+        isURI: function(value)
+        {
+            return /^[a-z0-9\-]{3,}$/.test(value);
+        }
+    }
 }));
 
 // Expose the "public" folder
@@ -71,17 +77,15 @@ require('./models/sound');
 require('./models/user');
 
 // Authentication stuff
-app.use(session({
-	secret: 'cloudkid', 
-	saveUninitialized: true,
-	resave: true
+app.use(session(
+{
+    secret: 'cloudkid',
+    saveUninitialized: true,
+    resave: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
 require('./helpers/auth')(passport);
-
-// Route-accessible globals
-global.config = config;
 
 // Load all the routes
 routes(app);

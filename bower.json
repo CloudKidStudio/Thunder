@@ -4,6 +4,8 @@
     "dependencies":
     {
         "jquery": "*",
+        "jquery-ui": "*",
+        "typeahead.js": "*",
         "bootstrap": "*"
     },
     "ignore": [
