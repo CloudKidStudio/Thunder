@@ -83,17 +83,19 @@
         audio.currentTime = 0;
     }; ///// END AUDIO PLAYBACK
 
-    $('[data-toggle="confirmation"]').each(function()
-    {
-        var button = $(this);
-        button.confirmation(
-        {
-            singleton: true,
-            popout: true,
-            btnOkLabel: "Yes",
-            btnCancelLabel: "No",
-            container: 'body',
-            placement: button.data('placement') || "top"
+    $('.content-select').change(function(){
+        $(this).closest('form').submit();
+    });
+
+    $('[data-uri]').each(function(){
+        var source = $(this);
+        var target = $(source.data('uri'));
+        source.keyup(function(){
+            target.val(this.value
+                .toLowerCase()
+                .replace(/ /g, '-')
+                .replace(/[^a-z0-9\-]/g, '')
+            );
         });
     });
 

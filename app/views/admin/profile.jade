@@ -4,25 +4,24 @@ append form
 	h2 
 		span.icon.glyphicon.glyphicon-user
 		| Profile
-	include ../partials/feedback
-	form.form-horizontal(method="post" action="/admin/profile")
-		if feedback
-			.alert.alert-danger=feedback
-		.form-group
-			label.control-label.col-sm-3(for="name", required) Name
-			.col-sm-9
-				input.form-control(type="text" name="name" id="name" value=user.name)
-		.form-group
-			label.control-label.col-sm-3(for="email", required) Email
-			.col-sm-9
-				input.form-control(type="text" name="email" id="email" value=user.email)
-		.form-group
-			label.control-label.col-sm-3(for="username", required) Username
-			.col-sm-9
-				input.form-control(type="text" name="username" id="username" value=user.username)
-		.form-group.text-center
-			.col-sm-9.col-sm-offset-3
-				input(type="hidden" name="id" value=user._id)
-				button.btn.btn-lg.btn-block.btn-primary(type="submit") 
-					span.icon.glyphicon.glyphicon-pencil
-					| Update
+	form.panel.panel-default.form-horizontal(method="post" action="/admin/profile")
+		.panel-body
+			include ../partials/feedback
+			.form-group
+				label.control-label.col-sm-3(for="name", required) Name
+				.col-sm-9
+					input.form-control(type="text" name="name" id="name" value=user.name)
+			.form-group
+				label.control-label.col-sm-3(for="email", required) Email
+				.col-sm-9
+					input.form-control(type="text" name="email" id="email" value=user.email)
+			.form-group
+				label.control-label.col-sm-3(for="username", required) Username
+				.col-sm-9
+					input.form-control(type="text" name="username" id="username" value=user.username)
+			.form-group.form-actions.text-center
+				.col-sm-9.col-sm-offset-3
+					input(type="hidden" name="id" value=user._id)
+					button.btn.btn-lg.btn-primary(type="submit") 
+						span.icon.glyphicon.glyphicon-pencil
+						| Update

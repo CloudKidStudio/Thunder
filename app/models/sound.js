@@ -78,6 +78,14 @@ SoundSchema.statics.getTotalByTag = function(tagId, callback)
 		.count(callback);
 };
 
+SoundSchema.statics.replaceCategory = function(oldCategory, newCategory, callback)
+{
+	return this.update(
+		{category: oldCategory}, 
+		{category: newCategory}
+	).exec(callback);
+};
+
 SoundSchema.statics.getByCategory = function(categoryId, skip, limit, callback)
 {
 	return this.find({category: categoryId})
