@@ -40,7 +40,7 @@
         var tempPlayButton = $(this);
         if (currPlayButton)
         {
-            resetButton(currPlayButton.find("audio")[0]);
+            resetButton(currPlayButton.find("audio"));
             if (currPlayButton[0].dataset.assetid == tempPlayButton[0].dataset.assetid)
             {
                 // User manually stopped the audio, don't restart! 
@@ -55,12 +55,12 @@
         }
 
         currPlayButton = tempPlayButton;
-        audio = currPlayButton.find("audio")[0];
+        audio = currPlayButton.find("audio");
 
         // console.log("binding to ended " + currPlayButton);
         // If playback ends on its own
-        audio.addEventListener('ended', onAudioEnded.bind(this, audio));
-        audio.play();
+        audio.on('ended', onAudioEnded.bind(this, audio));
+        audio[0].play();
     });
 
     var onAudioEnded = function(audio)
@@ -70,7 +70,7 @@
         // Reset play button to play-arrow icon 
         currPlayButton.removeClass("active");
         currPlayButton = null;
-        audio.removeEventListener('ended', onAudioEnded.bind(this, audio));
+        audio.off('ended');
     };
 
     var resetButton = function(audio)
@@ -78,9 +78,9 @@
         // ~szk: "btn.removeClass("active");" can NOT be within this 
         // reset button function or else bootstrap will reapply 
         // ".active" to the element
-        audio.removeEventListener('ended');
-        audio.pause();
-        audio.currentTime = 0;
+        audio.off('ended');
+        audio[0].pause();
+        audio[0].currentTime = 0;
     }; ///// END AUDIO PLAYBACK
 
     $('.content-select').change(function(){
