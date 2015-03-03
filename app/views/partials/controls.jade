@@ -1,5 +1,8 @@
 .btn-group.controls
-	button.btn.btn-default.toggle
+	button.btn.btn-default.toggle.sample-audio(data-assetid="#{sound.assetId}")
+		audio(id=sound.assetId)
+			source(src="/sounds/web/#{sound.assetId}.ogg" type="audio/ogg")
+			source(src="/sounds/web/#{sound.assetId}.mp3"  type="audio/mpeg")
 		span.off.glyphicon.glyphicon-play
 		span.on.glyphicon.glyphicon-stop
 		span.timeline
@@ -18,7 +21,10 @@
 			li
 				a(href="/download/#{sound.uri}/zip") ZIP
 	if (user)
-		button.btn.btn-default.toggle.favorite(data-id="#{sound._id}", class=(user.favorites.indexOf(sound._id) > -1 ? 'active' : ''), title="Favorite" data-toggle="tooltip")
+		button.btn.btn-default.toggle.favorite(
+		data-id="#{sound._id}", 
+		class=(user.favorites.indexOf(sound._id) > -1 ? 'active' : ''), 
+		title="Favorite" data-toggle="tooltip")
 			span.off.glyphicon.glyphicon-heart-empty
 			span.on.glyphicon.glyphicon-heart
 	else

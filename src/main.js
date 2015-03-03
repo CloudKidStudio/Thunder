@@ -31,7 +31,73 @@
         );
     });
 
+    ///// AUDIO PLAYBACK
+    var currPlayButton;
+    $(".sample-audio").click(function()
+    {
+        var audio = null; //{Element}
+        var isSame = null; //{boolean}
+        var tempPlayButton = $(this);
+        if (currPlayButton)
+        {
+            resetButton(currPlayButton.find("audio")[0]);
+            if (currPlayButton[0].dataset.assetid == tempPlayButton[0].dataset.assetid)
+            {
+                // User manually stopped the audio, don't restart! 
+                currPlayButton = null;
+                return;
+            }
+            else
+            {
+                // Reset play button to play-arrow icon 
+                currPlayButton.removeClass("active");
+            }
+        }
 
+        currPlayButton = tempPlayButton;
+        audio = currPlayButton.find("audio")[0];
+
+        // console.log("binding to ended " + currPlayButton);
+        // If playback ends on its own
+        audio.addEventListener('ended', onAudioEnded.bind(this, audio));
+        audio.play();
+    });
+
+    var onAudioEnded = function(audio)
+    {
+        // console.log('onEnded curr: ' + currPlayButton + ' audio: ' + this);
+        resetButton(audio);
+        // Reset play button to play-arrow icon 
+        currPlayButton.removeClass("active");
+        currPlayButton = null;
+        audio.removeEventListener('ended', onAudioEnded.bind(this, audio));
+    };
+
+    var resetButton = function(audio)
+    {
+        // ~szk: "btn.removeClass("active");" can NOT be within this 
+        // reset button function or else bootstrap will reapply 
+        // ".active" to the element
+        audio.removeEventListener('ended');
+        audio.pause();
+        audio.currentTime = 0;
+    }; ///// END AUDIO PLAYBACK
+
+    $('[data-toggle="confirmation"]').each(function()
+    {
+        var button = $(this);
+        button.confirmation(
+        {
+            singleton: true,
+            popout: true,
+            btnOkLabel: "Yes",
+            btnCancelLabel: "No",
+            container: 'body',
+            placement: button.data('placement') || "top"
+        });
+    });
+
+    ///// SEARCH FUNCTIONALITY
     var searchBar = $("#search");
     var searchDiv = $("#search-list");
     var searchList = searchDiv.find("ul");
@@ -56,22 +122,28 @@
         // If not, don't open until user starts typing
         var hasLi = searchList.find("li")[0] ? true : false;
         if (hasLi)
+        {
             searchDiv.addClass('open');
+        }
     });
 
     searchBar.blur(function(event)
     {
         if (event && event.relatedTarget && event.relatedTarget.href)
+        {
             event.relatedTarget.click();
+        }
         else
+        {
             searchDiv.removeClass('open');
+        }
     });
 
     /**
      * Update the search field drop down menu
      * @param {Array->TagSchema} results from the dat
      */
-    function onSearchResults(data)
+    var onSearchResults = function(data)
     {
         if (!data)
             return;
@@ -90,14 +162,15 @@
         else
         {
             /**
-            * if there is no .length to the data, user has likely
-            *  a. made a typo
-            *  b. is trying to find an tag not in the database
-            * ~szk: originally, this was an empty <li> so that the element
-            * didn't awkwardly disappear (or really, oddly resize itslef)
-            * but, a derp-face is just so much better, IMHO
-            */searchList.append("<li style='margin:0 auto'>（。々°）</li>");
+             * if there is no .length to the data, user has likely:
+             *  a. made a typo
+             *  b. is trying to find an tag not in the database
+             * ~szk: originally, this was an empty <li> so that the element
+             * didn't awkwardly disappear (or really, oddly resize itslef)
+             * but, a derp-face is just so much better, IMHO
+             */
+            searchList.append("<li style='margin:0 auto'>（。々°）</li>");
         }
-    }
-    
+    };
+    ///// SEARCHFUNCTIONALITY
 }());
