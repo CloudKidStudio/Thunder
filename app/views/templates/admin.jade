@@ -2,28 +2,28 @@ extend base
 
 append content
 	.col-md-2.col-sm-3.hidden-xs
-		.btn-group-vertical.full-width
+		.list-group.full-width
 			if (user.privilege >= privilege.editor)
-				a.btn.btn-default.btn-block(href="/admin/sounds" class=isActive('/admin/sounds'))
+				a.list-group-item(href="/admin/sounds" class=isActive('/admin/sounds'))
 					span.icon.glyphicon.glyphicon-headphones
 					| Sounds
-				a.btn.btn-default.btn-block(href="/admin/categories" class=isActive('/admin/categories'))
+				a.list-group-item(href="/admin/categories" class=isActive('/admin/categories'))
 					span.icon.glyphicon.glyphicon-folder-open
 					| Categories
-				a.btn.btn-default.btn-block(href="/admin/tags" class=isActive('/admin/tags'))
+				a.list-group-item(href="/admin/tags" class=isActive('/admin/tags'))
 					span.icon.glyphicon.glyphicon-tags
 					| Tags
 			if (user.privilege == privilege.admin)
-				a.btn.btn-default.btn-block(href="/admin/users" class=isActive('/admin/users'))
+				a.list-group-item(href="/admin/users" class=isActive('/admin/users'))
 					span.icon.glyphicon.glyphicon-th-list
 					| Users
-			a.btn.btn-default.btn-block(href="/admin/profile" class=isActive('/admin/profile'))
+			a.list-group-item(href="/admin/profile" class=isActive('/admin/profile'))
 				span.icon.glyphicon.glyphicon-user
 				| Profile
-			a.btn.btn-default.btn-block(href="/admin/password" class=isActive('/admin/password'))
+			a.list-group-item(href="/admin/password" class=isActive('/admin/password'))
 				span.icon.glyphicon.glyphicon-asterisk
 				| Password
-			a.btn.btn-default.btn-block(href="/logout" data-toggle="confirm")
+			a.list-group-item(href="/logout" data-toggle="confirm")
 				span.icon.glyphicon.glyphicon-log-out
 				| Logout
 	.col-md-10.col-sm-9
