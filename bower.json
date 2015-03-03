@@ -4,7 +4,7 @@
     "dependencies":
     {
         "jquery": "*",
-        "bootstrap-confirmation": "Tavicu/bootstrap-confirmation"
+        "bootstrap": "*"
     },
     "ignore": [
         ".gitignore",

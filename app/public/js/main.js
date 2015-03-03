@@ -26,26 +26,6 @@
         );
     });
 
-    // $('[data-toggle="confirm"]').click(function(e)
-    // {
-    //     var message = $(this).data('confirm') || "Are you sure you want to continue?";
-    //     if (!confirm(message))
-    //     {
-    //         e.preventDefault();
-    //     }
-    // });
-    
-    $('[data-toggle="confirmation"]').each(function(){
-        var button = $(this);
-        button.confirmation({
-            singleton: true,
-            popout: true,
-            btnOkLabel: "Yes",
-            btnCancelLabel: "No",
-            container: 'body',
-            placement: button.data('placement') || "top"
-        });
-    });
 
     var searchBar = $("#search");
     var searchDiv = $("#search-list");
@@ -114,13 +94,6 @@
             */searchList.append("<li style='margin:0 auto'>（。々°）</li>");
         }
     }
-}());
-(function()
-{
-    // //require('js/ui/buttons');
-    $('.toggle').on('click', function()
-    {
-        $(this).toggleClass('active');
-    });
+    
 }());
 //# sourceMappingURL=main.js.map
