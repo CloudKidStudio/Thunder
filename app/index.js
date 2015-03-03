@@ -11,6 +11,7 @@ var express = require('express'),
 	passport = require('passport'),
 	mongooseTypes = require('mongoose-types'),
 	session = require('express-session'),
+	zip = require('express-zip'),
 	validator = require('express-validator');
 
 // Create sever

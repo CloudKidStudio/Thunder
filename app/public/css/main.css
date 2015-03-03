@@ -38,67 +38,44 @@ h2 .icon,
   color: #ffffff;
 }
 .sound {
-  padding: 0 5px;
-}
-.sound .soundContent {
-  text-align: center;
   min-height: 140px;
-  margin-bottom: 10px;
   position: relative;
-  border: 1px solid #eee;
-  border-top-width: 2px;
-  border-radius: 4px;
-  box-sizing: border-box;
-  padding: 10px;
-  background: #F9F9F9;
 }
-.sound .soundContent .type {
-  font-size: 75%;
-  padding: 2px 4px;
-  position: absolute;
-  right: 10px;
-  top: 0;
-  text-transform: uppercase;
-}
-.sound .soundContent .name {
-  font-size: 140%;
-  padding: 0;
-  margin: 10px 0;
-}
-.sound .soundContent .tags {
+.sound .tags {
   padding: 0;
   font-size: 80%;
   height: 3em;
   overflow: hidden;
 }
-.sound .soundContent .tags li {
-  display: inline-block;
+.sound .tags li {
+  display: inline;
   padding: 0 2px;
 }
-.sound .soundContent .tags li a {
+.sound .tags li a {
   color: #999;
 }
-.sound .soundContent .controls {
+.sound .controls {
   position: absolute;
   bottom: 10px;
   left: 10px;
   right: 10px;
 }
-.sound .soundContent .controls .btn {
+.sound .controls .btn {
   outline: none;
   width: 33.33333333%;
 }
-.sound .soundContent.large {
+.sound.large {
   min-height: auto;
 }
-.sound .soundContent.large .controls {
+.sound.large .controls {
   position: static;
   width: 18em;
 }
-.sound .soundContent.large .controls .btn {
+.sound.large .controls .btn {
   width: 6em;
 }
-.sound .soundContent.large .tags {
+.sound.large .tags {
+  height: auto;
   font-size: 100%;
 }
 .toggle .on {

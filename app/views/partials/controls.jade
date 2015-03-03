@@ -16,7 +16,7 @@
 				a.download(href="/download/#{sound.uri}/ogg") OGG
 			li.divider
 			li
-				a(href="/download/#{sound.uri}/original") ZIP
+				a(href="/download/#{sound.uri}/zip") ZIP
 	if (user)
 		button.btn.btn-default.toggle.favorite(data-id="#{sound._id}", class=(user.favorites.indexOf(sound._id) > -1 ? 'active' : ''), title="Favorite" data-toggle="tooltip")
 			span.off.glyphicon.glyphicon-heart-empty

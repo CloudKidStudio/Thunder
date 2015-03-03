@@ -6,12 +6,14 @@ append content
 		.row
 			if sounds
 				for sound in sounds 
-					.sound.col-md-4.col-sm-6
-						.soundContent
-							a(href="/sound/#{sound.uri}")
-								h3.name #{sound.name}
-							include ../partials/tags
-							include ../partials/controls
+					.col-md-4.col-sm-6
+						.panel.panel-default.sound
+							.panel-heading
+								a(href="/sound/#{sound.uri}")
+									h3.panel-title #{sound.name}
+							.panel-body.text-center
+								include ../partials/tags
+								include ../partials/controls
 		if (pagination.total > 1)
 			nav.text-center
 				ul.pagination

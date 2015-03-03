@@ -1,10 +1,12 @@
 extend templates/base
 
 append content
-	.col-sm-9.sound
-		.soundContent.large
-			h3.name #{sound.name}
-			include partials/tags
-			include partials/controls
+	.col-sm-9
+		.panel.panel-default.sound.large
+			.panel-heading
+				h3.panel-title #{sound.name}
+			.panel-body.text-center
+				include partials/tags
+				include partials/controls
 	.col-sm-3
 		include partials/sidebar
