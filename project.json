@@ -11,13 +11,15 @@
         "components/jquery-ui/jquery-ui.min.js",
         "components/bootstrap/dist/js/bootstrap.min.js",
         "components/bootstrap/dist/css/bootstrap.min.css",
-        "components/bootstrap/dist/css/bootstrap-theme.min.css"
+        "components/bootstrap/dist/css/bootstrap-theme.min.css",
+        "components/bootstrap-confirmation/bootstrap-confirmation.js"
     ],
     "librariesDebug": [
         "components/jquery/dist/jquery.js",
         "components/jquery-ui/jquery-ui.js",
         "components/bootstrap/dist/js/bootstrap.js",
         "components/bootstrap/dist/css/bootstrap.css",
-        "components/bootstrap/dist/css/bootstrap-theme.css"
+        "components/bootstrap/dist/css/bootstrap-theme.css",
+        "components/bootstrap-confirmation/bootstrap-confirmation.js"
     ]
 }

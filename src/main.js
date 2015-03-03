@@ -26,18 +26,27 @@
         );
     });
 
-    $('[data-toggle="confirm"]').click(function(e)
-    {
-        var message = $(this).data('confirm') || "Are you sure you want to continue?";
-        if (!confirm(message))
-        {
-            e.preventDefault();
-        }
+    // $('[data-toggle="confirm"]').click(function(e)
+    // {
+    //     var message = $(this).data('confirm') || "Are you sure you want to continue?";
+    //     if (!confirm(message))
+    //     {
+    //         e.preventDefault();
+    //     }
+    // });
+    
+    $('[data-toggle="confirmation"]').each(function(){
+        var button = $(this);
+        button.confirmation({
+            singleton: true,
+            popout: true,
+            btnOkLabel: "Yes",
+            btnCancelLabel: "No",
+            container: 'body',
+            placement: button.data('placement') || "top"
+        });
     });
 
-    // function setupSearchBar(div, ul, dataHandler) {
-    //     
-    // }
     var searchBar = $("#search");
     var searchDiv = $("#search-list");
     var searchList = searchDiv.find("ul");
@@ -58,24 +67,19 @@
 
     searchBar.focus(function(event)
     {
-        //is there at least one li for the current search?
+        // Is there at least one li for the current search?
+        // If not, don't open until user starts typing
         var hasLi = searchList.find("li")[0] ? true : false;
         if (hasLi)
-        {
             searchDiv.addClass('open');
-        }
     });
 
     searchBar.blur(function(event)
     {
         if (event && event.relatedTarget && event.relatedTarget.href)
-        {
             event.relatedTarget.click();
-        }
         else
-        {
             searchDiv.removeClass('open');
-        }
     });
 
     /**
@@ -100,14 +104,14 @@
         }
         else
         {
-            // if there is no .length to the data, user has likely
-            //  a. made a typo
-            //  b. is trying to find an tag not in the database
-            // ~szk: originally, this was an empty <li> so that the element
-            // didn't awkwardly disappear (or really, oddly resize itslef)
-            // but, a derp-face is just so much better, IMHO
-            searchList.append("<li style='margin:0 auto'>（。々°）</li>");
+            /**
+            * if there is no .length to the data, user has likely
+            *  a. made a typo
+            *  b. is trying to find an tag not in the database
+            * ~szk: originally, this was an empty <li> so that the element
+            * didn't awkwardly disappear (or really, oddly resize itslef)
+            * but, a derp-face is just so much better, IMHO
+            */searchList.append("<li style='margin:0 auto'>（。々°）</li>");
         }
-
     }
 }());
