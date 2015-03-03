@@ -3,7 +3,6 @@
     "version": "1.0.0",
     "main": [
         "src/main.js",
-        "src/js/ui/*.js",
         "src/main.less"
     ],
     "libraries": [

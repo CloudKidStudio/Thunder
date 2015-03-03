@@ -11,6 +11,11 @@
         });
     }
 
+    $('.toggle').on('click', function()
+    {
+        $(this).toggleClass('active');
+    });
+
     // Add favorite
     $('.favorite').click(function()
     {
