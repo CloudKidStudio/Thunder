@@ -8,9 +8,8 @@ if categories
 	h2 
 		span.icon.glyphicon.glyphicon-folder-open 
 		| Categories
-	ul.categories
+	.list-group
 		for cat in categories
 			if (cat.total > 0)
-				li
-					a(href="/category/#{cat.uri}") #{cat.name} 
-					span.total #{cat.total}
+				a.list-group-item(href="/category/#{cat.uri}" class=isActive('/category/#{cat.uri}')) #{cat.name} 
+					span.badge #{cat.total}
