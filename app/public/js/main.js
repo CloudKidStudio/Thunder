@@ -26,13 +26,17 @@
         );
     });
 
-	$('[data-toggle="confirm"]').click(function(e){
-		var message = $(this).data('confirm') || "Are you sure you want to continue?";
-		if (!confirm(message))
-		{
-			e.preventDefault();
-		}
-	});
+    $('[data-toggle="confirmation"]').each(function(){
+        var button = $(this);
+        button.confirmation({
+            singleton: true,
+            popout: true,
+            btnOkLabel: "Yes",
+            btnCancelLabel: "No",
+            container: 'body',
+            placement: button.data('placement') || "top"
+        });
+    });
 
 }());
 (function()
