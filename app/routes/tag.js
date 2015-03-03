@@ -10,7 +10,7 @@ router.get('/:uri([a-z\-0-9]+)/:page(page)?/:number([0-9]+)?', function(req, res
 	{
 		if (!tag)
 		{
-			res.redirect('/');
+			res.status(404).render('404');
 		}
 		else
 		{

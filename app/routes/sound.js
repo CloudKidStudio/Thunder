@@ -4,10 +4,20 @@ var Category = require('../models/category');
 
 router.get('/:uri([a-z\-0-9]+)', function(req, res)
 {
-	res.render('sound',
+	Sound.getByUri(req.params.uri, function(err, sound)
 	{
-		sound: Sound.getByUri(req.params.uri),
-		categories: Category.getAll()
+		if (!sound)
+		{
+			res.status(404).render('404');
+		}
+		else
+		{
+			res.render('sound',
+			{
+				sound: sound,
+				categories: Category.getAll()
+			});
+		}
 	});
 });
 
