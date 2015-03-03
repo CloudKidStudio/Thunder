@@ -1,6 +1,19 @@
 extends templates/sounds
 
 append title 
+	if (sounds.length)
+		form.btn-group.pull-right(method="post")
+			button.btn.btn-sm.btn-primary(type="submit" value="download" name="action")
+				span.icon.glyphicon.glyphicon-download-alt
+				span.hidden-xs Download
+			a.btn.btn-sm.btn-primary(href="/favorites")
+				span.icon.glyphicon.glyphicon-repeat
+				span.hidden-xs Refresh	
+			button.btn.btn-sm.btn-default(type="submit" value="remove" name="action" data-toggle="confirm" data-confirm="Do you want to remove all your favorites?")
+				span.icon.glyphicon.glyphicon-trash
+				span.hidden-xs Clear
 	h2 Favorites
 	if (!sounds.length)
 		.alert.alert-warning You haven't selected any favorites.
+			
+			

@@ -38,6 +38,19 @@ UserSchema.methods.getFavorites = function(skip, limit, callback)
 		.exec(callback);
 };
 
+UserSchema.methods.getAllFavorites = function(callback)
+{
+	return this.model('Sound')
+		.find({_id: {"$in": this.favorites }})
+		.populate('category tags')
+		.exec(callback);
+};
+
+UserSchema.methods.removeFavorites = function(callback)
+{
+	return this.update({favorites: []}, callback);
+};
+
 UserSchema.methods.toggleFavorite = function(soundId, callback)
 {
 	if (this.favorites.indexOf(soundId) > -1)

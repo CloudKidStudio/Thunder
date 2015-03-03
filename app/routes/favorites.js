@@ -2,6 +2,7 @@ var router = require('express').Router();
 var Sound = require('../models/sound');
 var Category = require('../models/category');
 var Pagination = require('../helpers/pagination');
+var _ = require('lodash');
 
 router.get('/:page(page)?/:number([0-9]+)?', function(req, res)
 {
@@ -23,24 +24,58 @@ router.get('/:page(page)?/:number([0-9]+)?', function(req, res)
 
 router.post('/', function(req, res)
 {
-	req.user.toggleFavorite(req.body.id, function(err, user)
+	// Download all uncompressed files
+	if (req.body.action == "download")
 	{
-		if (err)
+		req.user.getAllFavorites(function(err, sounds)
 		{
-			res.send(
+			if (!sounds)
 			{
-				success: false,
-				error: err
-			});
-		}
-		else
+				res.status(404).render('404');
+			}
+			else
+			{
+				var files = [];
+				_.each(sounds, function(sound){
+					files.push({
+						path: './public/sounds/original/' + sound.assetId + '.' + sound.type,
+						name: sound.uri + '.' + sound.type
+					});
+				});
+				res.zip(files, 'favorites.zip');
+			}
+		});
+	}
+	// Remove all the favorites
+	else if (req.body.action == "remove")
+	{
+		req.user.removeFavorites(function(err)
 		{
-			res.send(
+			res.redirect(req.originalUrl);
+		});
+	}
+	// Toggle a sound in favorites
+	else if (req.body.id)
+	{
+		req.user.toggleFavorite(req.body.id, function(err, user)
+		{
+			if (err)
 			{
-				success: true
-			});
-		}
-	});
+				res.send(
+				{
+					success: false,
+					error: err
+				});
+			}
+			else
+			{
+				res.send(
+				{
+					success: true
+				});
+			}
+		});
+	}
 });
 
 module.exports = router;
