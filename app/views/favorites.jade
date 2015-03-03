@@ -2,3 +2,5 @@ extends templates/sounds
 
 append title 
 	h2 Favorites
+	if (!sounds.length)
+		.alert.alert-warning You haven't selected any favorites.

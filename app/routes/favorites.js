@@ -5,15 +5,17 @@ var Pagination = require('../helpers/pagination');
 
 router.get('/:page(page)?/:number([0-9]+)?', function(req, res)
 {
+	var total = req.user.favorites.length;
+
 	var nav = new Pagination(
 		'/favorites',
-		req.user.favorites.length, 
+		total, 
 		req.params.number
 	);
 
 	res.render('favorites',
 	{
-		sounds: req.user.getFavorites(nav.start, nav.itemsPerPage),
+		sounds: total ? req.user.getFavorites(nav.start, nav.itemsPerPage) : [],
 		categories: Category.getAll(),
 		pagination: nav.result
 	});
