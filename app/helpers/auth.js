@@ -1,6 +1,5 @@
 var User = require('../models/user');
 var LocalStrategy = require('passport-local');
-var hash = require('./hash');
 
 module.exports = function(passport)
 {
@@ -34,16 +33,16 @@ module.exports = function(passport)
 					// Username does not exist, log error & redirect back
 					if (!user)
 					{
-						console.log('User Not Found with username '+username);
+						//console.log('User Not Found with username '+username);
 						return done(null, false, req.flash(
 							'error', 
 							'User Not found.'
 						));                 
 					}
 					// User exists but wrong password, log the error 
-					if (!hash.compare(user, password))
+					if (!user.comparePassword(password))
 					{
-						console.log('Invalid Password');
+						//console.log('Invalid Password');
 						return done(null, false, req.flash(
 							'error', 
 							'Invalid Password'
@@ -82,16 +81,22 @@ module.exports = function(passport)
 							'User Already Exists'
 						));
 					}
-					else 
+					else if (req.body.confirm != password)
+					{
+						return done(null, false, req.flash(
+							'error',
+							'Password and confirm password do not match'
+						));
+					}
+					else
 					{
 						// if there is no user with that email
 						// create the user
 						var newUser = new User({
 							username: username,
-							password: hash.create(password),
+							password: password,
 							email: req.body.email,
-							name: req.body.name, 
-							privilege: req.body.privilege || 0
+							name: req.body.name
 						});
 	 
 						// save the user

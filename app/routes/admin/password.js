@@ -1,5 +1,4 @@
 var router = require('express').Router();
-var hash = require('../../helpers/hash');
 
 router.get('/', function(req, res)
 {
@@ -15,9 +14,9 @@ router.post('/', function(req, res)
 
 	var errors = req.validationErrors() || [];
 	
-	if (!hash.compare(req.user, req.body.oldPassword))
+	if (!req.user.comparePassword(req.body.oldPassword))
 	{
-		errors.push({msg:'Current password is invalid.'});
+		errors.push({ msg: 'Current password is invalid.' });
 	}
 
 	if (errors.length)
@@ -26,8 +25,9 @@ router.post('/', function(req, res)
 		return;
 	}
 
-	req.user.update(
-		{password: hash.create(req.body.newPassword)}, 
+	req.user.password = req.body.newPassword;
+
+	req.user.save(
 		function(err, user)
 		{
 			req.flash('success', 'Password updated!');

@@ -1,7 +1,6 @@
 var router = require('express').Router();
 var User = require('../../models/user');
 var template = 'admin/users-edit';
-var hash = require('../../helpers/hash');
 
 router.post('/', function(req, res)
 {
@@ -51,7 +50,7 @@ router.post('/', function(req, res)
 
 			if (req.body.password)
 			{
-				values.password = hash.create(req.body.password);
+				values.password = req.body.password;
 			}
 
 			User.update({_id: req.body.id}, values, function(err, tag)

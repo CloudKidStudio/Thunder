@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Email = mongoose.SchemaTypes.Email;
 var unique = require('mongoose-unique-validator');
+var bcrypt = require('bcrypt-nodejs');
 
 var UserSchema = new Schema({
 	username: {
@@ -23,7 +24,9 @@ var UserSchema = new Schema({
 		type: Schema.Types.ObjectId,
 		ref: 'Sound'
 	}],
-	name: String
+	name: String,
+	resetPasswordToken: String,
+	resetPasswordExpires: Date
 });
 
 UserSchema.plugin(require('mongoose-unique-validator'));
@@ -81,6 +84,24 @@ UserSchema.statics.getAll = function(excludeId, callback)
 UserSchema.statics.getById = function(id, callback)
 {
     return this.findOne({ _id : id }, callback);
+};
+
+UserSchema.pre('save', function(next)
+{
+	if (this.isModified('password'))
+	{
+		this.password = bcrypt.hashSync(
+			this.password, 
+			bcrypt.genSaltSync(10), 
+			null
+		);
+	}
+	return next();
+});
+
+UserSchema.methods.comparePassword = function(candidatePassword, callback)
+{
+	return bcrypt.compareSync(candidatePassword, this.password);
 };
 
 module.exports = mongoose.model('User', UserSchema);
