@@ -23,7 +23,16 @@ append form
 			.form-group
 				label.control-label.col-sm-3(for="file") Upload File
 				.col-sm-9
-					input.form-control(type="file" name="file" id="file")
+					input.form-control(type="file" accept=".aif,.wav" name="file" id="file")
+			.form-group
+				label.control-label.col-sm-3(for="category") Category
+				.col-sm-9
+					select.form-control(name="category" id="category")
+						for cat in categories
+							if cat._id.toString() == sound.category._id.toString()
+								option(value=cat._id selected="true")=cat.name
+							else
+								option(value=cat._id)=cat.name
 			.form-group
 				label.control-label.col-sm-3(for="tags") Tags
 				.col-sm-9
@@ -36,15 +45,6 @@ append form
 									input(type="hidden" name="tags[]" value=tag._id)
 									button.btn.btn-sm.btn-default(type="button") ##{tag.name} &times;
 		
-			.form-group
-				label.control-label.col-sm-3(for="category") Category
-				.col-sm-9
-					select.form-control(name="category" id="category")
-						for cat in categories
-							if cat._id.toString() == sound.category._id.toString()
-								option(value=cat._id selected="true")=cat.name
-							else
-								option(value=cat._id)=cat.name
 			.form-group.form-actions.text-center
 					input(type="hidden" name="id" value=sound._id)
 					.col-sm-9.col-sm-offset-3
