@@ -54,7 +54,8 @@ router.post('/', function(req, res)
 				res.render(template,
 				{
 					success: 'Tag has been updated',
-					tag: Tag.getById(req.body.id)
+					tag: Tag.getById(req.body.id),
+					title: 'Tags - Admin'
 				});
 			});
 		}

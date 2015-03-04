@@ -1,10 +1,13 @@
 extend templates/normal
 
+append title
+	| Password Reset -
+
 append content
 	.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
 		form.panel.panel-default.form-horizontal(method="post" action="/reset/#{token}")
 			.panel-heading
-				h3.panel-title Edit Your Password
+				h3.panel-title Password Reset
 			.panel-body
 				include partials/feedback
 				.form-group

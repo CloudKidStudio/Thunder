@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var Category = require('../../models/category');
 var Sound = require('../../models/sound');
+
 var template = 'admin/categories';
 
 router.get('/', function(req, res)

@@ -3,7 +3,9 @@ var fs = require('fs');
 
 router.get('*', function(req, res)
 {
-    res.render('install');
+    res.render('install', {
+        title: 'Installation'
+    });
 });
 
 router.post('*', function(req, res)
@@ -23,10 +25,7 @@ router.post('*', function(req, res)
     var data = "module.exports = " + JSON.stringify(req.body, null, "\t") + ";";
     fs.writeFile('./config/settings.js', data, function()
     {
-        res.render('install',
-        {
-            completed: true
-        });
+        res.render('install', { completed: true });
     });
 });
 

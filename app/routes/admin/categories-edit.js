@@ -1,6 +1,8 @@
 var router = require('express').Router();
 var Category = require('../../models/category');
 var Sound = require('../../models/sound');
+var async = require('async');
+
 var template = 'admin/categories-edit';
 
 router.post('/', function(req, res)
@@ -16,20 +18,32 @@ router.post('/', function(req, res)
 	{
 		if (req.body.action == "delete")
 		{
-			// Get the empty category
-			Category.getEmpty(function(err, category)
-			{
-				// Replace all categories with the new one
-				Sound.replaceCategory(req.body.id, category._id, function(err)
-				{
-					// Remove category
-					Category.remove({_id: req.body.id}, function(err)
+			async.waterfall([
+					// Get the empty category
+					function(done)
 					{
-						req.flash('success', 'Successfully removed category');
-						res.redirect('/admin/categories');
-					});
-				});
-			});
+						Category.getEmpty(done);
+					},
+					// Replace all categories with the new one
+					function(category, done)
+					{
+						Sound.replaceCategory(req.body.id, category._id, function(err)
+						{
+							done(err);
+						});
+					},
+					// Remove category
+					function(done)
+					{
+						Category.remove({_id: req.body.id}, done);
+					}
+				], 
+				function(err)
+				{
+					req.flash('success', 'Successfully removed category');
+					res.redirect('/admin/categories');
+				}
+			);
 		}
 		else
 		{

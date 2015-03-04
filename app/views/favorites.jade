@@ -1,6 +1,9 @@
 extends templates/sounds
 
-append title 
+append title
+	| Favorites - 
+
+append soundsTitle 
 	if (sounds.length)
 		form.btn-group.pull-right(method="post")
 			button.btn.btn-sm.btn-primary(type="submit" value="download" name="action")

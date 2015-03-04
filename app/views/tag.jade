@@ -1,6 +1,9 @@
 extend templates/sounds
 
-append title 
+append title
+	| ##{tag.name} - Tag - 
+
+append soundsTitle 
 	form(action="/admin/tags/edit" method="post")
 		h2 
 			a(href='/') Sounds

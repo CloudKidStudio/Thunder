@@ -30,7 +30,8 @@ router.post('/', function(req, res)
 		res.render(template,
 		{
 			errors: errors,
-			tag: values
+			tag: values,
+			title: 'Tags - Admin'
 		});
 		return;
 	}
@@ -42,6 +43,7 @@ router.post('/', function(req, res)
 		res.render(template,
 		{
 			success: 'Tag added!',
+			title: 'Tags - Admin',
 			tag: {
 				name: "",
 				uri: ""

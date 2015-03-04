@@ -1,6 +1,9 @@
 extend templates/sounds
 
-append title 
+append title
+	| #{category.name} - Category - 
+
+append soundsTitle 
 	form(action="/admin/categories/edit" method="post")
 		h2 
 			a(href='/') Sounds

@@ -12,11 +12,9 @@ block body
 						span.icon-bar
 					span.navbar-brand
 						if (user)
-							a(href="/admin/profile")= user.name 
+							a(href="/favorites")= user.name 
 							span.details is bringing the 
-							a(href='/') Thunder
-						else
-							a(href='/') Thunder
+						a(href='/') Thunder
 				.collapse.navbar-collapse
 					ul(class="nav navbar-nav navbar-right")
 						if (user)
