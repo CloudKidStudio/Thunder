@@ -28,6 +28,5 @@
 			span.off.glyphicon.glyphicon-heart-empty
 			span.on.glyphicon.glyphicon-heart
 	else
-		button.btn.btn-default.toggle.disabled
-			span.off.glyphicon.glyphicon-heart-empty
-			span.on.glyphicon.glyphicon-heart
+		a.btn.btn-default(href="/login" data-toggle="tooltip" title="Login to Favorite")
+			span.glyphicon.glyphicon-heart-empty
