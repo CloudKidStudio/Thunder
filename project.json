@@ -2,6 +2,8 @@
     "name": "Thunder",
     "version": "1.0.0",
     "main": [
+        "src/ui/playback.js",
+        "src/ui/search.js",
         "src/main.js",
         "src/main.less"
     ],

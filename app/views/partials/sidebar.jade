@@ -4,7 +4,7 @@ h2
 div.searchForm
 	input.form-control(type="text" class="text" name="search" data-toggle="dropdown" id="search" placeholder="Search")
 	div.dropdown#search-list
-		ul.dropdown-menu(style="width:100%; overflow:hidden")
+		ul.dropdown-menu
 if categories
 	h2 
 		span.icon.glyphicon.glyphicon-folder-open 
@@ -12,5 +12,5 @@ if categories
 	.list-group
 		for cat in categories
 			if (cat.total > 0)
-				a.list-group-item(href="/category/#{cat.uri}" class=isActive('/category/#{cat.uri}')) #{cat.name} 
-					span.badge #{cat.total}
+				a.list-group-item(href="/category/#{cat.uri}" class=isActive('/category/#{cat.uri}')) #{cat.name}
+					span.badge=totals[cat._id]

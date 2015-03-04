@@ -1,36 +1,34 @@
 var router = require('express').Router();
-var Tag = require('../../models/tag');
 var Sound = require('../../models/sound');
-var template = 'admin/tags-edit';
+var Category = require('../../models/category');
+var template = 'admin/sounds-edit';
 
 router.post('/', function(req, res)
 {
-	if (req.body.tag)
+	if (req.body.sound)
 	{
 		res.render(template, 
 		{
-			tag: Tag.getById(req.body.tag)
+			sound: Sound.getById(req.body.sound),
+			categories: Category.getAll()
 		});
 	}
 	else if (req.body.id)
 	{
 		if (req.body.action == "delete")
 		{
-			// Remove all tags
-			Sound.removeTag(req.body.tag, function(err)
+			// Remove sound
+			Sound.remove({ _id: req.body.sound }, function(err)
 			{
-				// Remove tag
-				Tag.remove({_id: req.body.id}, function(err)
-				{
-					req.flash('success', 'Successfully removed tag');
-					res.redirect('/admin/tags');
-				});
+				req.flash('success', 'Successfully removed sound');
+				res.redirect('/admin/sounds');
 			});
 		}
 		else
 		{
 			req.checkBody('uri', 'URI is required').notEmpty();
 			req.checkBody('name', 'Name is required').notEmpty();
+			req.checkBody('category', 'Category is required').notEmpty();
 
 			var errors = req.validationErrors();
 		
@@ -39,22 +37,25 @@ router.post('/', function(req, res)
 				res.render(template,
 				{
 					errors: errors,
-					tag: Tag.getById(req.body.id)
+					sound: Sound.getById(req.body.id),
+					categories: Category.getAll()
 				});
 				return;
 			}
 
-			Tag.update({_id: req.body.id}, 
+			Sound.update({_id: req.body.id}, 
 			{
 				uri: req.body.uri,
-				name: req.body.name
+				name: req.body.name,
+				category: req.body.category
 			}, 
 			function(err, tag)
 			{
 				res.render(template,
 				{
 					success: 'Tag has been updated',
-					tag: Tag.getById(req.body.id)
+					sound: Sound.getById(req.body.id),
+					categories: Category.getAll()
 				});
 			});
 		}

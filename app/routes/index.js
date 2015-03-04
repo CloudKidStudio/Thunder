@@ -38,6 +38,7 @@ module.exports = function(app)
 	app.use('/admin/profile', access.isAuthenticated, require('./admin/profile'));
 	app.use('/admin/password', access.isAuthenticated, require('./admin/password'));
 	app.use('/admin/sounds', access.isEditor, require('./admin/sounds'));
+	app.use('/admin/sounds/edit', access.isEditor, require('./admin/sounds-edit'));
 	app.use('/admin/categories', access.isEditor, require('./admin/categories'));
 	app.use('/admin/categories/edit', access.isEditor, require('./admin/categories-edit'));
 	app.use('/admin/tags', access.isEditor, require('./admin/tags'));

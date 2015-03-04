@@ -24,7 +24,8 @@ router.get('/:uri([a-z\-0-9]+)/:page(page)?/:number([0-9]+)?', function(req, res
                 sounds: Sound.getByCategory(category._id, nav.start, nav.itemsPerPage),
                 categories: Category.getAll(),
                 category: category,
-                pagination: nav.result
+                pagination: nav.result,
+                totals: Sound.getCategoryTotals()
             });
         }
     });

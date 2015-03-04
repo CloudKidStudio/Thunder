@@ -26,6 +26,14 @@ h2 .icon,
 .btn .icon {
   font-size: 80%;
 }
+#search-list ul {
+  width: 100%;
+  overflow: hidden;
+}
+#search-list ul .empty {
+  text-align: center;
+  padding: 5px 0;
+}
 .panel-heading .btn {
   top: 4px;
   right: 6px;

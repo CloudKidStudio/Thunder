@@ -15,7 +15,8 @@ router.get('/:uri([a-z\-0-9]+)', function(req, res)
 			res.render('sound',
 			{
 				sound: sound,
-				categories: Category.getAll()
+				categories: Category.getAll(),
+				totals: Sound.getCategoryTotals()
 			});
 		}
 	});

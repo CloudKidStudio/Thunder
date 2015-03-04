@@ -1,5 +1,140 @@
+(function($){
+
+	$.fn.playback = function()
+	{
+		// Only can play one sound at a time
+		// this is the current audio sound playing
+		var current;
+
+		var onAudioEnded = function(audio)
+		{
+			resetButton(audio);
+			// Reset play button to play-arrow icon 
+			current.removeClass("active");
+			current = null;
+			audio.off('ended');
+		};
+
+		var resetButton = function(audio)
+		{
+			// ~szk: "btn.removeClass("active");" can NOT be within this 
+			// reset button function or else bootstrap will reapply 
+			// ".active" to the element
+			audio.off('ended');
+			audio[0].pause();
+			audio[0].currentTime = 0;
+		};
+
+		return this.click(function()
+		{
+			var audio = null; //{jquery}
+			var isSame = null; //{boolean}
+			var tempPlayButton = $(this);
+
+			// Stop the current
+			if (current)
+			{
+				resetButton(current.find("audio"));
+				if (current.data('assetid') == tempPlayButton.data('assetid'))
+				{
+					// User manually stopped the audio, don't restart! 
+					current = null;
+					return;
+				}
+				else
+				{
+					// Reset play button to play-arrow icon 
+					current.removeClass("active");
+				}
+			}
+
+			current = tempPlayButton;
+			audio = current.find("audio");
+
+			// If playback ends on its own
+			audio.on('ended', onAudioEnded.bind(this, audio));
+			audio[0].play();
+		});
+	};
+	
+}(jQuery));
+(function($){
+	
+	/**
+	 * Search setup
+	 * @param  {object} options The options
+	 * @param {string} options.service The service end-point to search
+	 * @param {string} options.list The select where to add the tags to,
+	 *        must contain a ul.
+	 * @return {jquery} For chaining
+	 */
+	$.fn.tagSearch = function(options)
+	{
+		return this.each(function(){
+
+			var container = $(options.list);
+			var list = container.find("ul");
+
+			var onSearchResults = function(data)
+			{
+				if (!data) return;
+
+				container.addClass('open');
+
+				if (!data.length)
+				{
+					list.html("<li class='empty'>" + options.empty + "</li>");
+				}
+				else
+				{
+					var items = [];
+					var html = "";
+					for (var i = 0; i < data.length; i++)
+					{
+						var d = data[i];
+						html += "<li><a href='/tag/" + d.uri + "'>#" + d.name + "</a></li>";
+					}
+					list.html(html);
+				}
+			};
+
+			$(this).keyup(function(event)
+			{
+				if (!this.value)
+				{
+					list.empty();
+					container.removeClass('open');
+				}
+				else if (this.value.length > 0)
+				{
+					$.post(options.service, { search: this.value }, onSearchResults);
+				}
+			}).focus(function(event)
+			{
+				// Is there at least one li for the current search?
+				// If not, don't open until user starts typing
+				if (list.find("li").length)
+				{
+					container.addClass('open');
+				}
+			}).blur(function(event)
+			{
+				if (event && event.relatedTarget && event.relatedTarget.href)
+				{
+					event.relatedTarget.click();
+				}
+				else
+				{
+					container.removeClass('open');
+				}
+			});
+		});
+	};
+
+}(jQuery));
 (function()
 {
+    // No tooltips on touch devices
     if (!("ontouchstart" in window ||
             window.DocumentTouch &&
             document instanceof DocumentTouch
@@ -11,12 +146,13 @@
         });
     }
 
+    // Toggle buttons
     $('.toggle').on('click', function()
     {
         $(this).toggleClass('active');
     });
 
-    // Add favorite
+    // Add favorite to user account
     $('.favorite').click(function()
     {
         $.post(
@@ -31,62 +167,12 @@
         );
     });
 
-    ///// AUDIO PLAYBACK
-    var currPlayButton;
-    $(".sample-audio").click(function()
-    {
-        var audio = null; //{Element}
-        var isSame = null; //{boolean}
-        var tempPlayButton = $(this);
-        if (currPlayButton)
-        {
-            resetButton(currPlayButton.find("audio"));
-            if (currPlayButton[0].dataset.assetid == tempPlayButton[0].dataset.assetid)
-            {
-                // User manually stopped the audio, don't restart! 
-                currPlayButton = null;
-                return;
-            }
-            else
-            {
-                // Reset play button to play-arrow icon 
-                currPlayButton.removeClass("active");
-            }
-        }
-
-        currPlayButton = tempPlayButton;
-        audio = currPlayButton.find("audio");
-
-        // console.log("binding to ended " + currPlayButton);
-        // If playback ends on its own
-        audio.on('ended', onAudioEnded.bind(this, audio));
-        audio[0].play();
-    });
-
-    var onAudioEnded = function(audio)
-    {
-        // console.log('onEnded curr: ' + currPlayButton + ' audio: ' + this);
-        resetButton(audio);
-        // Reset play button to play-arrow icon 
-        currPlayButton.removeClass("active");
-        currPlayButton = null;
-        audio.off('ended');
-    };
-
-    var resetButton = function(audio)
-    {
-        // ~szk: "btn.removeClass("active");" can NOT be within this 
-        // reset button function or else bootstrap will reapply 
-        // ".active" to the element
-        audio.off('ended');
-        audio[0].pause();
-        audio[0].currentTime = 0;
-    }; ///// END AUDIO PLAYBACK
-
+    // Select list to edit content
     $('.content-select').change(function(){
         $(this).parents('form').submit();
     });
 
+    // Auto fill the uri
     $('[data-uri]').each(function(){
         var source = $(this);
         var target = $(source.data('uri'));
@@ -99,81 +185,15 @@
         });
     });
 
-    ///// SEARCH FUNCTIONALITY
-    var searchBar = $("#search");
-    var searchDiv = $("#search-list");
-    var searchList = searchDiv.find("ul");
+    // Make the buttons playable
+    $(".sample-audio").playback();
 
-    searchBar.keyup(function(event)
-    {
-        if (this.value.length > 0)
-        {
-            $.post(
-                '/search',
-                {
-                    search: this.value
-                },
-                onSearchResults
-            );
-        }
+    // Search functionality
+    $("#search").tagSearch({
+        list: "#search-list",
+        service: '/search',
+        empty: "（。々°）"
     });
-
-    searchBar.focus(function(event)
-    {
-        // Is there at least one li for the current search?
-        // If not, don't open until user starts typing
-        var hasLi = searchList.find("li")[0] ? true : false;
-        if (hasLi)
-        {
-            searchDiv.addClass('open');
-        }
-    });
-
-    searchBar.blur(function(event)
-    {
-        if (event && event.relatedTarget && event.relatedTarget.href)
-        {
-            event.relatedTarget.click();
-        }
-        else
-        {
-            searchDiv.removeClass('open');
-        }
-    });
-
-    /**
-     * Update the search field drop down menu
-     * @param {Array->TagSchema} results from the dat
-     */
-    var onSearchResults = function(data)
-    {
-        if (!data)
-            return;
-        searchDiv.addClass('open');
-        searchList.empty();
-        if (data.length)
-        {
-            var items = [];
-            for (var i = 0; i < data.length; i++)
-            {
-                var d = data[i];
-                var list = "<li><a href='/tag/" + d.uri + "'>#" + d.name + "</a></li>";
-                searchList.append(list);
-            }
-        }
-        else
-        {
-            /**
-             * if there is no .length to the data, user has likely:
-             *  a. made a typo
-             *  b. is trying to find an tag not in the database
-             * ~szk: originally, this was an empty <li> so that the element
-             * didn't awkwardly disappear (or really, oddly resize itslef)
-             * but, a derp-face is just so much better, IMHO
-             */
-            searchList.append("<li style='margin:0 auto'>（。々°）</li>");
-        }
-    };
-    ///// SEARCHFUNCTIONALITY
+    
 }());
 //# sourceMappingURL=main.js.map

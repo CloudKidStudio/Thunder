@@ -56,6 +56,13 @@ SoundSchema.statics.getAll = function(skip, limit, callback)
 		.exec(callback);
 };
 
+SoundSchema.statics.getById = function(id, callback)
+{
+	return this.findOne({_id: id})
+		.populate('tags category')
+		.exec(callback);
+};
+
 SoundSchema.statics.getByUri = function(uri, callback)
 {
 	return this.findOne({uri: uri})
@@ -104,6 +111,28 @@ SoundSchema.statics.getTotalByCategory = function(categoryId, callback)
 SoundSchema.statics.removeTag = function(tagId, callback)
 {
 	return this.remove({ tags: {"$in": [tagId] }}, callback);
+};
+
+SoundSchema.statics.getCategoryTotals = function(callback)
+{
+	var promise = new mongoose.Promise();
+	if (callback) promise.onFulfill(callback);
+	this.aggregate({ 
+			$group: { 
+				_id : "$category", 
+				total : { $sum : 1 }
+			}
+		}, 
+		function(err, rows)
+		{
+			var totals = {};
+			_.each(rows, function(row){
+				totals[row._id] = row.total;
+			});
+			promise.fulfill(totals);
+		}
+	);
+	return promise;
 };
 
 module.exports = mongoose.model('Sound', SoundSchema);

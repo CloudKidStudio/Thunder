@@ -15,7 +15,8 @@ router.get('/:local(page)?/:number([0-9]+)?', function(req, res)
 			sounds: Sound.getAll(nav.start, nav.itemsPerPage),
 			categories: Category.getAll(),
 			message: req.flash('message'),
-			pagination: nav.result
+			pagination: nav.result,
+			totals: Sound.getCategoryTotals()
 		});
 	});
 });
