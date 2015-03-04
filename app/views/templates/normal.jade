@@ -1,18 +1,7 @@
-doctype html
-html
-	head
-		title Thunder
-		
-		meta(name="author" content="CloudKid")
-		meta(name="description" content="{{description}}")
-		meta(name="keywords" content="{{keywords}}")
-		meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+extends base
 
-		link(href="/css/libraries.css", rel="stylesheet")
-		link(href="/css/main.css", rel="stylesheet")
-
-		link(rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400")
-	body
+block body
+	body.has-nav
 		nav.navbar.navbar-inverse.navbar-fixed-top
 			.container
 				.navbar-header

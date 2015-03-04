@@ -86,6 +86,14 @@ UserSchema.statics.getById = function(id, callback)
     return this.findOne({ _id : id }, callback);
 };
 
+UserSchema.statics.getByToken = function(token, callback)
+{
+	return this.findOne({ 
+		resetPasswordToken: token,
+		resetPasswordExpires: { $gt: Date.now() } 
+	}, callback);
+};
+
 UserSchema.pre('save', function(next)
 {
 	if (this.isModified('password'))

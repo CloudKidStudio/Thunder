@@ -1,34 +1,33 @@
-extend templates/base
+extend templates/normal
 
 append content
-	div.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
+	.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
 		.panel.panel-default
 			.panel-heading
 				h2.panel-title Create Account
-			.panel-body
+			form.panel-body.form-horizontal(action='/register', method='post')
 				include partials/feedback
-				form.form-horizontal(action='/register', method='post')
-					.form-group
-						label.control-label.col-sm-3(for="name") Name
-						.col-sm-9
-							input.form-control(type='text', name='name', required, autofocus)
-					.form-group
-						label.control-label.col-sm-3(for="username") Username
-						.col-sm-9
-							input.form-control(type='text', name='username', required, autofocus)
-					.form-group
-						label.control-label.col-sm-3(for="email") Email
-						.col-sm-9
-							input.form-control(type='text', name='email', required, autofocus)
-					.form-group
-						label.control-label.col-sm-3(for="password") Password
-						.col-sm-9
-							input.form-control(type='password', name='password', placeholder='******', required)
-					.form-group
-						label.control-label.col-sm-3(for="confirm") Confirm
-						.col-sm-9
-							input.form-control(type='password', name='confirm', placeholder='******', required)
+				.form-group
+					label.control-label.col-sm-3(for="name") Name
+					.col-sm-9
+						input.form-control(type='text', name='name', required, autofocus)
+				.form-group
+					label.control-label.col-sm-3(for="username") Username
+					.col-sm-9
+						input.form-control(type='text', name='username', required, autofocus)
+				.form-group
+					label.control-label.col-sm-3(for="email") Email
+					.col-sm-9
+						input.form-control(type='text', name='email', required, autofocus)
+				.form-group
+					label.control-label.col-sm-3(for="password") Password
+					.col-sm-9
+						input.form-control(type='password', name='password', placeholder='******', required)
+				.form-group
+					label.control-label.col-sm-3(for="confirm") Confirm
+					.col-sm-9
+						input.form-control(type='password', name='confirm', placeholder='******', required)
 
-					.form-group.form-actions.text-center
-						.col-sm-9.col-sm-offset-3
-							button.btn.btn-lg.btn-primary(type='submit') Sign Up
+				.form-group.form-actions.text-center
+					.col-sm-9.col-sm-offset-3
+						button.btn.btn-lg.btn-primary(type='submit') Sign Up

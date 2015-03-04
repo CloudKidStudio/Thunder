@@ -2,9 +2,9 @@ if errors && errors.length
 	.alert.alert-danger
 		button(type="button" class="close" data-dismiss="alert")
 			span &times;
-			ul
-				for error in errors
-					li=error.msg
+		ul
+			for error in errors
+				li=error.msg
 if error && error.length
 	.alert.alert-danger
 		button(type="button" class="close" data-dismiss="alert")

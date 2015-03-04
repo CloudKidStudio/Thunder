@@ -6,26 +6,24 @@
  * as well as have better error handling.
  */
 module.exports = {
-    development:
-    {
-        db: 'mongodb://localhost/thunder',
-        port: 3000,
-        spaces: 4,
-        errorHandlerOptions:
-        {
-            dumpExceptions: true,
-            showStack: true
-        }
-    },
-    production:
-    {
-        db: 'mongodb://localhost/thunder',
-        port: 3000,
-        spaces: 0,
-        errorHandlerOptions:
-        {
-            dumpExceptions: false,
-            showStack: false
-        }
-    }
+	development:
+	{
+		port: 3000,
+		spaces: 4,
+		errorHandlerOptions:
+		{
+			dumpExceptions: true,
+			showStack: true
+		}
+	},
+	production:
+	{
+		port: 3000,
+		spaces: 0,
+		errorHandlerOptions:
+		{
+			dumpExceptions: false,
+			showStack: false
+		}
+	}
 };

@@ -28,6 +28,8 @@ module.exports = function(app)
 	app.use('/login', access.isAnonymous, require('./login'));
 	app.use('/logout', require('./logout'));
 	app.use('/register', access.isAnonymous, require('./register'));
+	app.use('/forgot', access.isAnonymous, require('./forgot'));
+	app.use('/reset', access.isAnonymous, require('./reset'));
 	app.use('/sound', require('./sound'));
 	app.use('/tag', require('./tag'));
 	app.use('/favorites', access.isAuthenticated, require('./favorites'));

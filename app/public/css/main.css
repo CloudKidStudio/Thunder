@@ -1,8 +1,13 @@
 body {
-  padding-top: 70px;
   font-family: 'Open Sans', sans;
   font-weight: 300;
   background: #FAFAFA;
+}
+body.has-nav {
+  padding-top: 70px;
+}
+body.install {
+  padding-top: 20px;
 }
 h2 {
   font-size: 180%;
