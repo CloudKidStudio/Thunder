@@ -5,9 +5,7 @@ append content
 		h2.text-center
 			span.icon.glyphicon.glyphicon-user
 			| Login
-		#message
-		if message.length
-			.alert.alert-danger #{message}
+		include partials/feedback
 		form.form-login(action='/login', method='post')
 			.form-group
 				input.form-control(type='text', name='username',  placeholder='Username',required, autofocus)

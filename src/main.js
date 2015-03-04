@@ -84,7 +84,7 @@
     }; ///// END AUDIO PLAYBACK
 
     $('.content-select').change(function(){
-        $(this).closest('form').submit();
+        $(this).parents('form').submit();
     });
 
     $('[data-uri]').each(function(){

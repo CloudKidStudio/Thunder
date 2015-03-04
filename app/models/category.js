@@ -19,7 +19,7 @@ CategorySchema.plugin(require('mongoose-unique-validator'));
 
 CategorySchema.statics.getAll = function(callback)
 {
-    return this.find({}, callback);
+    return this.find({}).sort('name').exec(callback);
 };
 
 CategorySchema.statics.getAllEditable = function(callback)

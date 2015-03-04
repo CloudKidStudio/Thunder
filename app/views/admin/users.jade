@@ -4,24 +4,15 @@ append form
 	h2 
 		span.icon.glyphicon.glyphicon-th-list
 		| Users
-	form.panel.panel-default.form-horizontal(action='/admin/users', method='post')
-		.panel-body
-			include ../partials/feedback
-			.form-group
-				label.control-label.col-sm-3(for="name", required) Name
-				.col-sm-9
-					input.form-control(type="text" name="name" id="name")
-			.form-group
-				label.control-label.col-sm-3(for="username", required) Username
-				.col-sm-9
-					input.form-control(type="text" name="username" id="username")
-			.form-group
-				label.control-label.col-sm-3(for="email", required) Email
-				.col-sm-9
-					input.form-control(type="text" name="email" id="email")
-			.form-group.form-actions.text-center
-				.col-sm-9.col-sm-offset-3
-					input(type="hidden" name="id")
-					button.btn.btn-lg.btn-primary(type="submit") 
-						span.icon.glyphicon.glyphicon-plus
-						| Add
+	if (users.length)
+		form.panel.panel-default(method="post" action="/admin/users/edit")
+			.panel-heading
+				h3.panel-title Edit User
+			.panel-body
+				.form-group.form-actions
+					select.content-select.form-control(name="user")
+						option Select...
+						for u in users
+							option(value=u._id)=u.name
+	else
+		.alert.alert-warning No other users to edit.

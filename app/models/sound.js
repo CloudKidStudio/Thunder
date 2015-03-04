@@ -101,4 +101,9 @@ SoundSchema.statics.getTotalByCategory = function(categoryId, callback)
 		.count(callback);
 };
 
+SoundSchema.statics.removeTag = function(tagId, callback)
+{
+	return this.remove({ tags: {"$in": [tagId] }}, callback);
+};
+
 module.exports = mongoose.model('Sound', SoundSchema);

@@ -71,4 +71,16 @@ UserSchema.methods.toggleFavorite = function(soundId, callback)
 	}
 };
 
+UserSchema.statics.getAll = function(excludeId, callback)
+{
+	return this.find({_id: {$ne: excludeId}})
+		.sort('name')
+		.exec(callback);
+};
+
+UserSchema.statics.getById = function(id, callback)
+{
+    return this.findOne({ _id : id }, callback);
+};
+
 module.exports = mongoose.model('User', UserSchema);

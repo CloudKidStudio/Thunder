@@ -5,7 +5,7 @@ router.get('/', function(req, res)
 {
     res.render('register',
     {
-        message: req.flash('message')
+        error: req.flash('error')
     });
 });
 

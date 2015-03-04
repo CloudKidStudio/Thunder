@@ -4,6 +4,11 @@ append content
 	.col-sm-9
 		.panel.panel-default.sound.large
 			.panel-heading
+				if (user && user.privilege == privilege.admin)
+					form.pull-right(action="/admin/sounds/edit" method="post")
+						input(type="hidden" name="sound" value=sound._id)
+						button.edit.btn.btn-default.btn-sm(type="submit") 
+							span.glyphicon.glyphicon-pencil
 				h3.panel-title #{sound.name}
 			.panel-body.text-center
 				include partials/tags

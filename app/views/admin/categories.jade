@@ -23,13 +23,12 @@ append form
 						button.btn.btn-lg.btn-primary(type="submit") 
 							span.icon.glyphicon.glyphicon-plus
 							| Add
-	.panel.panel-default
+	form.panel.panel-default(method="post" action="/admin/categories/edit")
 		.panel-heading
 			h3.panel-title Edit Category
 		.panel-body
-			form(method="post" action="/admin/categories/edit")
-				.form-group.form-actions
-					select.content-select.form-control(name="category")
-						option Select...
-						for cat in categories
-							option(value=cat._id)=cat.name
+			.form-group.form-actions
+				select.content-select.form-control(name="category")
+					option Select...
+					for cat in categories
+						option(value=cat._id)=cat.name

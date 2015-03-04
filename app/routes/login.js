@@ -16,7 +16,7 @@ router.get('/', function(req, res)
 {
 	res.render('login',
 	{
-		message: req.flash('message'),
+		error: req.flash('error'),
 		redirect: req.flash('redirect')
 	});
 });

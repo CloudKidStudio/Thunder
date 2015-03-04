@@ -1,6 +1,11 @@
 extend templates/sounds
 
 append title 
-	h2 
-		a(href='/') Sounds
-		|  &raquo; #{category.name}
+	form(action="/admin/categories/edit" method="post")
+		h2 
+			a(href='/') Sounds
+			|  &raquo; #{category.name} 
+			if (user && user.privilege == privilege.admin)
+				input(type="hidden" name="category" value=category._id)
+				button.edit.btn.btn-default.btn-sm(type="submit") 
+					span.glyphicon.glyphicon-pencil

@@ -39,7 +39,9 @@ module.exports = function(app)
 	app.use('/admin/categories', access.isEditor, require('./admin/categories'));
 	app.use('/admin/categories/edit', access.isEditor, require('./admin/categories-edit'));
 	app.use('/admin/tags', access.isEditor, require('./admin/tags'));
+	app.use('/admin/tags/edit', access.isEditor, require('./admin/tags-edit'));
 	app.use('/admin/users', access.isAdmin, require('./admin/users'));
+	app.use('/admin/users/edit', access.isAdmin, require('./admin/users-edit'));
 
 	app.all('*', function(req, res)
 	{

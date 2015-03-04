@@ -1,0 +1,55 @@
+extend ../templates/admin
+
+append form
+	h2 
+		span.icon.glyphicon.glyphicon-th-list
+		| Users
+	form.panel.panel-default.form-horizontal(action='/admin/users/edit', method='post')
+		.panel-heading
+			h3.panel-title Edit User
+		.panel-body
+			include ../partials/feedback
+			.form-group
+				label.control-label.col-sm-3(for="name", required) Name
+				.col-sm-9
+					input.form-control(type="text" name="name" id="name" value=userEdit.name)
+			.form-group
+				label.control-label.col-sm-3(for="username", required) Username
+				.col-sm-9
+					input.form-control(type="text" name="username" id="username" value=userEdit.username)
+			.form-group
+				label.control-label.col-sm-3(for="email", required) Email
+				.col-sm-9
+					input.form-control(type="text" name="email" id="email" value=userEdit.email)
+			.form-group
+				label.control-label.col-sm-3(for="password", required) Password
+				.col-sm-9
+					input.form-control(type="password" name="password" id="password")
+			.form-group
+				label.control-label.col-sm-3(for="privilege", required) Privilege
+				.col-sm-9
+					select.form-control(name="privilege" id="privilege" value=userEdit.privilege)
+						if (userEdit.privilege == 0)
+							option(value="0" selected) Subscriber
+						else
+							option(value="0") Subscriber
+						if (userEdit.privilege == 1)
+							option(value="1" selected) Editor
+						else
+							option(value="1") Editor
+						if (userEdit.privilege == 2)
+							option(value="2" selected) Administrator
+						else
+							option(value="2") Administrator
+			.form-group.form-actions.text-center
+				.col-sm-9.col-sm-offset-3
+					input(type="hidden" name="id" value=userEdit._id)
+					button.btn.btn-lg.btn-primary(type="submit" name="action" value="save") 
+						span.icon.glyphicon.glyphicon-pencil
+						| Save 
+					a.btn.btn-lg.btn-default(href="/admin/users") 
+						span.icon.glyphicon.glyphicon-remove
+						| Cancel
+					button.btn.btn-lg.btn-default(type="submit" name="action" value="delete") 
+						span.icon.glyphicon.glyphicon-trash
+						| Delete

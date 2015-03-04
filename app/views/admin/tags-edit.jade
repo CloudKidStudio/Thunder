@@ -1,0 +1,32 @@
+extend ../templates/admin
+
+append form
+	h2 
+		span.icon.glyphicon.glyphicon-folder-open
+		| Categories
+	.panel.panel-default
+		.panel-heading
+			h3.panel-title Edit Category
+		.panel-body
+			form.form-horizontal(method="post" action="/admin/tags/edit")
+				include ../partials/feedback
+				.form-group
+					label.control-label.col-sm-3(for="name", required) Name
+					.col-sm-9
+						input.form-control(type="text" name="name" id="name" data-uri="#uri" value=tag.name)
+				.form-group
+					label.control-label.col-sm-3(for="uri", required) URI
+					.col-sm-9
+						input.form-control(type="text" name="uri" id="uri" value=tag.uri)
+				.form-group.form-actions.text-center
+					input(type="hidden" name="id" value=tag._id)
+					.col-sm-9.col-sm-offset-3
+						button.btn.btn-lg.btn-primary(type="submit" name="action" value="save") 
+							span.icon.glyphicon.glyphicon-pencil
+							| Save 
+						a.btn.btn-lg.btn-default(href="/admin/tags") 
+							span.icon.glyphicon.glyphicon-remove
+							| Cancel
+						button.btn.btn-lg.btn-default(type="submit" name="action" value="delete") 
+							span.icon.glyphicon.glyphicon-trash
+							| Delete

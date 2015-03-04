@@ -22,12 +22,17 @@ TagSchema.statics.getByUri = function(uri, callback)
     }, callback);
 };
 
-TagSchema.statics.getAll = function(search, start, limit, callback)
+TagSchema.statics.getBySearch = function(search, start, limit, callback)
 {
     return this.find(
     {
         name: new RegExp(search, "i")
     }).skip(start).limit(limit).exec(callback);
+};
+
+TagSchema.statics.getById = function(id, callback)
+{
+    return this.findOne({ _id : id }, callback);
 };
 
 module.exports = mongoose.model('Tag', TagSchema);

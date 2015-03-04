@@ -4,8 +4,10 @@ append form
 	h2 
 		span.icon.glyphicon.glyphicon-tags
 		| Tags
-	if (tag)
-		form.form-horizontal(method="post" action="/admin/tags")
+	form.panel.panel-default.form-horizontal(method="post" action="/admin/tags")
+		.panel-heading
+			h3.panel-title Add Tag
+		.panel-body
 			include ../partials/feedback
 			.form-group
 				label.control-label.col-sm-3(for="name", required) Name
@@ -15,9 +17,8 @@ append form
 				label.control-label.col-sm-3(for="uri", required) URI
 				.col-sm-9
 					input.form-control(type="text" name="uri" id="uri" value=tag.uri)
-			.form-group.text-center
+			.form-group.form-actions.text-center
 				.col-sm-9.col-sm-offset-3
-					input(type="hidden" name="id" value=tag._id)
-					button.btn.btn-block.btn-primary(type="submit") 
+					button.btn.btn-lg.btn-primary(type="submit") 
 						span.icon.glyphicon.glyphicon-plus
 						| Add

@@ -3,9 +3,7 @@ extend templates/base
 append content
 	div.col-md-4.col-md-offset-4.col-sm-6.col-sm-offset-3
 		h2.text-center Register
-		#message
-		if message.length
-			.alert.alert-danger #{message}
+		include partials/feedback
 		form.form-login(action='/register', method='post')
 			.form-group
 				input.form-control(type='text', name='name',  placeholder='Name', required, autofocus)

@@ -21,6 +21,11 @@ h2 .icon,
 .btn .icon {
   font-size: 80%;
 }
+.panel-heading .btn {
+  top: 4px;
+  right: 6px;
+  position: absolute;
+}
 .downloads {
   width: 33.33333333%;
 }
