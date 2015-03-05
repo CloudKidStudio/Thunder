@@ -12,38 +12,46 @@
 	{
 		return this.each(function(){
 
+			var input = $(this);
 			var container = $(options.list);
 			var list = container.find("ul").on('click', '.search-item', function(e)
 			{
 				container.removeClass('open');
 				e.preventDefault();
-				options.handler($(this));
+				options.handler($(this).data('tag'));
 			});
 
-			var onSearchResults = function(data)
+			var onSearchResults = function(tags)
 			{
-				if (!data) return;
+				if (!tags) return;
 
 				container.addClass('open');
 
-				if (!data.length)
+				if (!tags.length)
 				{
 					list.html("<li class='empty'>" + options.empty + "</li>");
 				}
 				else
 				{
 					var items = [];
-					var html = "";
-					for (var i = 0; i < data.length; i++)
+					var item;
+					var search = input.val();
+					for (var i = 0; i < tags.length; i++)
 					{
-						var d = data[i];
-						html += "<li><button class='btn btn-link search-item' data-uri='" + d.uri + "'>#" + d.name + "</button></li>";
+						var tag = tags[i];
+						item = $("<li><button class='btn btn-link search-item'></button></li>");
+						item.find('button')
+							.html("#" + tag.name.replace(
+								search, "<strong>" + search + "</strong>"
+							))
+							.data('tag', tag);
+						items.push(item);
 					}
-					list.html(html);
+					list.html(items);
 				}
 			};
 
-			$(this).keyup(function(event)
+			input.keyup(function(event)
 			{
 				if (!this.value)
 				{

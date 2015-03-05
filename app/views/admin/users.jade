@@ -7,15 +7,16 @@ append form
 	h2 
 		span.icon.glyphicon.glyphicon-th-list
 		| Users
-	if (users.length)
-		form.panel.panel-default(method="post" action="/admin/users/edit")
-			.panel-heading
-				h3.panel-title Edit User
-			.panel-body
-				.form-group.form-actions
-					select.content-select.form-control(name="user")
-						option Select...
-						for u in users
-							option(value=u._id)=u.name
-	else
-		.alert.alert-warning No other users to edit.
+	.col-lg-6.col-lg-offset-3.col-md-8.col-md-offset-2.col-sm-12.no-padding
+		if users.length
+			form.panel.panel-default(method="post" action="/admin/users/edit")
+				.panel-heading
+					h3.panel-title Edit User
+				.panel-body
+					.form-group.form-actions
+						select.content-select.form-control(name="user")
+							option Select...
+							for u in users
+								option(value=u._id)=u.name
+		else
+			.alert.alert-warning.text-center No users to edit.

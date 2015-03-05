@@ -7,11 +7,11 @@ append form
 	h2 
 		span.icon.glyphicon.glyphicon-folder-open
 		| Categories
-	.panel.panel-default
-		.panel-heading
-			h3.panel-title Edit Category
-		.panel-body
-			form.form-horizontal(method="post" action="/admin/tags/edit")
+	.col-lg-6.col-lg-offset-3.col-md-8.col-md-offset-2.col-sm-12.no-padding
+		form.panel.panel-default.form-horizontal(method="post" action="/admin/tags/edit")
+			.panel-heading
+				h3.panel-title Edit Category
+			.panel-body
 				include ../partials/feedback
 				.form-group
 					label.control-label.col-sm-3(for="name", required) Name

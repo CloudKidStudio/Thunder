@@ -7,11 +7,11 @@ append form
 	h2 
 		span.icon.glyphicon.glyphicon-folder-open
 		| Categories
-	.panel.panel-default
-		.panel-heading
-			h3.panel-title Add Category
-		.panel-body
-			form.form-horizontal(method="post" action="/admin/categories")
+	.col-md-6
+		form.panel.panel-default.form-horizontal(method="post" action="/admin/categories")
+			.panel-heading
+				h3.panel-title Add Category
+			.panel-body
 				include ../partials/feedback
 				.form-group
 					label.control-label.col-sm-3(for="name", value=category.name, required) Name
@@ -26,12 +26,13 @@ append form
 						button.btn.btn-lg.btn-primary(type="submit") 
 							span.icon.glyphicon.glyphicon-plus
 							| Add
-	form.panel.panel-default(method="post" action="/admin/categories/edit")
-		.panel-heading
-			h3.panel-title Edit Category
-		.panel-body
-			.form-group.form-actions
-				select.content-select.form-control(name="category")
-					option Select...
-					for cat in categories
-						option(value=cat._id)=cat.name
+	.col-md-6
+		form.panel.panel-default(method="post" action="/admin/categories/edit")
+			.panel-heading
+				h3.panel-title Edit Category
+			.panel-body
+				.form-group.form-actions
+					select.content-select.form-control(name="category")
+						option Select...
+						for cat in categories
+							option(value=cat._id)=cat.name

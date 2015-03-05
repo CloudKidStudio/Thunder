@@ -16,11 +16,23 @@ h2 {
 h2 .icon {
   font-size: 70%;
 }
+.no-padding {
+  padding: 0 !important;
+}
+.sm-padding {
+  padding: 0 5px;
+}
+h3 .icon,
 h2 .icon,
 .btn .icon,
 .list-group-item .icon,
 .nav a .icon {
   margin-right: 0.5em;
+}
+.navbar-form input {
+  background: #333;
+  border-color: #666;
+  color: #ffffff;
 }
 .list-group-item .icon,
 .btn .icon {
@@ -36,6 +48,12 @@ h2 .icon,
 }
 #search-list ul .search-item {
   outline: none;
+  width: 100%;
+  text-align: left;
+}
+#search-list ul .search-item strong {
+  background: #ffc;
+  font-weight: normal;
 }
 .panel-heading .btn {
   top: 4px;

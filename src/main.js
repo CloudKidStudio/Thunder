@@ -61,7 +61,7 @@
         empty: "（。々°）",
         handler: function(tag)
         {
-            document.location.href = '/tag/' + $(tag).data('uri');
+            document.location.href = '/tag/' + tag.uri;
         }
     });
     
