@@ -34,6 +34,9 @@ h2 .icon,
   text-align: center;
   padding: 5px 0;
 }
+#search-list ul .search-item {
+  outline: none;
+}
 .panel-heading .btn {
   top: 4px;
   right: 6px;

@@ -58,7 +58,11 @@
     $("#search").tagSearch({
         list: "#search-list",
         service: '/search',
-        empty: "（。々°）"
+        empty: "（。々°）",
+        handler: function(tag)
+        {
+            document.location.href = '/tag/' + $(tag).data('uri');
+        }
     });
     
 }());

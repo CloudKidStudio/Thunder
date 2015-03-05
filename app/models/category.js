@@ -46,6 +46,11 @@ CategorySchema.statics.getAll = function(callback)
     return promise;
 };
 
+CategorySchema.statics.getAllSimple = function(callback)
+{
+    return this.find({}, callback);
+};
+
 CategorySchema.statics.getAllEditable = function(callback)
 {
     return this.find({uri: {$ne: "uncategorized"}}, callback);

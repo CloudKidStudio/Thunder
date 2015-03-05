@@ -13,7 +13,12 @@
 		return this.each(function(){
 
 			var container = $(options.list);
-			var list = container.find("ul");
+			var list = container.find("ul").on('click', '.search-item', function(e)
+			{
+				container.removeClass('open');
+				e.preventDefault();
+				options.handler($(this));
+			});
 
 			var onSearchResults = function(data)
 			{
@@ -32,7 +37,7 @@
 					for (var i = 0; i < data.length; i++)
 					{
 						var d = data[i];
-						html += "<li><a href='/tag/" + d.uri + "'>#" + d.name + "</a></li>";
+						html += "<li><button class='btn btn-link search-item' data-uri='" + d.uri + "'>#" + d.name + "</button></li>";
 					}
 					list.html(html);
 				}
@@ -59,11 +64,7 @@
 				}
 			}).blur(function(event)
 			{
-				if (event && event.relatedTarget && event.relatedTarget.href)
-				{
-					event.relatedTarget.click();
-				}
-				else
+				if (!$(event.relatedTarget).hasClass('search-item'))
 				{
 					container.removeClass('open');
 				}

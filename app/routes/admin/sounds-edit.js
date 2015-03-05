@@ -9,8 +9,8 @@ router.post('/', function(req, res)
 	{
 		res.render(template, 
 		{
-			sound: Sound.findById(req.body.sound),
-			categories: Category.getAll()
+			sound: Sound.findById(req.body.sound).populate('tags category'),
+			categories: Category.getAllSimple()
 		});
 	}
 	else if (req.body.id)
@@ -37,8 +37,8 @@ router.post('/', function(req, res)
 				res.render(template,
 				{
 					errors: errors,
-					sound: Sound.findById(req.body.id),
-					categories: Category.getAll()
+					sound: Sound.findById(req.body.id).populate('tags category'),
+					categories: Category.getAllSimple()
 				});
 				return;
 			}
@@ -54,8 +54,8 @@ router.post('/', function(req, res)
 				res.render(template,
 				{
 					success: 'Tag has been updated',
-					sound: Sound.findById(req.body.id),
-					categories: Category.getAll()
+					sound: Sound.findById(req.body.id).populate('tags category'),
+					categories: Category.getAllSimple()
 				});
 			});
 		}
