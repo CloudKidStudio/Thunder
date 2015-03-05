@@ -62,9 +62,9 @@ block body
 						form.navbar-form.navbar-right.hidden-xs(role="search" action="/login" method="post")
 							.form-group
 								.col-sm-6.sm-padding
-									input.form-control.input-sm(type="text" name="username" placeholder="Username") 
+									input.form-control.input-sm(type="text" name="username" placeholder="Username" required) 
 								.col-sm-6.sm-padding
-									input.form-control.input-sm(type="password" name="password" placeholder="Password")
+									input.form-control.input-sm(type="password" name="password" placeholder="Password" required)
 							.form-group
 								.col-sm-12.sm-padding
 									button.btn.btn-sm.btn-primary(type="submit") Sign In
@@ -73,8 +73,6 @@ block body
 								a(href="/login")
 									span.icon.glyphicon.glyphicon-log-out
 									| Login
-
-
 		main.container
 			.row
 				block content
