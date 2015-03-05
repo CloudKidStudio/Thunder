@@ -15,7 +15,9 @@ append form
 			.form-group
 				label.control-label.col-sm-3(for="name", required) Name
 				.col-sm-9
-					input.form-control(type="text" name="name" id="name" data-uri="#uri" value=tag.name)
+					.input-group
+						span.input-group-addon #
+						input.form-control(type="text" name="name" id="name" data-uri="#uri" value=tag.name)
 			.form-group
 				label.control-label.col-sm-3(for="uri", required) URI
 				.col-sm-9
