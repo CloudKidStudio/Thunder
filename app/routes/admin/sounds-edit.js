@@ -9,7 +9,7 @@ router.post('/', function(req, res)
 	{
 		res.render(template, 
 		{
-			sound: Sound.getById(req.body.sound),
+			sound: Sound.findById(req.body.sound),
 			categories: Category.getAll()
 		});
 	}
@@ -37,7 +37,7 @@ router.post('/', function(req, res)
 				res.render(template,
 				{
 					errors: errors,
-					sound: Sound.getById(req.body.id),
+					sound: Sound.findById(req.body.id),
 					categories: Category.getAll()
 				});
 				return;
@@ -54,7 +54,7 @@ router.post('/', function(req, res)
 				res.render(template,
 				{
 					success: 'Tag has been updated',
-					sound: Sound.getById(req.body.id),
+					sound: Sound.findById(req.body.id),
 					categories: Category.getAll()
 				});
 			});

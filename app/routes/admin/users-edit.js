@@ -8,7 +8,7 @@ router.post('/', function(req, res)
 	{
 		res.render(template, 
 		{
-			userEdit: User.getById(req.body.user)
+			userEdit: User.findById(req.body.user)
 		});
 	}
 	else if (req.body.id)
@@ -36,7 +36,7 @@ router.post('/', function(req, res)
 				res.render(template,
 				{
 					errors: errors,
-					userEdit: User.getById(req.body.id)
+					userEdit: User.findById(req.body.id)
 				});
 				return;
 			}
@@ -58,7 +58,7 @@ router.post('/', function(req, res)
 				res.render(template,
 				{
 					success: 'User has been updated',
-					userEdit: User.getById(req.body.id)
+					userEdit: User.findById(req.body.id)
 				});
 			});
 		}

@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var _ = require('lodash');
 
 var CategorySchema = new Schema(
 {
@@ -19,7 +20,30 @@ CategorySchema.plugin(require('mongoose-unique-validator'));
 
 CategorySchema.statics.getAll = function(callback)
 {
-    return this.find({}).sort('name').exec(callback);
+    var Category = this;
+    var promise = new mongoose.Promise();
+    if (callback) promise.onFulfill(callback);
+    this.model('Sound').aggregate({ 
+            $group: { 
+                _id : "$category", 
+                count : { $sum : 1 }
+            }
+        }, 
+        function(err, rows)
+        {
+            var totals = _.indexBy(rows, '_id');
+            Category.find().sort('name').exec(function(err, categories)
+            {
+                _.each(categories, function(category)
+                {
+                    var total = totals[category._id];
+                    category.total = total ? total.count : 0;
+                });
+                promise.fulfill(categories);
+            });
+        }
+    );
+    return promise;
 };
 
 CategorySchema.statics.getAllEditable = function(callback)
@@ -34,18 +58,21 @@ CategorySchema.statics.getEmpty = function(callback)
 
 CategorySchema.statics.getByUri = function(uri, callback)
 {
-    return this.findOne(
-    {
-        uri: uri
-    }, callback);
-};
+    var Sound = this.model('Sound');
+    var promise = new mongoose.Promise();
+    if (callback) promise.onFulfill(callback);
 
-CategorySchema.statics.getById = function(id, callback)
-{
-    return this.findOne(
+    this.findOne({ uri: uri }, function(err, category)
     {
-        _id: id
-    }, callback);
+        if (!category) return promise.error(err);
+
+        Sound.count({ category : category._id }, function(err, count)
+        {
+            category.total = count;
+            promise.fulfill(category);
+        });
+    });
+    return promise; 
 };
 
 module.exports = mongoose.model('Category', CategorySchema);

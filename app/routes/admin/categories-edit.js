@@ -11,7 +11,7 @@ router.post('/', function(req, res)
 	{
 		res.render(template, 
 		{
-			category: Category.getById(req.body.category)
+			category: Category.findById(req.body.category)
 		});
 	}
 	else if (req.body.id)
@@ -57,7 +57,7 @@ router.post('/', function(req, res)
 				res.render(template,
 				{
 					errors: errors,
-					category: Category.getById(req.body.id)
+					category: Category.findById(req.body.id)
 				});
 				return;
 			}
@@ -72,7 +72,7 @@ router.post('/', function(req, res)
 				res.render(template,
 				{
 					success: 'Category has been updated',
-					category: Category.getById(req.body.id)
+					category: Category.findById(req.body.id)
 				});
 			});
 		}

@@ -18,8 +18,7 @@ router.get('/:page(page)?/:number([0-9]+)?', function(req, res)
 	{
 		sounds: total ? req.user.getFavorites(nav.start, nav.itemsPerPage) : [],
 		categories: Category.getAll(),
-		pagination: nav.result,
-		totals: Sound.getCategoryTotals()
+		pagination: nav.result
 	});
 });
 

@@ -5,9 +5,9 @@ var Pagination = require('../helpers/pagination');
 
 router.get('/:uri([a-z\-0-9]+)/:page(page)?/:number([0-9]+)?', function(req, res)
 {
-    Category.getByUri(req.params.uri, function(err, category)
+    Category.getByUri(req.params.uri, function(category)
     {
-        if (!category || !category.total)
+        if (!category)
         {
             res.status(404).render('404');
         }
@@ -24,8 +24,7 @@ router.get('/:uri([a-z\-0-9]+)/:page(page)?/:number([0-9]+)?', function(req, res
                 sounds: Sound.getByCategory(category._id, nav.start, nav.itemsPerPage),
                 categories: Category.getAll(),
                 category: category,
-                pagination: nav.result,
-                totals: Sound.getCategoryTotals()
+                pagination: nav.result
             });
         }
     });

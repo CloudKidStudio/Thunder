@@ -13,4 +13,4 @@ if categories
 		for cat in categories
 			if (cat.total > 0)
 				a.list-group-item(href="/category/#{cat.uri}" class=isActive('/category/#{cat.uri}')) #{cat.name}
-					span.badge=totals[cat._id]
+					span.badge=cat.total

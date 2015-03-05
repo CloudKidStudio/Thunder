@@ -9,7 +9,7 @@ router.post('/', function(req, res)
 	{
 		res.render(template, 
 		{
-			tag: Tag.getById(req.body.tag)
+			tag: Tag.findById(req.body.tag)
 		});
 	}
 	else if (req.body.id)
@@ -39,7 +39,7 @@ router.post('/', function(req, res)
 				res.render(template,
 				{
 					errors: errors,
-					tag: Tag.getById(req.body.id)
+					tag: Tag.findById(req.body.id)
 				});
 				return;
 			}
@@ -54,7 +54,7 @@ router.post('/', function(req, res)
 				res.render(template,
 				{
 					success: 'Tag has been updated',
-					tag: Tag.getById(req.body.id)
+					tag: Tag.findById(req.body.id)
 				});
 			});
 		}
