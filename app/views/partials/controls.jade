@@ -1,12 +1,12 @@
+.timeline
+	.timeline-bar(id="progress-#{sound.assetId}" style="width:0")
 .btn-group.controls
-	button.btn.btn-default.toggle.sample-audio(data-assetid="#{sound.assetId}")
+	button.btn.btn-default.toggle.sample-audio(data-assetid="#{sound.assetId}" data-progress="#progress-#{sound.assetId}")
 		audio(id=sound.assetId)
 			source(src="/sounds/web/#{sound.assetId}.ogg" type="audio/ogg")
 			source(src="/sounds/web/#{sound.assetId}.mp3"  type="audio/mpeg")
 		span.off.glyphicon.glyphicon-play
 		span.on.glyphicon.glyphicon-stop
-		span.timeline
-			span.bar
 	.btn-group.downloads
 		button.btn.btn-default.dropdown-toggle(type="button" id="menu1" data-toggle="dropdown") 
 			span.glyphicon.glyphicon-download-alt

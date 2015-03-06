@@ -100,6 +100,26 @@ h2 .icon,
 .sound {
 	min-height: 140px;
 	position:relative;
+	.panel-body {
+		padding: 10px;
+	}
+	.timeline {
+		background: #ddd;
+		display: block;
+		height: 2px;
+		position: absolute;
+		bottom: 50px;
+		left: 12px;
+		right: 12px;
+		visibility: hidden;
+		&.on {
+			visibility: visible;
+		}
+		.timeline-bar {
+			background:#337ab7;
+			height: 2px;
+		}
+	}
 	.tags {
 		padding:0;
 		font-size:80%;
@@ -131,6 +151,11 @@ h2 .icon,
 			.btn {
 				width:6em;
 			}
+		}
+		.timeline {
+			position:static;
+			width:18em;
+			margin:0 auto 5px;
 		}
 		.tags {
 			height:auto;

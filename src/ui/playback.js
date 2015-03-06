@@ -6,54 +6,66 @@
 		// this is the current audio sound playing
 		var current;
 
-		var onAudioEnded = function(audio)
+		var onAudioEnded = function()
 		{
-			resetButton(audio);
-			// Reset play button to play-arrow icon 
+			resetButton(current);
 			current.removeClass("active");
+			current.data('audio').off('ended timeupdate');
 			current = null;
-			audio.off('ended');
 		};
 
-		var resetButton = function(audio)
+		var onProgress = function(progress)
 		{
-			// ~szk: "btn.removeClass("active");" can NOT be within this 
-			// reset button function or else bootstrap will reapply 
-			// ".active" to the element
-			audio.off('ended');
+			progress.width((this.currentTime / this.duration * 100) + "%");
+		};
+
+		var resetButton = function(button)
+		{
+			button.data('progress').width(0).parent().removeClass('on');
+			var audio = button.data('audio')
+				.off('ended timeupdate');
 			audio[0].pause();
 			audio[0].currentTime = 0;
 		};
 
-		return this.click(function()
+		return this.each(function()
 		{
-			var audio = null; //{jquery}
-			var isSame = null; //{boolean}
-			var tempPlayButton = $(this);
+			var button = $(this);
+			var progress = $(button.data('progress'));
+			var audio = button.find('audio');
 
-			// Stop the current
-			if (current)
+			button.data('progress', progress)
+				.data('audio', audio);
+
+			resetButton(button);
+
+			button.click(function()
 			{
-				resetButton(current.find("audio"));
-				if (current.data('assetid') == tempPlayButton.data('assetid'))
+				// Stop the current
+				if (current)
 				{
-					// User manually stopped the audio, don't restart! 
-					current = null;
-					return;
+					resetButton(current);
+					if (current === button)
+					{
+						// User manually stopped the audio, don't restart! 
+						current = null;
+						return;
+					}
+					else
+					{
+						// Reset play button to play-arrow icon 
+						current.removeClass("active");
+					}
 				}
-				else
-				{
-					// Reset play button to play-arrow icon 
-					current.removeClass("active");
-				}
-			}
 
-			current = tempPlayButton;
-			audio = current.find("audio");
+				current = button;
+				progress.width(0).parent().addClass('on');
 
-			// If playback ends on its own
-			audio.on('ended', onAudioEnded.bind(this, audio));
-			audio[0].play();
+				// If playback ends on its own
+				audio.on('ended', onAudioEnded);
+				audio.on('timeupdate', onProgress.bind(audio[0], progress));
+				audio[0].play();
+			});
 		});
 	};
 	

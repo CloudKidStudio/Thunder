@@ -59,7 +59,7 @@
         list: "#search-list",
         service: '/search',
         empty: "（。々°）",
-        handler: function(tag)
+        selected: function(tag)
         {
             document.location.href = '/tag/' + tag.uri;
         }

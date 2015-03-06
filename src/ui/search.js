@@ -18,7 +18,7 @@
 			{
 				container.removeClass('open');
 				e.preventDefault();
-				options.handler($(this).data('tag'));
+				options.selected($(this).data('tag'));
 			});
 
 			var onSearchResults = function(tags)
