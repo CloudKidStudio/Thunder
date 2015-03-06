@@ -17,9 +17,20 @@
 			var list = container.find("ul").on('click', '.search-item', function(e)
 			{
 				container.removeClass('open');
-				e.preventDefault();
 				options.selected($(this).data('tag'));
+
+				if (options.autoClear)
+				{
+					clear();
+				}
 			});
+
+			var clear = function()
+			{
+				input.val("");
+				list.empty();
+				container.removeClass('open');
+			};
 
 			var onSearchResults = function(tags)
 			{
@@ -50,18 +61,64 @@
 					list.html(items);
 				}
 			};
-
-			input.keyup(function(event)
+			input.keydown(function(e){
+				// Stop the enter key press
+				if (e.keyCode == 13)
+				{
+					e.preventDefault();
+				}
+			})
+			.keyup(function(e)
 			{
-				if (!this.value)
+				var active = list.find('.active');
+				if (e.keyCode == 38) // up
 				{
-					list.empty();
-					container.removeClass('open');
+					if (active.length)
+					{
+						active.removeClass('active')
+							.prev().addClass('active');
+					}
+					e.preventDefault();
 				}
-				else if (this.value.length > 0)
+				else if (e.keyCode == 40) // down
 				{
-					$.post(options.service, { search: this.value }, onSearchResults);
+					if (active.length)
+					{
+						active.removeClass('active')
+							.next().addClass('active');
+					}
+					else
+					{
+						list.find('li:first').addClass('active');
+					}
+					e.preventDefault();
 				}
+				else if (e.keyCode == 13) //enter
+				{
+					if (active.length)
+					{
+						active.find('.search-item').click();
+						e.preventDefault();
+					}
+					else if (options.enterPress && this.value)
+					{
+						options.enterPress.call(this);
+						e.preventDefault();
+						clear();
+					}
+				}
+				else
+				{
+					if (!this.value)
+					{
+						clear();
+					}
+					else
+					{
+						this.value = this.value.toLowerCase();
+						$.post(options.service, { search: this.value }, onSearchResults);
+					}
+				}				
 			}).focus(function(event)
 			{
 				// Is there at least one li for the current search?

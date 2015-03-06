@@ -56,11 +56,23 @@ SoundSchema.statics.getAll = function(skip, limit, callback)
 		.exec(callback);
 };
 
+SoundSchema.statics.getById = function(id, callback)
+{
+	return this.findById(id)
+		.populate('tags category')
+		.exec(callback);
+};
+
 SoundSchema.statics.getByUri = function(uri, callback)
 {
 	return this.findOne({uri: uri})
 		.populate('tags category')
 		.exec(callback);
+};
+
+SoundSchema.statics.checkUri = function(uri, callback)
+{
+	return this.count({uri: uri}, callback);
 };
 
 SoundSchema.statics.getByTag = function(tagId, skip, limit, callback)

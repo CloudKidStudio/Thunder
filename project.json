@@ -18,5 +18,15 @@
         "components/jquery-ui/jquery-ui.js",
         "components/bootstrap/dist/js/bootstrap.js",
         "components/bootstrap/dist/css/bootstrap.css"
-    ]
+    ],
+    "modules": {
+        "sounds": [
+            "src/ui/playback.js",
+            "src/ui/search.js",
+            "src/sounds.js"
+        ],
+        "admin": [
+            "src/admin.js"
+        ]
+    }
 }

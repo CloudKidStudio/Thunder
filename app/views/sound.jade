@@ -5,16 +5,26 @@ append title
 
 append content
 	.col-sm-9
-		.panel.panel-default.sound.large
-			.panel-heading
-				if (user && user.privilege == privilege.admin)
-					form.pull-right(action="/admin/sounds/edit" method="post")
-						input(type="hidden" name="sound" value=sound._id)
-						button.edit.btn.btn-default.btn-sm(type="submit") 
-							span.glyphicon.glyphicon-pencil
-				h3.panel-title #{sound.name}
-			.panel-body.text-center
-				include partials/tags
-				include partials/controls
+		.row
+			.col-md-6.col-md-offset-3.col-sm-8.col-sm-offset-2
+				.panel.panel-default.sound.large
+					.panel-heading
+						if (user && user.privilege == privilege.admin)
+							.panel-controls.pull-right
+								form(action="/admin/sound" method="post")
+									input(type="hidden" name="sound" value=sound._id)
+									button.btn.btn-default.btn-sm(type="submit")
+										span.glyphicon.glyphicon-pencil
+								form(action="/admin/sound" method="post")
+									input(type="hidden" name="id" value=sound._id)
+									button.btn.btn-default.btn-sm(type="submit" name="action" value="delete" data-toggle="confirm") 
+										span.glyphicon.glyphicon-trash
+						h3.panel-title #{sound.name}
+					.panel-body.text-center
+						include partials/tags
+						include partials/controls
 	.col-sm-3
 		include partials/sidebar
+
+append footer
+	script(src="/js/sounds.js")

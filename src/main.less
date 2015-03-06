@@ -24,6 +24,10 @@ h2 {
 	padding: 0 5px;
 }
 
+.modal-header h4 {
+	margin:0;
+}
+
 h3 .icon,
 h2 .icon,
 .btn .icon,
@@ -60,19 +64,40 @@ h2 .icon,
 				font-weight:normal
 			}
 		}
+		.active .search-item {
+			background: #337ab7;
+			color: #fff;
+			strong {
+				background:transparent;
+			}
+		}
 	}
 }
 
-.panel-heading .btn {
-	top: 4px;
-	right: 6px;
-	position: absolute;
+.panel-controls {
+	position:absolute;
+	top:4px;
+	right:4px;
+	form {
+		display:inline-block;
+	}
+	.btn {
+		margin-left:4px;
+	}
 }
 
 .downloads {
 	width:percentage(1/3);
 	.btn {
 		width:100% !important;
+	}
+}
+
+#tags {
+	padding:4px 0 0;
+	.tag {
+		display:inline-block;
+		margin: 0 4px 4px 0;
 	}
 }
 
@@ -144,10 +169,11 @@ h2 .icon,
 		}
 	}
 	&.large {
-		min-height:auto;
+		min-height:inherit;
 		.controls {
 			position:static;
 			width:18em;
+			margin-bottom: 1em;
 			.btn {
 				width:6em;
 			}

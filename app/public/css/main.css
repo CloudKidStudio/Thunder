@@ -22,6 +22,9 @@ h2 .icon {
 .sm-padding {
   padding: 0 5px;
 }
+.modal-header h4 {
+  margin: 0;
+}
 h3 .icon,
 h2 .icon,
 .btn .icon,
@@ -55,16 +58,36 @@ h2 .icon,
   background: #ffc;
   font-weight: normal;
 }
-.panel-heading .btn {
-  top: 4px;
-  right: 6px;
+#search-list ul .active .search-item {
+  background: #337ab7;
+  color: #fff;
+}
+#search-list ul .active .search-item strong {
+  background: transparent;
+}
+.panel-controls {
   position: absolute;
+  top: 4px;
+  right: 4px;
+}
+.panel-controls form {
+  display: inline-block;
+}
+.panel-controls .btn {
+  margin-left: 4px;
 }
 .downloads {
   width: 33.33333333%;
 }
 .downloads .btn {
   width: 100% !important;
+}
+#tags {
+  padding: 4px 0 0;
+}
+#tags .tag {
+  display: inline-block;
+  margin: 0 4px 4px 0;
 }
 .form-actions {
   margin-bottom: 0;
@@ -131,11 +154,12 @@ h2 .icon,
   width: 33.33333333%;
 }
 .sound.large {
-  min-height: auto;
+  min-height: inherit;
 }
 .sound.large .controls {
   position: static;
   width: 18em;
+  margin-bottom: 1em;
 }
 .sound.large .controls .btn {
   width: 6em;

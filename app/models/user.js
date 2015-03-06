@@ -125,22 +125,16 @@ UserSchema.methods.removeFavorites = function(callback)
  */
 UserSchema.methods.toggleFavorite = function(soundId, callback)
 {
-	if (this.favorites.indexOf(soundId) > -1)
+	var index = this.favorites.indexOf(soundId);
+	if (index > -1)
 	{
-		// remove the sound id
-		return this.update(
-			{$pull: { favorites : soundId }}, 
-			callback
-		);
+		this.favorites = this.favorites.splice(index, 1);
 	}
 	else
 	{
-		// add the sound id
-		return this.update(
-			{$push: { favorites : soundId }}, 
-			callback
-		);
+		this.favorites.push(soundId);
 	}
+	return this.save(callback);
 };
 
 /**

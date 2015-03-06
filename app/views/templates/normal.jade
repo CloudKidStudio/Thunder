@@ -2,6 +2,8 @@ extends base
 
 block body
 	body.has-nav
+		if user && user.privilege > privilege.editor
+			include ../partials/upload
 		nav.navbar.navbar-inverse.navbar-fixed-top
 			.container
 				.navbar-header
@@ -16,8 +18,14 @@ block body
 							span.details is bringing the 
 						a(href='/') Thunder
 				.collapse.navbar-collapse
-					if (user)
+					if user
 						ul.nav.navbar-nav.navbar-right
+							if user.privilege > privilege.editor
+								li
+									a(href="#uploadModal" data-toggle="modal")
+										span(title="Upload" data-placement="bottom" data-toggle="tooltip")
+											span.icon.glyphicon.glyphicon-plus
+											span.hidden-lg.hidden-md.hidden-sm.visible-inline-xs Upload
 							li(class=isActive('/favorites'))
 								a(href="/favorites" title="Favorites" data-placement="bottom" data-toggle="tooltip")
 									span.icon.glyphicon.glyphicon-heart
@@ -29,8 +37,8 @@ block body
 									span.caret
 								ul.dropdown-menu
 									if (user.privilege >= privilege.editor)
-										li(class=isActive('/admin/sounds'))
-											a(href="/admin/sounds")
+										li(class=isActive('/admin/sound'))
+											a(href="/admin/sound")
 												span.icon.glyphicon.glyphicon-headphones
 												| Sounds
 										li(class=isActive('/admin/categories'))
@@ -59,7 +67,7 @@ block body
 											span.icon.glyphicon.glyphicon-log-out
 											| Logout
 					else 
-						form.navbar-form.navbar-right.hidden-xs(role="search" action="/login" method="post")
+						form.navbar-form.navbar-right.hidden-xs( action="/login" method="post")
 							.form-group
 								.col-sm-6.sm-padding
 									input.form-control.input-sm(type="text" name="username" placeholder="Username" required) 
@@ -67,6 +75,7 @@ block body
 									input.form-control.input-sm(type="password" name="password" placeholder="Password" required)
 							.form-group
 								.col-sm-12.sm-padding
+									input(type="hidden" value="#{url}" name="redirect")
 									button.btn.btn-sm.btn-primary(type="submit") Sign In
 						ul.nav.navbar-nav.navbar-right.visible-xs.hidden-sm.hidden-md.hidden-lg
 							li

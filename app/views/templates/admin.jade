@@ -4,7 +4,7 @@ block content
 	.col-md-2.col-sm-3.hidden-xs
 		.list-group.full-width
 			if (user.privilege >= privilege.editor)
-				a.list-group-item(href="/admin/sounds" class=isActive('/admin/sounds'))
+				a.list-group-item(href="/admin/sound" class=isActive('/admin/sound'))
 					span.icon.glyphicon.glyphicon-headphones
 					| Sounds
 				a.list-group-item(href="/admin/categories" class=isActive('/admin/categories'))
@@ -23,8 +23,11 @@ block content
 			a.list-group-item(href="/admin/password" class=isActive('/admin/password'))
 				span.icon.glyphicon.glyphicon-asterisk
 				| Password
-			a.list-group-item(href="/logout")
+			a.list-group-item(href="/logout" data-toggle="confirm")
 				span.icon.glyphicon.glyphicon-log-out
 				| Logout
 	.col-md-10.col-sm-9
 		block form
+
+append footer
+	script(src="/js/admin.js")

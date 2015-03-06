@@ -6,6 +6,9 @@ module.exports = function(app)
 		res.locals.fullYear = new Date().getFullYear();
 		res.locals.bytesToSize = require('../helpers/filesize');
 		res.locals.user = req.user;
+		res.locals.url = req.originalUrl;
+		res.locals.uploadSuccess = req.flash('uploadSuccess');
+		res.locals.uploadError = req.flash('uploadError');
 		res.locals.isActive = function(url, undefined)
 		{
 			return url == req.originalUrl ? 'active' : undefined;
@@ -35,10 +38,10 @@ module.exports = function(app)
 	app.use('/favorites', access.isAuthenticated, require('./favorites'));
 	app.use('/category', require('./category'));
 	app.use('/search', require('./search'));
+	app.use('/upload', access.isEditor, require('./upload'));
 	app.use('/admin/profile', access.isAuthenticated, require('./admin/profile'));
 	app.use('/admin/password', access.isAuthenticated, require('./admin/password'));
-	app.use('/admin/sounds', access.isEditor, require('./admin/sounds'));
-	app.use('/admin/sounds/edit', access.isEditor, require('./admin/sounds-edit'));
+	app.use('/admin/sound', access.isEditor, require('./admin/sound'));
 	app.use('/admin/categories', access.isEditor, require('./admin/categories'));
 	app.use('/admin/categories/edit', access.isEditor, require('./admin/categories-edit'));
 	app.use('/admin/tags', access.isEditor, require('./admin/tags'));

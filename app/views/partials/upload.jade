@@ -1,0 +1,19 @@
+form.modal.fade(id="uploadModal" method="post" action="/upload" enctype="multipart/form-data")
+	.modal-dialog
+		.modal-content
+			.modal-header
+				button.close(data-dismiss="modal")
+					span &times;
+				h4 Add Sound
+			.modal-body
+				.form-group
+					input.form-control(type="file" name="audio" accept=".aif,.wav" required)
+					if category
+						input(type="hidden" name="category" value=category._id)
+					else if tag
+						input(type="hidden" name="tags[]" value=tag._id)
+					else if url == "/favorites"
+						input(type="hidden" name="favorite" value="true")
+			.modal-footer
+				button.btn.btn-primary(type="submit") Upload
+				button.btn.btn-default(data-dismiss="modal") Close

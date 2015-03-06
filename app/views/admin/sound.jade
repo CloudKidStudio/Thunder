@@ -1,0 +1,22 @@
+extend ../templates/admin
+
+append title
+	| Sound - Admin - 
+
+append form
+	h2 
+		span.icon.glyphicon.glyphicon-headphones
+		| Sounds
+	form.panel.panel-default(method="post" action="/upload" enctype="multipart/form-data")
+		.panel-heading
+			h3.panel-title Add Sound
+		.panel-body
+			include ../partials/feedback
+			.form-group
+				.col-sm-8
+					input.input-lg.form-control(type="file" name="audio" accept=".aif,.wav" required)
+				.col-sm-4
+					button.btn.btn-lg.btn-block.btn-primary(type="submit")
+						span.icon.glyphicon.glyphicon-plus
+						| Upload
+				

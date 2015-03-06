@@ -13,7 +13,8 @@ var express = require('express'),
 	session = require('express-session'),
 	zip = require('express-zip'),
 	fs = require('fs'),
-	validator = require('express-validator');
+	validator = require('express-validator'),
+	multer = require('multer');
 
 // Create sever
 var app = express();
@@ -32,6 +33,7 @@ app.use(bodyParser.urlencoded(
 	extended: false
 }));
 app.use(bodyParser.json());
+app.use(multer({ dest: './uploads/'}));
 app.use(flash());
 app.set('json spaces', config.spaces);
 
