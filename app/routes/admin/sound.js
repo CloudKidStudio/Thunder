@@ -55,9 +55,9 @@ router.post('/', function(req, res)
 				if (!sound) return error("Unable to find sound matching ID");
 
 				// Remove the files
-				fs.unlinkSync("./public/sounds/original/" + sound.assetId + "." + sound.type);
-				fs.unlinkSync("./public/sounds/web/" + sound.assetId + ".ogg");
-				fs.unlinkSync("./public/sounds/web/" + sound.assetId + ".mp3");
+				removeFile("./public/sounds/original/" + sound.assetId + "." + sound.type);
+				removeFile("./public/sounds/web/" + sound.assetId + ".ogg");
+				removeFile("./public/sounds/web/" + sound.assetId + ".mp3");
 
 				// Remove sound from database
 				Sound.remove({ _id: sound._id }, function(err)
@@ -114,6 +114,14 @@ router.post('/', function(req, res)
 					categories: Category.getAllSimple()
 				});
 			});
+		}
+	}
+
+	function removeFile(path)
+	{
+		if (fs.existsSync(path))
+		{
+			fs.unlinkSync(path);
 		}
 	}
 

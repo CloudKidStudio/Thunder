@@ -16,15 +16,6 @@ h2 {
 h2 .icon {
   font-size: 70%;
 }
-.no-padding {
-  padding: 0 !important;
-}
-.sm-padding {
-  padding: 0 5px;
-}
-.modal-header h4 {
-  margin: 0;
-}
 h3 .icon,
 h2 .icon,
 .btn .icon,
@@ -32,68 +23,14 @@ h2 .icon,
 .nav a .icon {
   margin-right: 0.5em;
 }
-.navbar-form input {
-  background: #333;
-  border-color: #666;
-  color: #ffffff;
-}
 .list-group-item .icon,
 .btn .icon {
   font-size: 80%;
 }
-#search-list ul {
-  width: 100%;
-  overflow: hidden;
-}
-#search-list ul .empty {
-  text-align: center;
-  padding: 5px 0;
-}
-#search-list ul .search-item {
-  outline: none;
-  width: 100%;
-  text-align: left;
-}
-#search-list ul .search-item strong {
-  background: #ffc;
-  font-weight: normal;
-}
-#search-list ul .active .search-item {
-  background: #337ab7;
-  color: #fff;
-}
-#search-list ul .active .search-item strong {
-  background: transparent;
-}
-.panel-controls {
-  position: absolute;
-  top: 4px;
-  right: 4px;
-}
-.panel-controls form {
-  display: inline-block;
-}
-.panel-controls .btn {
-  margin-left: 4px;
-}
-.downloads {
-  width: 33.33333333%;
-}
-.downloads .btn {
-  width: 100% !important;
-}
-#tags {
-  padding: 4px 0 0;
-}
-#tags .tag {
-  display: inline-block;
-  margin: 0 4px 4px 0;
-}
-.form-actions {
-  margin-bottom: 0;
-}
-.form-actions .btn {
-  margin: 0 2px;
+.navbar-form input {
+  background: #333;
+  border-color: #666;
+  color: #ffffff;
 }
 .navbar-brand .details {
   color: #999 !important;
@@ -153,6 +90,12 @@ h2 .icon,
   outline: none;
   width: 33.33333333%;
 }
+.sound .controls .downloads {
+  width: 33.33333333%;
+}
+.sound .controls .downloads .btn {
+  width: 100% !important;
+}
 .sound.large {
   min-height: inherit;
 }
@@ -185,6 +128,30 @@ h2 .icon,
 .toggle.active .off {
   display: none;
 }
+#search-list ul {
+  width: 100%;
+  overflow: hidden;
+}
+#search-list ul .empty {
+  text-align: center;
+  padding: 5px 0;
+}
+#search-list ul .search-item {
+  outline: none;
+  width: 100%;
+  text-align: left;
+}
+#search-list ul .search-item strong {
+  background: #ffc;
+  font-weight: normal;
+}
+#search-list ul .active .search-item {
+  background: #337ab7;
+  color: #fff;
+}
+#search-list ul .active .search-item strong {
+  background: transparent;
+}
 .searchForm {
   margin-bottom: 2em;
 }
@@ -195,14 +162,44 @@ h2 .icon,
   margin-left: 0.5em;
   color: #999;
 }
-.full-width {
-  width: 100%;
-}
-.form-group.optional .control-label {
-  color: #999;
-}
 footer {
   margin: 1em 0;
   color: #999;
+}
+.no-padding {
+  padding: 0 !important;
+}
+.sm-padding {
+  padding: 0 5px;
+}
+.panel-controls {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+.panel-controls form {
+  display: inline-block;
+}
+.panel-controls .btn {
+  margin-left: 4px;
+}
+.form-actions {
+  margin-bottom: 0;
+}
+.form-actions .btn {
+  margin: 0 2px;
+}
+.full-width {
+  width: 100%;
+}
+#tags {
+  padding: 4px 0 0;
+}
+#tags .tag {
+  display: inline-block;
+  margin: 0 4px 4px 0;
+}
+.modal-header h4 {
+  margin: 0;
 }
 /*# sourceMappingURL=main.css.map */

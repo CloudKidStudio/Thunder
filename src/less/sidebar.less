@@ -1,0 +1,38 @@
+#search-list {
+	ul {
+		width:100%; 
+		overflow:hidden;
+		.empty {
+			text-align: center;
+			padding:5px 0;
+		}
+		.search-item {
+			outline:none;
+			width: 100%;
+			text-align: left;
+			strong {
+				background:#ffc;
+				font-weight:normal
+			}
+		}
+		.active .search-item {
+			background: #337ab7;
+			color: #fff;
+			strong {
+				background:transparent;
+			}
+		}
+	}
+}
+
+.searchForm {
+	margin-bottom:2em;
+}
+
+.categories {
+	padding:0 0 0 20px;
+	.total {
+		margin-left:0.5em;
+		color:#999;
+	}
+}

@@ -163,12 +163,12 @@ router.post('/', function(req, res)
 		if (err)
 		{
 			// Clean-up any saved files
-			fs.unlinkSync(source);
-			fs.unlinkSync(mp3);
-			fs.unlinkSync(ogg);
-			fs.unlinkSync(sourceDest);
-			fs.unlinkSync(oggDest);
-			fs.unlinkSync(mp3Dest);
+			removeFile(source);
+			removeFile(mp3);
+			removeFile(ogg);
+			removeFile(sourceDest);
+			removeFile(oggDest);
+			removeFile(mp3Dest);
 
 			req.flash('error', err);
 			res.redirect('/admin/sound');
@@ -178,6 +178,14 @@ router.post('/', function(req, res)
 		req.flash('sound', results.saveSound);
 		res.redirect('/admin/sound');
 	});
+
+	function removeFile(path)
+	{
+		if (fs.existsSync(path))
+		{
+			fs.unlinkSync(path);
+		}
+	}
 });
 
 module.exports = router;
