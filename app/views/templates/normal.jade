@@ -14,8 +14,8 @@ block body
 						span.icon-bar
 					span.navbar-brand
 						if (user)
-							a(href="/favorites")= user.name 
-							span.details is bringing the 
+							a.hidden-xs(href="/favorites")= user.name 
+							span.hidden-xs.details is bringing the 
 						a(href='/') Thunder
 				.collapse.navbar-collapse
 					if user
