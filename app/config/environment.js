@@ -8,7 +8,6 @@
 module.exports = {
 	development:
 	{
-		port: 3000,
 		spaces: 4,
 		errorHandlerOptions:
 		{
@@ -18,7 +17,6 @@ module.exports = {
 	},
 	production:
 	{
-		port: 3000,
 		spaces: 0,
 		errorHandlerOptions:
 		{

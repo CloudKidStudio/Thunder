@@ -26,7 +26,7 @@ var config = require('./config/environment.js')[app.get('env')];
 process.chdir(__dirname);
 
 // Setup the app
-app.listen(config.port);
+app.listen(process.env.PORT || 3000);
 
 app.use(bodyParser.urlencoded(
 {
