@@ -24,12 +24,14 @@ block body
 									label.control-label.col-sm-3(for="db") Database
 									.col-sm-9
 										input.form-control(type="text" id="db" name="db" placeholder="mongodb://localhost/thunder")
-										p.help-block The MongoDB connection location
+										p.help-block The MongoDB connection, 
+											a(href="http://docs.mongodb.org/manual/reference/connection-string/") see docs 
+											| for more info.
 								.form-group
 									label.control-label.col-sm-3(for="secret") Session Secret
 									.col-sm-9
 										input.form-control(type="text" id="secret" name="secret")
-										p.help-block A unique string for creating the sessions.
+										p.help-block Session cookie is signed with this secret to prevent tampering.
 								.form-group
 									label.control-label.col-sm-3(for="gmailUser") Gmail User
 									.col-sm-9
