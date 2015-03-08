@@ -12,25 +12,30 @@ block body
 						.panel-heading
 							h1.panel-title Install Thunder
 
-						if (completed)
+						if completed
 							.panel-body
-								.alert.alert-success Site has successfully installed!
+								.alert.alert-success Environment settings have been saved. Please manually restart the Express server.
 								.text-center
 									a.btn.btn-lg.btn-primary(href="/") Continue
 						else
 							form.panel-body.form-horizontal(method="post" action="/")
 								include partials/feedback
 								.form-group
-									label.control-label.col-sm-3(for="db") Database
+									label.control-label.col-sm-3(for="port") Port
 									.col-sm-9
-										input.form-control(type="text" id="db" name="db" placeholder="mongodb://localhost/thunder")
+										input.form-control(type="number" id="port" value="80" name="port")
+										p.help-block The port at the site should run on. 
+								.form-group
+									label.control-label.col-sm-3(for="mongoDatabase") Database
+									.col-sm-9
+										input.form-control(type="text" id="mongoDatabase" name="mongoDatabase" placeholder="mongodb://localhost/thunder")
 										p.help-block The MongoDB connection, 
 											a(href="http://docs.mongodb.org/manual/reference/connection-string/") see docs 
 											| for more info.
 								.form-group
-									label.control-label.col-sm-3(for="secret") Session Secret
+									label.control-label.col-sm-3(for="secretKey") Session Secret
 									.col-sm-9
-										input.form-control(type="text" id="secret" name="secret")
+										input.form-control(type="text" id="secretKey" name="secretKey")
 										p.help-block Session cookie is signed with this secret to prevent tampering.
 								.form-group
 									label.control-label.col-sm-3(for="gmailUser") Gmail User

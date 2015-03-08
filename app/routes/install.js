@@ -4,14 +4,16 @@ var fs = require('fs');
 router.get('*', function(req, res)
 {
     res.render('install', {
-        title: 'Installation'
+        title: 'Installation',
+        completed: fs.existsSync('../.env')
     });
 });
 
 router.post('*', function(req, res)
 {
-    req.checkBody('db', 'Database must be a valid URL end-point').notEmpty();
-    req.checkBody('secret', 'Secret is required').notEmpty();
+    req.checkBody('port', 'Port must be a valid number').isInt();
+    req.checkBody('mongoDatabase', 'Database must be a valid URL end-point').notEmpty();
+    req.checkBody('secretKey', 'Secret is required').notEmpty();
     req.checkBody('gmailUser', 'Gmail user must be a full email address').isEmail();
     req.checkBody('gmailPassword', 'Gmail password is required').notEmpty();
 
@@ -22,8 +24,13 @@ router.post('*', function(req, res)
         return res.render('install', { errors: errors });
     }
 
-    var data = "module.exports = " + JSON.stringify(req.body, null, "\t") + ";";
-    fs.writeFile('./config/settings.js', data, function()
+    var env = "PORT=" + req.body.port + "\n" +
+        "MONGO_DATABASE=" + req.body.mongoDatabase + "\n" +
+        "SECRET_KEY=" + req.body.secretKey + "\n" +
+        "GMAIL_USER=" + req.body.gmailUser + "\n" +
+        "GMAIL_PASSWORD=" + req.body.gmailPassword;
+
+    fs.writeFile('../.env', env, function()
     {
         res.render('install', { completed: true });
     });

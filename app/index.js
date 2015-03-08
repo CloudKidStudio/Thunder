@@ -13,8 +13,12 @@ var express = require('express'),
 	session = require('express-session'),
 	zip = require('express-zip'),
 	fs = require('fs'),
+	dotenv = require('dotenv'),
 	validator = require('express-validator'),
 	multer = require('multer');
+
+// Load the environment file
+dotenv.load();
 
 // Create sever
 var app = express();
@@ -26,7 +30,8 @@ var config = require('./config/environment.js')[app.get('env')];
 process.chdir(__dirname);
 
 // Setup the app
-app.listen(process.env.PORT || 3000);
+var port = process.env.PORT || 3000;
+app.listen(port);
 
 app.use(bodyParser.urlencoded(
 {
@@ -60,20 +65,17 @@ app.use(express.static(__dirname + '/public'));
 app.use(errorHandler(config.errorHandlerOptions));
 
 // Start the server
-console.log(('Thunder running on ').green + ('http://localhost:' + config.port).blue);
+console.log(('Thunder running on ').green + ('http://localhost:' + port).blue);
 
 // Check for the settings
-if (!fs.existsSync('./config/settings.js'))
+if (!process.env.MONGO_DATABASE)
 {
-	app.use('*', require('./routes/install'));
+	app.use(require('./routes/install'));
 }
 else
 {
-	// load the settings
-	global.settings = require('./config/settings');
-
 	// Connect to database
-	mongoose.connect(settings.db);
+	mongoose.connect(process.env.MONGO_DATABASE);
 	mongooseTypes.loadTypes(mongoose);
 	require('express-mongoose');
 	var db = mongoose.connection;
@@ -88,7 +90,7 @@ else
 	// Authentication stuff
 	app.use(session(
 	{
-		secret: settings.secret,
+		secret: process.env.SECRET_KEY,
 		saveUninitialized: true,
 		resave: true
 	}));

@@ -1,6 +1,6 @@
 *.map
+.env
 node_modules
 components
 app/public/sounds
-app/config/settings.js
 app/uploads
