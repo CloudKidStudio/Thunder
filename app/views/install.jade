@@ -11,20 +11,13 @@ block body
 					.panel.panel-default
 						.panel-heading
 							h1.panel-title Install Thunder
-
-						if completed
-							.panel-body
-								.alert.alert-success Environment settings have been saved. Please manually restart the Express server.
-								.text-center
-									a.btn.btn-lg.btn-primary(href="/") Continue
-						else
 							form.panel-body.form-horizontal(method="post" action="/")
 								include partials/feedback
 								.form-group
 									label.control-label.col-sm-3(for="port") Port
 									.col-sm-9
-										input.form-control(type="number" id="port" value="80" name="port")
-										p.help-block The port at the site should run on. 
+										input.form-control(type="number" id="port" value=port name="port")
+										p.help-block The port at the site should run on. Changing the port above requires manually restarting the server.
 								.form-group
 									label.control-label.col-sm-3(for="mongoDatabase") Database
 									.col-sm-9
