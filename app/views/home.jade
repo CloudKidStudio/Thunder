@@ -2,3 +2,12 @@ extend templates/sounds
 
 append soundsTitle 
 	h2 Sounds
+
+append noSounds
+	.col-sm-12
+		.alert.alert-info 
+			h4 Nothing to see here
+			p Here's the deal, we were unable to find any sounds to show. 
+				| If you just setup Thunder, you should try adding a few sounds.  
+			p.text-center
+				a.btn.btn-primary.btn-lg(href="/admin/sound") Add Sounds

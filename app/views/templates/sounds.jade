@@ -4,7 +4,9 @@ append content
 	.col-sm-9
 		block soundsTitle
 		.row
-			if sounds
+			if !sounds || !sounds.length
+				block noSounds
+			else 
 				for sound in sounds 
 					.col-md-4.col-sm-6
 						.panel.panel-default.sound
@@ -14,20 +16,21 @@ append content
 							.panel-body.text-center
 								include ../partials/tags
 								include ../partials/controls
-		if (pagination.total > 1)
-			nav.text-center
-				ul.pagination
-					if (pagination.total > pagination.size)
-						li: a(href="#{pagination.base}/page/1") start
-					li: a(href="#{pagination.base}/page/#{pagination.previous}") &laquo;			
-					for n in pagination.pages
-						if (n == pagination.current)
-							li.active: a.hidden-xs(href="#{pagination.base}/page/#{n}")= n
-						else
-							li: a.hidden-xs(href="#{pagination.base}/page/#{n}")= n
-					li: a(href="#{pagination.base}/page/#{pagination.next}") &raquo;
-					if (pagination.total > pagination.size)
-						li: a(href="#{pagination.base}/page/#{pagination.total}") end
+
+			if pagination && pagination.total > 1
+				nav.text-center
+					ul.pagination
+						if (pagination.total > pagination.size)
+							li: a(href="#{pagination.base}/page/1") start
+						li: a(href="#{pagination.base}/page/#{pagination.previous}") &laquo;			
+						for n in pagination.pages
+							if (n == pagination.current)
+								li.active: a.hidden-xs(href="#{pagination.base}/page/#{n}")= n
+							else
+								li: a.hidden-xs(href="#{pagination.base}/page/#{n}")= n
+						li: a(href="#{pagination.base}/page/#{pagination.next}") &raquo;
+						if (pagination.total > pagination.size)
+							li: a(href="#{pagination.base}/page/#{pagination.total}") end
 	.col-sm-3
 		include ../partials/sidebar
 

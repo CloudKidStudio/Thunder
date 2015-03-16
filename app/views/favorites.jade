@@ -4,7 +4,7 @@ append title
 	| Favorites - 
 
 append soundsTitle 
-	if (sounds.length)
+	if sounds.length
 		form.btn-group.pull-right(method="post")
 			button.btn.btn-sm.btn-primary(type="submit" value="download" name="action")
 				span.icon.glyphicon.glyphicon-download-alt
@@ -16,7 +16,13 @@ append soundsTitle
 				span.icon.glyphicon.glyphicon-trash
 				span.hidden-xs Clear
 	h2 Favorites
-	if (!sounds.length)
-		.alert.alert-warning You haven't selected any favorites.
+
+append noSounds
+	.col-sm-12
+		.alert.alert-info 
+			h4 No favorites
+			p You haven't selected any favorites. Click the 
+				span.glyphicon.glyphicon-heart 
+				|  next to each sound to add it.
 			
 			

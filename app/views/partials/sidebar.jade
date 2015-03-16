@@ -5,10 +5,14 @@ div.searchForm
 	input.form-control(type="text" class="text" name="search" data-toggle="dropdown" id="search" placeholder="Search" autocomplete="off")
 	div.dropdown#search-list
 		ul.dropdown-menu
-if categories
-	h2 
-		span.icon.glyphicon.glyphicon-folder-open 
-		| Categories
+h2 
+	span.icon.glyphicon.glyphicon-folder-open 
+	| Categories
+if !categories || !categories.length
+	.alert.alert-info No categories to show, try  
+		a(href="/admin/categories") adding one
+		| .
+else
 	.list-group
 		for cat in categories
 			if (cat.total > 0)

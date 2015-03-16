@@ -7,6 +7,8 @@ router.get('/:local(page)?/:number([0-9]+)?', function(req, res)
 {
 	Sound.getTotal(function(err, count)
 	{
+		if (!count) return res.render('home');
+
 		var nav = new Pagination('', count, req.params.number);
 
 		res.render('home',

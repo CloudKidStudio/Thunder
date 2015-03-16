@@ -10,7 +10,8 @@ router.get('*',  function(req, res, next)
 		return next();
 
 	res.render('install', {
-		port: process.env.PORT || 3000
+		port: process.env.PORT || 3000,
+		admin: true
 	});
 });
 
