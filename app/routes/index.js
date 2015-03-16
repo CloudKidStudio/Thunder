@@ -1,5 +1,7 @@
 module.exports = function(app)
 {
+	var access = require('../helpers/access');
+
 	// Add the user to whatever template
 	app.use(function(req, res, next)
 	{
@@ -13,15 +15,9 @@ module.exports = function(app)
 		{
 			return url == req.originalUrl ? 'active' : undefined;
 		};
-		res.locals.privilege = {
-			subscriber: 0,
-			editor: 1,
-			admin: 2  
-		};
+		res.locals.privilege = access.privileges;
 		next();
 	});
-
-	var access = require('../helpers/access');
 
 	//home is synonym for index, since index is already used
 	//as is '/' for index

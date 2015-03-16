@@ -11,35 +11,69 @@ block body
 					.panel.panel-default
 						.panel-heading
 							h1.panel-title Install Thunder
-							form.panel-body.form-horizontal(method="post" action="/")
-								include partials/feedback
+						form.panel-body.form-horizontal(method="post" action="/")
+							include partials/feedback
+							.form-group
+								label.control-label.col-sm-3(for="port") Port
+								.col-sm-9
+									input.form-control(type="number" id="port" value=port name="port")
+									p.help-block The port at the site should run on. Changing the port above requires manually restarting the server.
+							.form-group
+								label.control-label.col-sm-3(for="mongoDatabase") Database
+								.col-sm-9
+									input.form-control(type="text" id="mongoDatabase" name="mongoDatabase" placeholder="mongodb://localhost/thunder")
+									p.help-block The MongoDB connection, 
+										a(href="http://docs.mongodb.org/manual/reference/connection-string/") see docs 
+										| for more info.
+							.form-group
+								label.control-label.col-sm-3(for="secretKey") Session Secret
+								.col-sm-9
+									input.form-control(type="text" id="secretKey" name="secretKey")
+									p.help-block Session cookie is signed with this secret to prevent tampering.
+							.form-group
+								label.control-label.col-sm-3(for="gmailUser") Gmail User
+								.col-sm-9
+									input.form-control(type="text" id="gmailUser" name="gmailUser" placeholder="user@gmail.com")
+									p.help-block Gmail account for sending site emails.
+							.form-group
+								label.control-label.col-sm-3(for="gmailPassword") Gmail Password
+								.col-sm-9
+									input.form-control(type="password" id="gmailPassword" name="gmailPassword")
+									p.help-block Gmail account password for sending emails.
+							.form-group
+								label.control-label.col-sm-3(for="adminToggle") Account
+								.col-sm-9
+									.checkbox
+										label
+											if admin
+												input(type="checkbox" name="admin" data-toggle="collapse" data-target="#adminUser" checked)
+											else
+												input(type="checkbox" name="admin" data-toggle="collapse" data-target="#adminUser")
+											| Create the administrator account.
+							#adminUser.collapse(class=(admin ? 'in' : ''))
 								.form-group
-									label.control-label.col-sm-3(for="port") Port
-									.col-sm-9
-										input.form-control(type="number" id="port" value=port name="port")
-										p.help-block The port at the site should run on. Changing the port above requires manually restarting the server.
-								.form-group
-									label.control-label.col-sm-3(for="mongoDatabase") Database
-									.col-sm-9
-										input.form-control(type="text" id="mongoDatabase" name="mongoDatabase" placeholder="mongodb://localhost/thunder")
-										p.help-block The MongoDB connection, 
-											a(href="http://docs.mongodb.org/manual/reference/connection-string/") see docs 
-											| for more info.
-								.form-group
-									label.control-label.col-sm-3(for="secretKey") Session Secret
-									.col-sm-9
-										input.form-control(type="text" id="secretKey" name="secretKey")
-										p.help-block Session cookie is signed with this secret to prevent tampering.
-								.form-group
-									label.control-label.col-sm-3(for="gmailUser") Gmail User
-									.col-sm-9
-										input.form-control(type="text" id="gmailUser" name="gmailUser" placeholder="user@gmail.com")
-										p.help-block Gmail account for sending site emails.
-								.form-group
-									label.control-label.col-sm-3(for="gmailPassword") Gmail Password
-									.col-sm-9
-										input.form-control(type="password" id="gmailPassword" name="gmailPassword")
-										p.help-block Gmail account password for sending emails.
-								.form-group.form-actions.text-center
-									.col-sm-9.col-sm-offset-3
-										button.btn.btn-lg.btn-primary(type='submit') Install
+									.col-sm-12
+										.well
+											.form-group
+												label.control-label.col-sm-3(for="name") Name
+												.col-sm-9
+													input.form-control#admin(type='text', name='name' value="Administrator")
+											.form-group
+												label.control-label.col-sm-3(for="username") Username
+												.col-sm-9
+													input.form-control#username(type='text' name='username' value="admin")
+											.form-group
+												label.control-label.col-sm-3(for="email") Email
+												.col-sm-9
+													input.form-control#email(type='text' name='email')
+											.form-group
+												label.control-label.col-sm-3(for="password") Password
+												.col-sm-9
+													input.form-control#password(type='password' name='password' placeholder='******')
+											.form-group
+												label.control-label.col-sm-3(for="confirm") Confirm
+												.col-sm-9
+													input.form-control#confirm(type='password' name='confirm' placeholder='******')
+							.form-group.form-actions.text-center
+								.col-sm-9.col-sm-offset-3
+									button.btn.btn-lg.btn-primary(type='submit') Install

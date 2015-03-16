@@ -1,4 +1,14 @@
+var privileges = {
+	subscriber: 0,
+	editor: 1,
+	admin: 2  
+};
+
 module.exports = {
+
+	// User privileges
+	privileges: privileges,
+
 	// If the user is logged in
 	isAuthenticated : function(req, res, next) 
 	{
@@ -19,7 +29,7 @@ module.exports = {
 	// Access function if user is logged in is admin
 	isAdmin: function(req, res, next)
 	{
-		if (req.isAuthenticated() && req.user.privilege == 2)
+		if (req.isAuthenticated() && req.user.privilege == privileges.admin)
 			return next();
 		req.flash('redirect', req.originalUrl);
 		res.redirect('/login');
@@ -28,7 +38,7 @@ module.exports = {
 	// Access function if user logged in is Editor
 	isEditor: function(req, res, next)
 	{
-		if (req.isAuthenticated() && req.user.privilege >= 1)
+		if (req.isAuthenticated() && req.user.privilege >= privileges.editor)
 			return next();
 		req.flash('redirect', req.originalUrl);
 		res.redirect('/login');
