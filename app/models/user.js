@@ -125,12 +125,16 @@ UserSchema.methods.removeFavorites = function(callback)
  */
 UserSchema.methods.toggleFavorite = function(soundId, callback)
 {
-	var index = this.favorites.indexOf(soundId);
-	if (index > -1)
+	var removed = false;
+	this.favorites.forEach(function(favorite, i, favorites)
 	{
-		this.favorites = this.favorites.splice(index, 1);
-	}
-	else
+		if (favorite.equals(soundId))
+		{
+			favorites.splice(i, 1);
+			removed = true;
+		}
+	});
+	if (!removed)
 	{
 		this.favorites.push(soundId);
 	}
