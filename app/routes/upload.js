@@ -5,36 +5,38 @@ var async = require('async');
 var fs = require('fs.extra');
 var Sound = require('../models/sound');
 var Category = require('../models/category');
+var upload = require('multer')({ dest: 'uploads/' });
 
-router.post('/', function(req, res)
+router.post('/', upload.single('audio'), function(req, res)
 {
-	if (!req.files || !req.files.audio)
+	if (!req.file)
 	{
+		console.error("No file to upload");
 		return res.redirect('back');
 	}
 
 	// Uploaded file
-	var audio = req.files.audio;
+	var audio = req.file;
 
-	// The file source
-	var source = audio.path;
+	// Rename the file with extension
+	var source = "./"  + audio.path;
 	
 	// Sound assets
-	var ext = path.extname(source);
+	var ext = path.extname(audio.originalname);
 	var name = path.basename(audio.originalname, ext);
-	var assetId = path.basename(source, ext);
+	var assetId = audio.filename;
 	var uri = name.toLowerCase()
 		.replace(/[ _]+/g, '-')
 		.replace(/[^a-z0-9\-]+/g, '-');
 
 	// Temp compile files
-	var ogg = source.replace(path.extname(source), '.ogg');
-	var mp3 = source.replace(path.extname(source), '.mp3');
+	var ogg = source + '.ogg';
+	var mp3 = source + '.mp3';
 
 	// Destination files
-	var sourceDest = "./public/sounds/original/" + audio.name;
-	var mp3Dest = "./public/sounds/web/" + path.basename(mp3);
-	var oggDest = "./public/sounds/web/" + path.basename(ogg);
+	var sourceDest = "./public/sounds/original/" + audio.filename + ext;
+	var mp3Dest = "./public/sounds/web/" + audio.filename + '.mp3';
+	var oggDest = "./public/sounds/web/" + audio.filename + '.ogg';
 
 	var uncategorized = null;
 
@@ -170,7 +172,8 @@ router.post('/', function(req, res)
 			removeFile(oggDest);
 			removeFile(mp3Dest);
 
-			req.flash('error', err);
+			console.error(err);
+			req.flash('error', String(err));
 			res.redirect('/admin/sound');
 			return;
 		}

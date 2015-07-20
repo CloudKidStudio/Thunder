@@ -8,8 +8,7 @@ var express = require('express'),
 	zip = require('express-zip'),
 	fs = require('fs'),
 	dotenv = require('dotenv'),
-	validator = require('express-validator'),
-	multer = require('multer');
+	validator = require('express-validator');
 
 // Load the environment file
 dotenv.load();
@@ -30,7 +29,6 @@ app.listen(port);
 // Middleware for Express
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(multer({ dest: './uploads/'}));
 app.set('json spaces', config.spaces);
 
 // Rendering engine for mark-up
