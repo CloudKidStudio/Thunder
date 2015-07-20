@@ -92,7 +92,8 @@ router.post('/', upload.single('audio'), function(req, res)
 		// Encode the mp3 file
 		mp3: function(done)
 		{			
-			exec("./bin/lame --cbr -b 80k " + source + " " + mp3,
+			exec("lame --cbr -b 80k ." + source + " ." + mp3,
+				{cwd: './bin'},
 				function(err, stdout, stderr)
 				{
 					//console.log(String(stderr).gray);
