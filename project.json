@@ -1,32 +1,32 @@
 {
-    "name": "Thunder",
-    "version": "1.0.0",
-    "main": [
-        "src/ui/playback.js",
-        "src/ui/search.js",
-        "src/main.js",
-        "src/main.less"
-    ],
-    "libraries": [
-        "components/jquery/dist/jquery.min.js",
-        "components/jquery-ui/jquery-ui.min.js",
-        "components/bootstrap/dist/js/bootstrap.min.js",
-        "components/bootstrap/dist/css/bootstrap.css"
-    ],
-    "librariesDebug": [
-        "components/jquery/dist/jquery.js",
-        "components/jquery-ui/jquery-ui.js",
-        "components/bootstrap/dist/js/bootstrap.js",
-        "components/bootstrap/dist/css/bootstrap.css"
-    ],
-    "modules": {
-        "sounds": [
-            "src/ui/playback.js",
-            "src/ui/search.js",
-            "src/sounds.js"
-        ],
-        "admin": [
-            "src/admin.js"
-        ]
-    }
+	"name": "Thunder",
+	"version": "1.0.1",
+	"main": [
+		"src/ui/playback.js",
+		"src/ui/search.js",
+		"src/main.js",
+		"src/main.less"
+	],
+	"libraries": [
+		"components/jquery/dist/jquery.min.js",
+		"components/jquery-ui/jquery-ui.min.js",
+		"components/bootstrap/dist/js/bootstrap.min.js",
+		"components/bootstrap/dist/css/bootstrap.css"
+	],
+	"librariesDebug": [
+		"components/jquery/dist/jquery.js",
+		"components/jquery-ui/jquery-ui.js",
+		"components/bootstrap/dist/js/bootstrap.js",
+		"components/bootstrap/dist/css/bootstrap.css"
+	],
+	"modules": {
+		"sounds": [
+			"src/ui/playback.js",
+			"src/ui/search.js",
+			"src/sounds.js"
+		],
+		"admin": [
+			"src/admin.js"
+		]
+	}
 }
